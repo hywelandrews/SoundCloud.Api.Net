@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1FF0F3E-2C48-4878-8805-44217825AC72}"
+	ProjectSection(SolutionItems) = preProject
+		SoundCloudCharts.vsmdi = SoundCloudCharts.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundCloud.Api.Net.Tests", "SoundCloud.Api.Net.Tests\SoundCloud.Api.Net.Tests.csproj", "{95D297C5-7EBC-4589-8CBF-EA6147FD969F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundCloud.Api.Net", "SoundCloud.Api.Net\SoundCloud.Api.Net.csproj", "{5A286CAE-F674-4735-B7DF-6767FB10829E}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SoundCloudCharts.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95D297C5-7EBC-4589-8CBF-EA6147FD969F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D297C5-7EBC-4589-8CBF-EA6147FD969F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D297C5-7EBC-4589-8CBF-EA6147FD969F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D297C5-7EBC-4589-8CBF-EA6147FD969F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A286CAE-F674-4735-B7DF-6767FB10829E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A286CAE-F674-4735-B7DF-6767FB10829E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A286CAE-F674-4735-B7DF-6767FB10829E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A286CAE-F674-4735-B7DF-6767FB10829E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

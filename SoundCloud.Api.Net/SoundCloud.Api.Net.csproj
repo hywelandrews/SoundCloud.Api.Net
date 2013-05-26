@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A286CAE-F674-4735-B7DF-6767FB10829E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoundCloud.Api.Net</RootNamespace>
+    <AssemblyName>SoundCloud.Api.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\IPasswordCredentialsState.cs" />
+    <Compile Include="Authentication\PasswordCredentials.cs" />
+    <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="ISoundCloudApi.cs" />
+    <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\App.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Favoriting.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\OAuth2.cs" />
+    <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\Track.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WebProfile.cs" />
+    <Compile Include="Parameters\FormParameter.cs" />
+    <Compile Include="Parameters\QueryParameter.cs" />
+    <Compile Include="Parameters\Uri.cs" />
+    <Compile Include="Parameters\UrlParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Activities.cs" />
+    <Compile Include="Resources\AllOwn.cs" />
+    <Compile Include="Resources\Apps.cs" />
+    <Compile Include="Resources\Comment.cs" />
+    <Compile Include="Resources\Comments.cs" />
+    <Compile Include="Resources\Connection.cs" />
+    <Compile Include="Resources\Connections.cs" />
+    <Compile Include="Resources\Favorite.cs" />
+    <Compile Include="Resources\Favorites.cs" />
+    <Compile Include="Resources\Follower.cs" />
+    <Compile Include="Resources\Followers.cs" />
+    <Compile Include="Resources\Following.cs" />
+    <Compile Include="Resources\Followings.cs" />
+    <Compile Include="Resources\Group.cs" />
+    <Compile Include="Resources\Groups.cs" />
+    <Compile Include="Resources\Interfaces\IActivities.cs" />
+    <Compile Include="Resources\Interfaces\IAllOwn.cs" />
+    <Compile Include="Resources\Interfaces\IComment.cs" />
+    <Compile Include="Resources\Interfaces\IComments.cs" />
+    <Compile Include="Resources\Interfaces\IConnection.cs" />
+    <Compile Include="Resources\Interfaces\IConnections.cs" />
+    <Compile Include="Resources\Interfaces\IFavorite.cs" />
+    <Compile Include="Resources\Interfaces\IFavorites.cs" />
+    <Compile Include="Resources\Interfaces\IFollower.cs" />
+    <Compile Include="Resources\Interfaces\IFollowers.cs" />
+    <Compile Include="Resources\Interfaces\IFollowing.cs" />
+    <Compile Include="Resources\Interfaces\IFollowings.cs" />
+    <Compile Include="Resources\Interfaces\IGet.cs" />
+    <Compile Include="Resources\Interfaces\IGroups.cs" />
+    <Compile Include="Resources\Interfaces\IPlaylists.cs" />
+    <Compile Include="Resources\Interfaces\ISharedToEmails.cs" />
+    <Compile Include="Resources\Interfaces\ISharedToUsers.cs" />
+    <Compile Include="Resources\Interfaces\ITrack.cs" />
+    <Compile Include="Resources\Interfaces\ITracks.cs" />
+    <Compile Include="Resources\Interfaces\ITracksAfiliated.cs" />
+    <Compile Include="Resources\Interfaces\ITracksExclusive.cs" />
+    <Compile Include="Resources\Interfaces\IUser.cs" />
+    <Compile Include="Resources\Interfaces\IWebProfiles.cs" />
+    <Compile Include="Resources\Me.cs" />
+    <Compile Include="Resources\OAuth2Token.cs" />
+    <Compile Include="Resources\Playlist.cs" />
+    <Compile Include="Resources\Playlists.cs" />
+    <Compile Include="Resources\ResourceBase.cs" />
+    <Compile Include="Resources\SharedToEmails.cs" />
+    <Compile Include="Resources\SharedToUsers.cs" />
+    <Compile Include="Resources\Track.cs" />
+    <Compile Include="Resources\Tracks.cs" />
+    <Compile Include="Resources\TracksAfiliated.cs" />
+    <Compile Include="Resources\TracksExclusive.cs" />
+    <Compile Include="Resources\User.cs" />
+    <Compile Include="Resources\WebProfiles.cs" />
+    <Compile Include="SoundCloudApi.cs" />
+    <Compile Include="SoundCloudApiAuthenticated.cs" />
+    <Compile Include="SoundCloudApiFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
