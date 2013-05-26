@@ -7,7 +7,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class Playlists : ResourceBase<List<Models.Playlist>>, IPlaylists
     {
-        internal Playlists(RestRequest request)
+        internal Playlists(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             Request = request;
             Request.Resource = Request.Resource + Uri.Playlists;

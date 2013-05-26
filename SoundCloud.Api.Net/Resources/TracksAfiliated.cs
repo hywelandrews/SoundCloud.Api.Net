@@ -7,7 +7,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class TracksAfiliated : ResourceBase<List<Models.Track>>, ITracksAfiliated
     {
-        internal TracksAfiliated(RestRequest request)
+        internal TracksAfiliated(RestRequest request, ISoundCloudApiInternal _soundCloudApiInternal) : base(_soundCloudApiInternal)
         {
             Request = request;
             Request.Resource = Request.Resource + Uri.TracksAfiliated;

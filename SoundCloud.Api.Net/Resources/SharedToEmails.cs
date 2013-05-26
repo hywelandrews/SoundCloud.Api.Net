@@ -7,7 +7,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class SharedToEmails : ResourceBase<List<Models.Email>>, ISharedToEmails
     {
-        internal SharedToEmails(RestRequest request)
+        internal SharedToEmails(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             Request = request;
             Request.Resource = Request.Resource + Uri.SharedToEmails;

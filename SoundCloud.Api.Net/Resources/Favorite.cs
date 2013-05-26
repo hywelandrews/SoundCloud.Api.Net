@@ -6,7 +6,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class Favorite : ResourceBase<Models.Track>, IFavorite
     {
-        internal Favorite(RestRequest request, int userId)
+        internal Favorite(RestRequest request, int userId, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             Request = request;
             Request.Resource = Request.Resource + string.Format(Uri.Favorites + "{{{0}}}", UrlParameter.Id);

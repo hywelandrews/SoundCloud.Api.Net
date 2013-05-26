@@ -48,6 +48,7 @@
     <Compile Include="Authentication\PasswordCredentials.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="ISoundCloudApi.cs" />
+    <Compile Include="ISoundCloudApiInternal.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\App.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Resources\Comments.cs" />
     <Compile Include="Resources\Connection.cs" />
     <Compile Include="Resources\Connections.cs" />
+    <Compile Include="Resources\Contributors.cs" />
     <Compile Include="Resources\Favorite.cs" />
     <Compile Include="Resources\Favorites.cs" />
     <Compile Include="Resources\Follower.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Resources\Interfaces\IComments.cs" />
     <Compile Include="Resources\Interfaces\IConnection.cs" />
     <Compile Include="Resources\Interfaces\IConnections.cs" />
+    <Compile Include="Resources\Interfaces\IContributors.cs" />
     <Compile Include="Resources\Interfaces\IFavorite.cs" />
     <Compile Include="Resources\Interfaces\IFavorites.cs" />
     <Compile Include="Resources\Interfaces\IFollower.cs" />
@@ -93,8 +96,14 @@
     <Compile Include="Resources\Interfaces\IFollowing.cs" />
     <Compile Include="Resources\Interfaces\IFollowings.cs" />
     <Compile Include="Resources\Interfaces\IGet.cs" />
+    <Compile Include="Resources\Interfaces\IGroup.cs" />
     <Compile Include="Resources\Interfaces\IGroups.cs" />
+    <Compile Include="Resources\Interfaces\IMe.cs" />
+    <Compile Include="Resources\Interfaces\IMembers.cs" />
+    <Compile Include="Resources\Interfaces\IModerators.cs" />
+    <Compile Include="Resources\Interfaces\IPlaylist.cs" />
     <Compile Include="Resources\Interfaces\IPlaylists.cs" />
+    <Compile Include="Resources\Interfaces\IResource.cs" />
     <Compile Include="Resources\Interfaces\ISharedToEmails.cs" />
     <Compile Include="Resources\Interfaces\ISharedToUsers.cs" />
     <Compile Include="Resources\Interfaces\ITrack.cs" />
@@ -102,8 +111,11 @@
     <Compile Include="Resources\Interfaces\ITracksAfiliated.cs" />
     <Compile Include="Resources\Interfaces\ITracksExclusive.cs" />
     <Compile Include="Resources\Interfaces\IUser.cs" />
+    <Compile Include="Resources\Interfaces\IUsers.cs" />
     <Compile Include="Resources\Interfaces\IWebProfiles.cs" />
     <Compile Include="Resources\Me.cs" />
+    <Compile Include="Resources\Members.cs" />
+    <Compile Include="Resources\Moderators.cs" />
     <Compile Include="Resources\OAuth2Token.cs" />
     <Compile Include="Resources\Playlist.cs" />
     <Compile Include="Resources\Playlists.cs" />
@@ -115,6 +127,7 @@
     <Compile Include="Resources\TracksAfiliated.cs" />
     <Compile Include="Resources\TracksExclusive.cs" />
     <Compile Include="Resources\User.cs" />
+    <Compile Include="Resources\Users.cs" />
     <Compile Include="Resources\WebProfiles.cs" />
     <Compile Include="SoundCloudApi.cs" />
     <Compile Include="SoundCloudApiAuthenticated.cs" />

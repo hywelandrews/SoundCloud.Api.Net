@@ -7,7 +7,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class OAuth2Token : ResourceBase<Models.OAuth2>
     {
-        internal OAuth2Token(OAuth2 oAuth2)
+        internal OAuth2Token(OAuth2 oAuth2, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             Request.Resource = "/oauth2/token";
             Request.Method = Method.POST;

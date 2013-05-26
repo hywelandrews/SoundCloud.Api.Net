@@ -5,13 +5,13 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Favorites : ResourceBase<List<Models.Track>>, IFavorites
+    internal class Moderators : ResourceBase<List<Models.User>>, IModerators
     {
-        internal Favorites(RestRequest request, ISoundCloudApiInternal soundCloudApi)
+        internal Moderators(RestRequest request, ISoundCloudApiInternal soundCloudApi)
             : base(soundCloudApi)
         {
             Request = request;
-            Request.Resource = Request.Resource + Uri.Favorites;
+            Request.Resource = Request.Resource + Uri.Moderators;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SoundCloud.Api.Net.Resources;
+using SoundCloud.Api.Net.Resources.Interfaces;
 using SoundCloud.Api.Net.Tests.Configuration;
 using User = SoundCloud.Api.Net.Models.User;
 
@@ -53,7 +53,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [TestMethod]
         public void TestGetUserRequest()
         {
-            var user = new Net.Resources.User(509497).Get(_soundCloudApi);
+            var user = _soundCloudApi.User(509497).Get();
             var expectedUser = new User { Id = 509497 };
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
@@ -61,7 +61,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [TestMethod]
         public void TestGetUserFullNameRequest()
         {
-            var user = new Net.Resources.User(509497).Get(_soundCloudApi);
+            var user = _soundCloudApi.User(509497).Get();
             var expectedUser = new User { Id = 509497, FullName = "Owl" };
             Assert.AreEqual(expectedUser.FullName, user.FullName);
         }
@@ -69,7 +69,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [TestMethod]
         public void TestGetUserWithOAuthRequest()
         {
-            var user = new Net.Resources.User().Get(_soundCloudApiAuthenticate);
+            var user = _soundCloudApiAuthenticate.User().Get();
             var expectedUser = new User { Id = 509497 };
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
@@ -77,7 +77,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [TestMethod]
         public void TestGetUserWithOAuthRequestForceRefresh()
         {
-            new Net.Resources.User().Get(_soundCloudApiAuthenticate);
+            _soundCloudApiAuthenticate.User().Get();
 
             var token = _passwordCredentialsState.Load();
             token.expires_in = 1;
@@ -90,7 +90,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             _passwordCredentialsState.Save(token);
 
             _soundCloudApiAuthenticate = SoundCloudApiFactory.GetSoundCloudApi(TestSettings.ClientId, TestSettings.ClientSecret, _passwordCredentialsState);
-            var user = new Net.Resources.User().Get(_soundCloudApiAuthenticate);
+            var user = _soundCloudApiAuthenticate.User().Get();
             var expectedUser = new User { Id = 509497 };
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
@@ -99,7 +99,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         public void TestGetUserAsyncWithOAuth()
         {
             _completion = new ManualResetEvent(false);
-            new Net.Resources.User().GetAsync(_soundCloudApiAuthenticate, UserBuilder);
+            _soundCloudApiAuthenticate.User().GetAsync(UserBuilder);
             _completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.AreEqual(509497, _asyncUserResult.Id);
         }
@@ -107,26 +107,27 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [TestMethod]
         public void TestGetMultipleRequests()
         {
-            var resourceList = new List<ResourceBase<User>>
+            var resourceList = new List<IUser>
                 {
-                    new Net.Resources.User(509497),
-                    new Net.Resources.User(509497),
-                    new Net.Resources.User(509497)
+                    _soundCloudApi.User(509497),
+                    _soundCloudApi.User(509497),
+                    _soundCloudApi.User(509497),
                 };
-            var users = _soundCloudApi.Execute(resourceList);
+            var users = _soundCloudApi.Execute<User>(resourceList);
             Assert.AreEqual(3, users.Count);
+            
         }
 
         [TestMethod]
         public void TestGetMultipleRequestsWithOAuth()
         {
-            var resourceList = new List<ResourceBase<User>>
+            var resourceList = new List<IUser>
                 {
-                    new Net.Resources.User(),
-                    new Net.Resources.User(),
-                    new Net.Resources.User()
+                    _soundCloudApi.User(),
+                    _soundCloudApi.User(),
+                    _soundCloudApi.User(),
                 };
-            var users = _soundCloudApiAuthenticate.Execute(resourceList);
+            var users = _soundCloudApiAuthenticate.Execute<User>(resourceList);
             Assert.AreEqual(3, users.Count);
         }
 
@@ -135,14 +136,14 @@ namespace SoundCloud.Api.Net.Tests.Resources
         {
             _completion = new ManualResetEvent(false);
 
-            var resourceList = new List<ResourceBase<User>>
+            var resourceList = new List<IUser>
                 {
-                    new Net.Resources.User(),
-                    new Net.Resources.User(),
-                    new Net.Resources.User()
+                    _soundCloudApi.User(),
+                    _soundCloudApi.User(),
+                    _soundCloudApi.User(),
                 };
             
-            _soundCloudApiAuthenticate.ExecuteAsync(resourceList, UserListBuilder);
+            _soundCloudApiAuthenticate.ExecuteAsync<User>(resourceList, UserListBuilder);
             Assert.AreEqual(3, _asyncUsersResult.Count);
         }
 

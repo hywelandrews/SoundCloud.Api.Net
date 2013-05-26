@@ -4,13 +4,15 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    public abstract class ResourceBase<T> : IGet<T> where T:new()
+    internal abstract class ResourceBase<T> : IResource where T:new()
     {
         protected RestRequest Request = new RestRequest();
+        private readonly ISoundCloudApiInternal _soundCloudApi;
 
-        protected ResourceBase()
+        protected ResourceBase(ISoundCloudApiInternal soundCloudApi)
         {
             Request.RequestFormat = DataFormat.Json;
+            _soundCloudApi = soundCloudApi;
         }
     
         public RestRequest GetRequest()
@@ -23,16 +25,16 @@ namespace SoundCloud.Api.Net.Resources
             Request = request;
         }
 
-        public T Get(ISoundCloudApi soundCloudApi)
+        public T Get()
         {
             Request.Method = Method.GET;
-            return soundCloudApi.Execute(this);
+            return _soundCloudApi.Execute<T>(this);
         }
 
-        public void GetAsync(ISoundCloudApi soundCloudApi, Action<T> callback)
+        public void GetAsync(Action<T> callback)
         {
            Request.Method = Method.GET;
-           soundCloudApi.ExecuteAsync(this, callback);
+           _soundCloudApi.ExecuteAsync<T>(this, callback);
         }
     }
 }

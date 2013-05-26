@@ -7,7 +7,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class SharedToUsers : ResourceBase<List<Models.User>>, ISharedToUsers
     {
-        internal SharedToUsers(RestRequest request)
+        internal SharedToUsers(RestRequest request, ISoundCloudApiInternal soundCloudApi) :base(soundCloudApi)
         {
             Request = request;
             Request.Resource = Request.Resource + Uri.SharedToUsers;

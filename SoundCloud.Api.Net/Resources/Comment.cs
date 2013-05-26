@@ -6,7 +6,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class Comment : ResourceBase<Models.Comment>, IComment
     {
-        internal Comment(RestRequest request, int commentId)
+        internal Comment(RestRequest request, int commentId, ISoundCloudApiInternal soundCloudApi) : base (soundCloudApi)
         {
             Request = request;
             Request.Resource = Request.Resource + string.Format(Uri.Comments + "{{{0}}}", UrlParameter.Id);

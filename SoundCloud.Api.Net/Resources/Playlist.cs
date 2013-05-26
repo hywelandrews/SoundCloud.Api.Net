@@ -4,23 +4,25 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Playlist : ResourceBase<Models.Playlist>
+    internal class Playlist : ResourceBase<Models.Playlist>, IPlaylist
     {
-        public Playlist(RestRequest request, string playlistId)
+        private readonly ISoundCloudApiInternal _soundCloudApi;
+
+        public Playlist(int playlistId, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
-            Request = request;
+            _soundCloudApi = soundCloudApi;
             Request.Resource = string.Format(Uri.Playlists + "{{{0}}}", UrlParameter.Id);
             Request.AddParameter(UrlParameter.Id, playlistId, ParameterType.UrlSegment);
         }
 
         public ISharedToUsers SharedToUsers()
         {
-            return new SharedToUsers(Request);
+            return new SharedToUsers(Request, _soundCloudApi);
         }
 
         public ISharedToEmails SharedToEmails()
         {
-            return new SharedToEmails(Request);
+            return new SharedToEmails(Request, _soundCloudApi);
         }
     }
 }
