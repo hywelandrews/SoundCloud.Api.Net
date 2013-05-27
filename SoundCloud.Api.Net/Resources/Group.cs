@@ -45,5 +45,10 @@ namespace SoundCloud.Api.Net.Resources
         {
             return new PendingTracks(Request, _soundCloudApi);
         }
+
+        public IPendingTrack PendingTrack(int trackId)
+        {
+            return new PendingTrack(Request, trackId, _soundCloudApi);
+        }
     }
 }

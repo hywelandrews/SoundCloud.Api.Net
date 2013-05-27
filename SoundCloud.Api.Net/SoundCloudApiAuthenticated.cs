@@ -55,36 +55,38 @@ namespace SoundCloud.Api.Net
             _passwordCredentialsState = passwordCredentialsState;
         }
 
-        public new void ExecuteAsync<T>(IResource resource, Action<T> callback) where T : new()
+        public new void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
         {
             GetOAuth2Token();
             resource.SetRequest(AddRestClientToken(resource));
             base.ExecuteAsync(resource, callback);
         }
 
-        public new List<T> Execute<T>(IEnumerable<IResource> resources) where T : new()
+        public new List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T :  new()
         {
             GetOAuth2Token();
 
-            var resourceBases = resources as IList<IResource> ?? resources.ToList();
+            var resourceBases = resources as IList<IResource<T>> ?? resources.ToList();
+
             foreach (var resource in resourceBases)
                 resource.SetRequest(AddRestClientToken(resource));
 
             return base.Execute<T>(resourceBases);
         }
 
-        public new void ExecuteAsync<T>(IEnumerable<IResource> resources, Action<List<T>> callback) where T : new()
+        public new void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
         {
             GetOAuth2Token();
 
-            var resourceBases = resources as IList<IResource> ?? resources.ToList();
+            var resourceBases = resources as IList<IResource<T>> ?? resources.ToList();
+
             foreach (var resource in resourceBases)
                 resource.SetRequest(AddRestClientToken(resource));
 
             base.ExecuteAsync(resourceBases, callback);
         }
 
-        public new T Execute<T>(IResource resource) where T : new()
+        public new T Execute<T>(IResource<T> resource) where T : new()
         {
             GetOAuth2Token();
             resource.SetRequest(AddRestClientToken(resource));
@@ -99,9 +101,7 @@ namespace SoundCloud.Api.Net
 
             var request = new OAuth2Token(oauth2Token, this).GetRequest();
 
-            var client = new RestClient {BaseUrl = Settings.BaseUrlSsl};
-
-            var response = client.Execute<PasswordCredentials>(request);
+            var response = Client.Execute<PasswordCredentials>(request);
 
             if (response.ErrorException != null)
             {
@@ -149,7 +149,7 @@ namespace SoundCloud.Api.Net
             return oauth2Token;
         }
 
-        private RestRequest AddRestClientToken(IResource resource)
+        private RestRequest AddRestClientToken<T>(IResource<T> resource) where T : new()
         {
             var request = resource.GetRequest();
             var passwordCredentials = _passwordCredentialsState.Load();

@@ -4,7 +4,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal abstract class ResourceBase<T> : IResource where T:new()
+    internal abstract class ResourceBase<T> : IResource<T> where T:new()
     {
         protected RestRequest Request = new RestRequest();
         private readonly ISoundCloudApiInternal _soundCloudApi;

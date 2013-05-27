@@ -1,11 +1,11 @@
 ﻿namespace SoundCloud.Api.Net.Resources.Interfaces
 {
-    public interface IUser : IResource, IGet<Models.User>
+    public interface IUser : IResource<Models.User>, IGet<Models.User>
     {
         IFollowings Followings();
-        IFollowing Following(string followingId);
+        IFollowing Following(int followingId);
         IFollowers Followers();
-        IFollower Follower(string followerId);
+        IFollower Follower(int followerId);
         ITracks Tracks();
         IPlaylists Playlists();
         IComment Comment(int commentId);

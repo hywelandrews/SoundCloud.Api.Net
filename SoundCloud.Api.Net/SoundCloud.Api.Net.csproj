@@ -101,6 +101,8 @@
     <Compile Include="Resources\Interfaces\IMe.cs" />
     <Compile Include="Resources\Interfaces\IMembers.cs" />
     <Compile Include="Resources\Interfaces\IModerators.cs" />
+    <Compile Include="Resources\Interfaces\IPendingTrack.cs" />
+    <Compile Include="Resources\Interfaces\IPendingTracks.cs" />
     <Compile Include="Resources\Interfaces\IPlaylist.cs" />
     <Compile Include="Resources\Interfaces\IPlaylists.cs" />
     <Compile Include="Resources\Interfaces\IResource.cs" />
@@ -117,6 +119,8 @@
     <Compile Include="Resources\Members.cs" />
     <Compile Include="Resources\Moderators.cs" />
     <Compile Include="Resources\OAuth2Token.cs" />
+    <Compile Include="Resources\PendingTrack.cs" />
+    <Compile Include="Resources\PendingTracks.cs" />
     <Compile Include="Resources\Playlist.cs" />
     <Compile Include="Resources\Playlists.cs" />
     <Compile Include="Resources\ResourceBase.cs" />

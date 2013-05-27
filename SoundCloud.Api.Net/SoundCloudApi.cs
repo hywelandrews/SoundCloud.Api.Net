@@ -20,7 +20,11 @@ namespace SoundCloud.Api.Net
         {
             _clientId = clientId;
             _secretKey = secretKey;
-            _client = new RestClient { BaseUrl = Settings.BaseUrl };
+            _client = new RestClient
+                {
+                    BaseUrl = Settings.BaseUrl,
+                    Authenticator = GetAuthenticator(_clientId, _secretKey)
+                };
         }
 
         internal SoundCloudApi(string clientId, string secretKey, RestClient client)
@@ -28,6 +32,7 @@ namespace SoundCloud.Api.Net
             _clientId = clientId;
             _secretKey = secretKey;
             _client = client;
+            _client.Authenticator = GetAuthenticator(_clientId, _secretKey);
         }
      
         public IUser User()
@@ -55,30 +60,15 @@ namespace SoundCloud.Api.Net
             return new Group(groupId, this);
         }
 
-        public void ExecuteAsync<T>(IResource resource, Action<T> callback) where T : new()
+        private static IAuthenticator GetAuthenticator(string clientId, string secretKey)
         {
-            var request = CreateRestClientRequest(resource);
-            _client.ExecuteAsync<T>(request, (response) => callback(response.Data));
+            return new SimpleAuthenticator(QueryParameter.ClientId, clientId, QueryParameter.Consumerkey,
+                                                            secretKey);
         }
 
-        public List<T> Execute<T>(IEnumerable<IResource> resources) where T : new()
+        public T Execute<T>(IResource<T> resource) where T : new()
         {
-            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
-
-            return compositeBuilderResult.Result;
-        }
-
-        public void ExecuteAsync<T>(IEnumerable<IResource> resources, Action<List<T>> callback) where T : new()
-        {
-            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
-            callback(compositeBuilderResult.Result);
-        }
-
-        public T Execute<T>(IResource resource) where T : new()
-        {
-            var request = CreateRestClientRequest(resource);
-
-            var response = _client.Execute<T>(request);
+            var response = _client.Execute<T>(resource.GetRequest());
 
             if (response.ErrorException != null)
             {
@@ -87,9 +77,27 @@ namespace SoundCloud.Api.Net
             return response.Data;
         }
 
-        private Task<List<T>> ExecuteMultipleResources<T>(IEnumerable<IResource> resources) where T : new()
+        public void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
         {
-            var requests = new List<IRestRequest>((from resource in resources select CreateRestClientRequest(resource)).ToList());
+            _client.ExecuteAsync<T>(resource.GetRequest(), (response) => callback(response.Data));
+        }
+
+        public List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new()
+        {
+            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
+
+            return compositeBuilderResult.Result;
+        }
+
+        public void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
+        {
+            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
+            callback(compositeBuilderResult.Result);
+        }
+
+        private Task<List<T>> ExecuteMultipleResources<T>(IEnumerable<IResource<T>> resources) where T : new()
+        {
+            var requests = new List<IRestRequest>((from resource in resources select resource.GetRequest()).ToList());
 
             var tasks = new List<Task<T>>();
 
@@ -103,21 +111,9 @@ namespace SoundCloud.Api.Net
             return compositeBuilderResult;
         }
 
-
-
         private List<T> compositeBuilder<T>(IEnumerable<Task<T>> taskResults)
         {
             return taskResults.Select(t => t.Result).ToList();
-        }
-
-        private RestRequest CreateRestClientRequest(IResource resource)
-        {
-            var request = resource.GetRequest();
-
-            // used on every request
-            request.AddParameter(QueryParameter.ClientId, _clientId, ParameterType.GetOrPost);
-            request.AddParameter(QueryParameter.Consumerkey, _secretKey, ParameterType.GetOrPost);
-            return request;
         }
     }
 }

@@ -6,8 +6,8 @@ namespace SoundCloud.Api.Net
 {
     public interface ISoundCloudApi
     {
-        List<T> Execute<T>(IEnumerable<IResource> resources) where T : new();
-        void ExecuteAsync<T>(IEnumerable<IResource> resources, Action<List<T>> callback) where T : new();
+        List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new();
+        void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new();
         IUser User();
         IUser User(int userId);
         ITrack Track(int trackId);

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SoundCloud.Api.Net.Resources.Interfaces;
 using SoundCloud.Api.Net.Tests.Configuration;
 using User = SoundCloud.Api.Net.Models.User;
 
 namespace SoundCloud.Api.Net.Tests.Resources
 {
-    [TestClass]
+    [TestFixture]
     public class UserResourceTests
     {
         private ManualResetEvent _completion;
@@ -18,7 +18,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         private ISoundCloudApi _soundCloudApiAuthenticate;
         private PasswordCredentialsState _passwordCredentialsState;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             ValidateConfiguration();
@@ -31,26 +31,26 @@ namespace SoundCloud.Api.Net.Tests.Resources
         {
             if (String.IsNullOrEmpty(TestSettings.ClientId))
             {
-                throw new AssertFailedException("Application setting clientId not configured in: SoundCloud.Api.Net.TestSettings");
+                throw new Exception("Application setting clientId not configured in: SoundCloud.Api.Net.TestSettings");
             }
 
             if (String.IsNullOrEmpty(TestSettings.ClientSecret))
             {
-                throw new AssertFailedException("Application setting clientSecret not configured in: SoundCloud.Api.Net.TestSettings");
+                throw new Exception("Application setting clientSecret not configured in: SoundCloud.Api.Net.TestSettings");
             }
 
             if (String.IsNullOrEmpty(TestSettings.UserName))
             {
-                throw new AssertFailedException("User setting username not configured in: SoundCloud.Api.Net.TestSettings");
+                throw new Exception("User setting username not configured in: SoundCloud.Api.Net.TestSettings");
             }
 
             if (String.IsNullOrEmpty(TestSettings.Password))
             {
-                throw new AssertFailedException("User setting password not configured in: SoundCloud.Api.Net.TestSettings");
+                throw new Exception("User setting password not configured in: SoundCloud.Api.Net.TestSettings");
             }
         }
         
-        [TestMethod]
+        [Test]
         public void TestGetUserRequest()
         {
             var user = _soundCloudApi.User(509497).Get();
@@ -58,7 +58,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetUserFullNameRequest()
         {
             var user = _soundCloudApi.User(509497).Get();
@@ -66,7 +66,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(expectedUser.FullName, user.FullName);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetUserWithOAuthRequest()
         {
             var user = _soundCloudApiAuthenticate.User().Get();
@@ -74,7 +74,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetUserWithOAuthRequestForceRefresh()
         {
             _soundCloudApiAuthenticate.User().Get();
@@ -95,7 +95,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(expectedUser.Id, user.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetUserAsyncWithOAuth()
         {
             _completion = new ManualResetEvent(false);
@@ -104,7 +104,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(509497, _asyncUserResult.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetMultipleRequests()
         {
             var resourceList = new List<IUser>
@@ -118,7 +118,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetMultipleRequestsWithOAuth()
         {
             var resourceList = new List<IUser>
@@ -131,7 +131,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             Assert.AreEqual(3, users.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetAsyncMultipleRequestsWithOAuth()
         {
             _completion = new ManualResetEvent(false);

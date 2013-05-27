@@ -28,7 +28,7 @@ namespace SoundCloud.Api.Net.Resources
             return new Followings(Request, _soundCloudApi);
         }
 
-        public IFollowing Following(string followingId)
+        public IFollowing Following(int followingId)
         {
             return new Following(Request, followingId, _soundCloudApi);
         }
@@ -38,7 +38,7 @@ namespace SoundCloud.Api.Net.Resources
             return new Followers(Request, _soundCloudApi);
         }
 
-        public IFollower Follower(string followerId)
+        public IFollower Follower(int followerId)
         {
             return new Follower(Request, followerId, _soundCloudApi);
         }

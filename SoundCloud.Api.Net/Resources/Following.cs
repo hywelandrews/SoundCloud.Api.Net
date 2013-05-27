@@ -6,7 +6,7 @@ namespace SoundCloud.Api.Net.Resources
 {
     internal class Following : ResourceBase<Models.User>, IFollowing
     {
-        internal Following(RestRequest request, string followingId, ISoundCloudApiInternal soundCloudApi)
+        internal Following(RestRequest request, int followingId, ISoundCloudApiInternal soundCloudApi)
             : base(soundCloudApi)
         {
             Request = request;
