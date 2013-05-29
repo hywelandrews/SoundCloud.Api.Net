@@ -2,7 +2,7 @@
 
 namespace SoundCloud.Api.Net.Resources.Interfaces
 {
-    public interface ITracks : IGet<List<Models.Track>>
+    public interface ITracks : ISearch<ITracks>, IGet<List<Models.Track>>
     {
     }
 }
