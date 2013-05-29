@@ -9,12 +9,11 @@ namespace SoundCloud.Api.Net.Authentication
         public string scope { get; set; }
         public string refresh_token { get; private set; }
 
-        private DateTime creaedAt;
+        private DateTime _creaedAt;
 
         public PasswordCredentials()
         {
-            creaedAt = DateTime.Now;
-            IsAuthorised = false;
+            _creaedAt = DateTime.Now;
         }
 
         public PasswordCredentials(string access_token, string refresh_token, int expires_in, DateTime createdAt)
@@ -23,16 +22,13 @@ namespace SoundCloud.Api.Net.Authentication
             this.refresh_token = refresh_token;
             this.expires_in = expires_in;
             
-            creaedAt = createdAt;
-            IsAuthorised = true;
+            _creaedAt = createdAt;
         }
 
         public bool HasExpired()
         {
-            var tokenExpiresAt = creaedAt.AddSeconds(expires_in);
+            var tokenExpiresAt = _creaedAt.AddSeconds(expires_in);
             return (tokenExpiresAt <= DateTime.Now);
         }
-
-        public bool IsAuthorised { get; set; }
     }
 }
