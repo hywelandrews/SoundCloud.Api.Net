@@ -5,7 +5,7 @@ using SoundCloud.Api.Net.Parameters;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class OAuth2Token : ResourceBase<Models.OAuth2>
+    internal class OAuth2Token : ResourceBase<Models.OAuth2, OAuth2Token>
     {
         internal OAuth2Token(OAuth2 oAuth2, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {

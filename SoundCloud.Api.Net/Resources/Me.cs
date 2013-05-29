@@ -3,7 +3,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Me : ResourceBase<Models.User>, IMe
+    internal class Me : ResourceBase<Models.User, IMe>, IMe
     {
         private readonly ISoundCloudApiInternal _soundCloudApi;
 

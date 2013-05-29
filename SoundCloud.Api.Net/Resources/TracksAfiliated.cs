@@ -5,7 +5,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class TracksAfiliated : ResourceBase<List<Models.Track>>, ITracksAfiliated
+    internal class TracksAfiliated : ResourceBase<List<Models.Track>, ITracksAfiliated>, ITracksAfiliated
     {
         internal TracksAfiliated(RestRequest request, ISoundCloudApiInternal _soundCloudApiInternal) : base(_soundCloudApiInternal)
         {

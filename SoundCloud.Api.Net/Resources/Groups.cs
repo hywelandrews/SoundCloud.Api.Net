@@ -5,7 +5,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Groups : ResourceBase<List<Models.Group>>, IGroups
+    internal class Groups : ResourceBase<List<Models.Group>, IGroups>, IGroups
     {
         internal Groups(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {

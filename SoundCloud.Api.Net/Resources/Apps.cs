@@ -1,11 +1,12 @@
 ﻿using RestSharp;
 using SoundCloud.Api.Net.Parameters;
+using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Apps : ResourceBase<Models.App>
+    internal class Apps : ResourceBase<Models.App, IApps>, IApps
     {
-        private ISoundCloudApiInternal _soundCloudApi;
+        private readonly ISoundCloudApiInternal _soundCloudApi;
         public Apps(int appId, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             _soundCloudApi = soundCloudApi;

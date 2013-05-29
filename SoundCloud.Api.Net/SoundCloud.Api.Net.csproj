@@ -84,6 +84,7 @@
     <Compile Include="Resources\Groups.cs" />
     <Compile Include="Resources\Interfaces\IActivities.cs" />
     <Compile Include="Resources\Interfaces\IAllOwn.cs" />
+    <Compile Include="Resources\Interfaces\IApps.cs" />
     <Compile Include="Resources\Interfaces\IComment.cs" />
     <Compile Include="Resources\Interfaces\IComments.cs" />
     <Compile Include="Resources\Interfaces\IConnection.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Resources\Interfaces\IPlaylist.cs" />
     <Compile Include="Resources\Interfaces\IPlaylists.cs" />
     <Compile Include="Resources\Interfaces\IResource.cs" />
+    <Compile Include="Resources\Interfaces\ISearch.cs" />
     <Compile Include="Resources\Interfaces\ISharedToEmails.cs" />
     <Compile Include="Resources\Interfaces\ISharedToUsers.cs" />
     <Compile Include="Resources\Interfaces\ITrack.cs" />

@@ -10,6 +10,7 @@ namespace SoundCloud.Api.Net
         void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new();
         IUser User();
         IUser User(int userId);
+        IUsers Users();
         ITrack Track(int trackId);
         IPlaylist Playlist(int playlistId);
         IGroup Group(int groupId);

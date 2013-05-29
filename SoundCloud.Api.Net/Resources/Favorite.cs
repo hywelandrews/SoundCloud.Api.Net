@@ -4,7 +4,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Favorite : ResourceBase<Models.Track>, IFavorite
+    internal class Favorite : ResourceBase<Models.Track, IFavorite>, IFavorite
     {
         internal Favorite(RestRequest request, int userId, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {

@@ -5,7 +5,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Playlists : ResourceBase<List<Models.Playlist>>, IPlaylists
+    internal class Playlists : ResourceBase<List<Models.Playlist>, IPlaylists>, IPlaylists
     {
         internal Playlists(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {

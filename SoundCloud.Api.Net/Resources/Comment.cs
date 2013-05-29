@@ -4,7 +4,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Comment : ResourceBase<Models.Comment>, IComment
+    internal class Comment : ResourceBase<Models.Comment, IComment>, IComment
     {
         internal Comment(RestRequest request, int commentId, ISoundCloudApiInternal soundCloudApi) : base (soundCloudApi)
         {

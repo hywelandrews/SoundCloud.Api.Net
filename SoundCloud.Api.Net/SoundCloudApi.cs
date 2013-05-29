@@ -45,6 +45,11 @@ namespace SoundCloud.Api.Net
             return new User(userId, this);
         }
 
+        public IUsers Users()
+        {
+            return new Users(this);
+        }
+
         public ITrack Track(int trackId)
         {
             return new Track(trackId, this);

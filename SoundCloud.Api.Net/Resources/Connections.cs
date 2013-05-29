@@ -5,7 +5,7 @@ using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal class Connections : ResourceBase<List<Models.Connection>>, IConnections
+    internal class Connections : ResourceBase<List<Models.Connection>, IConnections>, IConnections
     {
         internal Connections(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
