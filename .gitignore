@@ -16,4 +16,5 @@ log*
 *.force
 *.DotSettings.user
 *.testsettings
+StyleCop.Cache
 
