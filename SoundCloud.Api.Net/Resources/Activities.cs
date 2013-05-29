@@ -10,7 +10,7 @@ namespace SoundCloud.Api.Net.Resources
     {
         private readonly ISoundCloudApiInternal _soundCloudApi;
 
-        internal Activities(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base (soundCloudApi)
+        internal Activities(RestRequest request, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             _soundCloudApi = soundCloudApi;
             Request = request;

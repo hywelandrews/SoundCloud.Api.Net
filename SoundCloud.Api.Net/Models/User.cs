@@ -3,7 +3,6 @@
     public class User
     {
         public int? Id { get; set; }
-        public string Kind { get; set; }
         public string Permalink { get; set; }
         public string Username { get; set; }
         public string City { get; set; }

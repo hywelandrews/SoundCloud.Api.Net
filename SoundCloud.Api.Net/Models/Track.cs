@@ -39,17 +39,18 @@ namespace SoundCloud.Api.Net.Models
         public string DownloadUrl { get; set; }
         public string StreamUrl { get; set; }
         public string VideoUrl { get; set; }
-        public int Bpm { get; set; } 
+        public float Bpm { get; set; } 
         public bool Commentable { get; set; }
         public string Isrc { get; set; }
         public string KeySignature { get; set; }
         public int CommentCount { get; set; }
         public int DownloadCount { get; set; }
         public string OriginalFormat { get; set; }
-        public Int64 OriginalContentSize { get; set; }
+        public long OriginalContentSize { get; set; }
         public App CreatedWith { get; set; }
         public byte[] AssetData { get; set; }
         public byte[] ArtworkData { get; set; }
         public bool UserFavorite { get; set; }
+        public string AttachmentsUri { get; set; }
     }
 }

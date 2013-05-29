@@ -9,7 +9,7 @@ namespace SoundCloud.Api.Net.Models
         public int Id { get; set; }
         public bool PostFavorite { get; set; }
         public bool PostPublish { get; set; }
-        public string Service  {get; set; }
+        public string Service { get; set; }
         public string Type { get; set; }
         public string Uri { get; set; }
     }
