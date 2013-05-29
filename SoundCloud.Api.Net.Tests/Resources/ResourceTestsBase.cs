@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
+using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Tests.Configuration;
 
 namespace SoundCloud.Api.Net.Tests.Resources
@@ -39,6 +41,21 @@ namespace SoundCloud.Api.Net.Tests.Resources
             if (String.IsNullOrEmpty(TestSettings.Password))
             {
                 throw new Exception("User setting password not configured in: SoundCloud.Api.Net.TestSettings");
+            }
+        }
+
+        protected class MiniUserComparer : IEqualityComparer<User>
+        {
+            public bool Equals(User x, User y)
+            {
+                return (x.AvatarUrl == y.AvatarUrl) && (x.Id == y.Id) &&
+                       (x.PermalinkUrl == y.PermalinkUrl) && (x.Permalink == y.Permalink) &&
+                       (x.Uri == y.Uri) && (x.Username == y.Username);
+            }
+
+            public int GetHashCode(User obj)
+            {
+                throw new NotImplementedException();
             }
         }
     }

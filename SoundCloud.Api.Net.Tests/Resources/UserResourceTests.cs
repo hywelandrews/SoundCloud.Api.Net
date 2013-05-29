@@ -24,10 +24,10 @@ namespace SoundCloud.Api.Net.Tests.Resources
                        (x.Description == y.Description) && (x.DiscogsName == y.DiscogsName) &&
                        (x.FollowersCount == y.FollowersCount) && (x.FollowingsCount == y.FollowingsCount) &&
                        (x.FullName == y.FullName) && (x.Id == y.Id) &&
-                       (x.Kind == y.Kind) && (x.MyspaceName == y.MyspaceName) &&
-                       (x.Online == y.Online) && (x.Permalink == y.Permalink) &&
-                       (x.PermalinkUrl == y.PermalinkUrl) && (x.Plan == y.Plan) &&
-                       (x.PlaylistCount == y.PlaylistCount) && (x.PublicFavoritesCount == y.PublicFavoritesCount) &&
+                       (x.MyspaceName == y.MyspaceName) && (x.Online == y.Online) &&
+                       (x.Permalink == y.Permalink) && (x.PermalinkUrl == y.PermalinkUrl) &&
+                       (x.Plan == y.Plan) && (x.PlaylistCount == y.PlaylistCount) &&                        
+                       (x.PublicFavoritesCount == y.PublicFavoritesCount) &&
                        (x.TrackCount == y.TrackCount) && (x.Uri == y.Uri) &&
                        (x.Username == y.Username) && (x.Website == y.Website) &&
                        (x.WebsiteTitle == y.WebsiteTitle);
@@ -51,7 +51,6 @@ namespace SoundCloud.Api.Net.Tests.Resources
         {
             var user = SoundCloudApi.User(509497).Get();
             var expectedUser = new User { Id = 509497,
-                                          Kind = "user",
                                           Permalink = "owlmusic",
                                           Username = "Owlmusic",
                                           Uri = "http://api.soundcloud.com/users/509497",
@@ -112,7 +111,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetMultipleRequests()
+        public void TestGetUserMultipleRequests()
         {
             var resourceList = new List<IUser>
                 {
@@ -125,7 +124,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetMultipleRequestsWithOAuth()
+        public void TestGetUserMultipleRequestsWithOAuth()
         {
             var resourceList = new List<IUser>
                 {
@@ -138,7 +137,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetAsyncMultipleRequestsWithOAuth()
+        public void TestGetUserAsyncMultipleRequestsWithOAuth()
         {
             _completion = new ManualResetEvent(false);
 
