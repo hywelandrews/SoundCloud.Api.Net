@@ -3,6 +3,8 @@
     public class User
     {
         public int? Id { get; set; }
+        public string Kind { get; set; }
+        public string Permalink { get; set; }
         public string Username { get; set; }
         public string City { get; set; }
         public string FullName { get; set; }
@@ -17,9 +19,10 @@
         public int FollowersCount { get; set; }
         public string Website { get; set; }
         public string WebsiteTitle { get; set; }
-        public string Online { get; set; }
+        public bool Online { get; set; }
         public int TrackCount { get; set; }
         public int PlaylistCount { get; set; }
+        public string Plan { get; set; }
         public int PublicFavoritesCount { get; set; }
         public byte[] AvatarData { get;  set; }
     }

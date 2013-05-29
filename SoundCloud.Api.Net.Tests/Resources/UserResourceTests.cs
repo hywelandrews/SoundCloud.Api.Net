@@ -18,6 +18,30 @@ namespace SoundCloud.Api.Net.Tests.Resources
         private ISoundCloudApi _soundCloudApiAuthenticate;
         private PasswordCredentialsState _passwordCredentialsState;
 
+        private class UserComparer : IEqualityComparer<User>
+        {
+            public bool Equals(User x, User y)
+            {
+                return (x.AvatarData == y.AvatarData) && (x.AvatarUrl == y.AvatarUrl) &&
+                       (x.City == y.City) && (x.Country == y.Country) &&
+                       (x.Description == y.Description) && (x.DiscogsName == y.DiscogsName) &&
+                       (x.FollowersCount == y.FollowersCount) && (x.FollowingsCount == y.FollowingsCount) &&
+                       (x.FullName == y.FullName) && (x.Id == y.Id) &&
+                       (x.Kind == y.Kind) && (x.MyspaceName == y.MyspaceName) &&
+                       (x.Online == y.Online) && (x.Permalink == y.Permalink) &&
+                       (x.PermalinkUrl == y.PermalinkUrl) && (x.Plan == y.Plan) &&
+                       (x.PlaylistCount == y.PlaylistCount) && (x.PublicFavoritesCount == y.PublicFavoritesCount) &&
+                       (x.TrackCount == y.TrackCount) && (x.Uri == y.Uri) &&
+                       (x.Username == y.Username) && (x.Website == y.Website) &&
+                       (x.WebsiteTitle == y.WebsiteTitle);
+            }
+
+            public int GetHashCode(User obj)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [SetUp]
         public void Initialize()
         {
@@ -54,24 +78,43 @@ namespace SoundCloud.Api.Net.Tests.Resources
         public void TestGetUserRequest()
         {
             var user = _soundCloudApi.User(509497).Get();
-            var expectedUser = new User { Id = 509497 };
-            Assert.AreEqual(expectedUser.Id, user.Id);
+            Assert.AreEqual(509497, user.Id);
         }
 
         [Test]
-        public void TestGetUserFullNameRequest()
+        public void TestAllPropertiesGetUserRequest()
         {
             var user = _soundCloudApi.User(509497).Get();
-            var expectedUser = new User { Id = 509497, FullName = "Owl" };
-            Assert.AreEqual(expectedUser.FullName, user.FullName);
+            var expectedUser = new User { Id = 509497,
+                                          Kind = "user",
+                                          Permalink = "owlmusic",
+                                          Username = "Owlmusic",
+                                          Uri = "http://api.soundcloud.com/users/509497",
+                                          PermalinkUrl = "http://soundcloud.com/owlmusic",
+                                          AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg?9d68d37",
+                                          Country = "Britain (UK)",
+                                          FullName = "Owl",
+                                          Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. Contact djsparko@gmail.com for bookings.",
+                                          City = "Bristol",
+                                          DiscogsName = "sparkooo",
+                                          Website = "http://grasshopperliesheavy.co.uk",
+                                          Online = false,
+                                          TrackCount = 12,
+                                          PlaylistCount = 0,
+                                          Plan = "Free",
+                                          PublicFavoritesCount = 5,
+                                          FollowersCount = 137,
+                                          FollowingsCount = 106,
+                                          WebsiteTitle = String.Empty
+            };
+            Assert.True(new UserComparer().Equals(expectedUser, user));
         }
 
         [Test]
         public void TestGetUserWithOAuthRequest()
         {
             var user = _soundCloudApiAuthenticate.User().Get();
-            var expectedUser = new User { Id = 509497 };
-            Assert.AreEqual(expectedUser.Id, user.Id);
+            Assert.AreEqual(509497, user.Id);
         }
 
         [Test]
@@ -91,8 +134,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
 
             _soundCloudApiAuthenticate = SoundCloudApiFactory.GetSoundCloudApi(TestSettings.ClientId, TestSettings.ClientSecret, _passwordCredentialsState);
             var user = _soundCloudApiAuthenticate.User().Get();
-            var expectedUser = new User { Id = 509497 };
-            Assert.AreEqual(expectedUser.Id, user.Id);
+            Assert.IsNotEmpty(user.Username);
         }
 
         [Test]
@@ -101,7 +143,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             _completion = new ManualResetEvent(false);
             _soundCloudApiAuthenticate.User().GetAsync(UserBuilder);
             _completion.WaitOne(TimeSpan.FromSeconds(100));
-            Assert.AreEqual(509497, _asyncUserResult.Id);
+            Assert.IsNotEmpty(_asyncUserResult.Username);
         }
 
         [Test]
@@ -113,9 +155,8 @@ namespace SoundCloud.Api.Net.Tests.Resources
                     _soundCloudApi.User(509497),
                     _soundCloudApi.User(509497),
                 };
-            var users = _soundCloudApi.Execute<User>(resourceList);
+            var users = _soundCloudApi.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
-            
         }
 
         [Test]
@@ -127,7 +168,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
                     _soundCloudApi.User(),
                     _soundCloudApi.User(),
                 };
-            var users = _soundCloudApiAuthenticate.Execute<User>(resourceList);
+            var users = _soundCloudApiAuthenticate.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
         }
 
@@ -143,7 +184,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
                     _soundCloudApi.User(),
                 };
             
-            _soundCloudApiAuthenticate.ExecuteAsync<User>(resourceList, UserListBuilder);
+            _soundCloudApiAuthenticate.ExecuteAsync(resourceList, UserListBuilder);
             Assert.AreEqual(3, _asyncUsersResult.Count);
         }
 
