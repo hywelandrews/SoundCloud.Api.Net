@@ -10,7 +10,6 @@ namespace SoundCloud.Api.Net.Tests.Resources
     [TestFixture]
     public class UsersResourceTests : ResourceTestsBase
     {
-        private ManualResetEvent _completion;
         private List<User> _asyncUsersResult;
 
         [Test]
@@ -30,18 +29,18 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetUsersAsyncRequest()
         {
-            _completion = new ManualResetEvent(false);
+            Completion = new ManualResetEvent(false);
             SoundCloudApi.Users().GetAsync(UserListBuilder);
-            _completion.WaitOne(TimeSpan.FromSeconds(100));
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
 
         [Test]
         public void TestGetUsersWithSearchAsyncRequest()
         {
-            _completion = new ManualResetEvent(false);
+            Completion = new ManualResetEvent(false);
             SoundCloudApi.Users().Search("Owl").GetAsync(UserListBuilder);
-            _completion.WaitOne(TimeSpan.FromSeconds(100));
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
 
@@ -88,7 +87,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetUsersAsyncMultipleRequest()
         {
-            _completion = new ManualResetEvent(false);
+            Completion = new ManualResetEvent(false);
             var requests = new List<IUsers>
                 {
                     SoundCloudApi.Users(),
@@ -102,7 +101,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         private void UserListBuilder(List<User> result)
         {
             _asyncUsersResult = result;
-            _completion.Set();
+            Completion.Set();
         }
 
         private void UserListBuilder(List<List<User>> result)
@@ -112,7 +111,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             {
                 _asyncUsersResult.InsertRange(0, userResult);   
             }
-            _completion.Set();
+            Completion.Set();
         }
     }
 }

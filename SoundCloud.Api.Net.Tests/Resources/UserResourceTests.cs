@@ -11,7 +11,6 @@ namespace SoundCloud.Api.Net.Tests.Resources
     [TestFixture]
     public class UserResourceTests : ResourceTestsBase
     {
-        private ManualResetEvent _completion;
         private User _asyncUserResult;
         private List<User> _asyncUsersResult;
 
@@ -62,7 +61,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
                                           City = "Bristol",
                                           DiscogsName = "sparkooo",
                                           Website = "http://grasshopperliesheavy.co.uk",
-                                          Online = false,
+                                          Online = true,
                                           TrackCount = 12,
                                           PlaylistCount = 0,
                                           Plan = "Free",
@@ -104,9 +103,9 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetUserAsyncWithOAuth()
         {
-            _completion = new ManualResetEvent(false);
+            Completion = new ManualResetEvent(false);
             SoundCloudApiAuthenticate.User().GetAsync(UserBuilder);
-            _completion.WaitOne(TimeSpan.FromSeconds(100));
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncUserResult.Username);
         }
 
@@ -139,7 +138,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetUserAsyncMultipleRequestsWithOAuth()
         {
-            _completion = new ManualResetEvent(false);
+            Completion = new ManualResetEvent(false);
 
             var resourceList = new List<IUser>
                 {
@@ -155,13 +154,13 @@ namespace SoundCloud.Api.Net.Tests.Resources
         private void UserBuilder(User result)
         {
             _asyncUserResult = result;
-            _completion.Set();
+            Completion.Set();
         }
 
         private void UserListBuilder(List<User> result)
         {
             _asyncUsersResult = result;
-            _completion.Set();
+            Completion.Set();
         }
     }
 }

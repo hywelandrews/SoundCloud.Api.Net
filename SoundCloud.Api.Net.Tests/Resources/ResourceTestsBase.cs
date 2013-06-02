@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Tests.Configuration;
@@ -11,6 +12,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         protected ISoundCloudApi SoundCloudApi;
         protected ISoundCloudApi SoundCloudApiAuthenticate;
         protected PasswordCredentialsState PasswordCredentialsState;
+        protected ManualResetEvent Completion;
 
         [SetUp]
         public void Initialize()

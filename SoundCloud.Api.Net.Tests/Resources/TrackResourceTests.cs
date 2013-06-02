@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
 
@@ -8,6 +9,8 @@ namespace SoundCloud.Api.Net.Tests.Resources
     [TestFixture]
     public class TrackResourceTests : ResourceTestsBase
     {
+        private Track _asyncTrackResult;
+
         private class TrackComparer : IEqualityComparer<Track>
         {
             public bool Equals(Track x, Track y)
@@ -44,14 +47,14 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void GetTrackTest()
+        public void TestGetTrackRequest()
         {
             var track = SoundCloudApi.Track(1379060).Get();
             Assert.AreEqual(1379060, track.Id);
         }
 
         [Test]
-        public void GetTrackAllPropertiesTest()
+        public void TestGetTrackAllPropertiesRequest()
         {
             var track = SoundCloudApi.Track(1379060).Get();
             var expectedTrack = new Track
@@ -105,13 +108,44 @@ namespace SoundCloud.Api.Net.Tests.Resources
                     ArtworkUrl = "http://i1.sndcdn.com/artworks-000001070867-60u1mw-large.jpg?9d68d37",
                     WaveformUrl = "http://w1.sndcdn.com/0PhxMYJBKnps_m.png",
                     StreamUrl = "http://api.soundcloud.com/tracks/1379060/stream",
-                    PlaybackCount = 239,
+                    PlaybackCount = 240,
                     DownloadCount = 0,
-                    FavoritingsCount = 3,
+                    FavoritingsCount = 4,
                     CommentCount = 2,
                     AttachmentsUri = "http://api.soundcloud.com/tracks/1379060/attachments"
                 };
             Assert.True(new TrackComparer().Equals(expectedTrack, track));
+        }
+
+        [Test]
+        public void TestGetTrackUsingOAuthRequest()
+        {
+            var track = SoundCloudApiAuthenticate.Track(1379060).Get();
+            Assert.AreEqual(1379060, track.Id);
+        }
+
+        [Test]
+        public void TestGetTrackAsyncRequest()
+        {
+            Completion = new ManualResetEvent(false);
+            SoundCloudApi.Track(1379060).GetAsync(TrackBuilder);
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
+            Assert.AreEqual(1379060, _asyncTrackResult.Id);
+        }
+
+        [Test]
+        public void TestGetTrackAsyncUsingOAuthRequest()
+        {
+            Completion = new ManualResetEvent(false);
+            SoundCloudApiAuthenticate.Track(1379060).GetAsync(TrackBuilder);
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
+            Assert.AreEqual(1379060, _asyncTrackResult.Id);
+        }
+
+        private void TrackBuilder(Track result)
+        {
+            _asyncTrackResult = result;
+            Completion.Set();
         }
     }
 }
