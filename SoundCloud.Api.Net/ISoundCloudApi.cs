@@ -12,6 +12,7 @@ namespace SoundCloud.Api.Net
         IUser User(int userId);
         IUsers Users();
         ITrack Track(int trackId);
+        ITracks Tracks();
         IPlaylist Playlist(int playlistId);
         IGroup Group(int groupId);
     }

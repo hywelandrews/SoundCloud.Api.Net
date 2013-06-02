@@ -12,5 +12,11 @@ namespace SoundCloud.Api.Net.Resources
             Request = request;
             Request.Resource = Request.Resource + Uri.Tracks;
         }
+
+        internal Tracks(ISoundCloudApiInternal soundCloudApi)
+            : base(soundCloudApi)
+        {
+            Request.Resource = Uri.Tracks;
+        } 
     }
 }

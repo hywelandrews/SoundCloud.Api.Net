@@ -107,9 +107,10 @@
     <Compile Include="Resources\Interfaces\IPlaylist.cs" />
     <Compile Include="Resources\Interfaces\IPlaylists.cs" />
     <Compile Include="Resources\Interfaces\IResource.cs" />
-    <Compile Include="Resources\Interfaces\ISearch.cs" />
+    <Compile Include="Resources\Interfaces\ISearchFilter.cs" />
     <Compile Include="Resources\Interfaces\ISharedToEmails.cs" />
     <Compile Include="Resources\Interfaces\ISharedToUsers.cs" />
+    <Compile Include="Resources\Interfaces\ITagsFilter.cs" />
     <Compile Include="Resources\Interfaces\ITrack.cs" />
     <Compile Include="Resources\Interfaces\ITracks.cs" />
     <Compile Include="Resources\Interfaces\ITracksAfiliated.cs" />

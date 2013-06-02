@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RestSharp;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources.Interfaces;
@@ -41,6 +42,12 @@ namespace SoundCloud.Api.Net.Resources
         public TR Search(string term)
         {
             Request.AddParameter(QueryParameter.Search, term, ParameterType.GetOrPost);
+            return this as TR;
+        }
+
+        public TR Tags(IEnumerable<string> tags)
+        {
+            Request.AddParameter(QueryParameter.Tags, string.Join(",", tags), ParameterType.GetOrPost);
             return this as TR;
         }
     }

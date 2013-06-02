@@ -6,5 +6,6 @@
         internal const string Consumerkey   = "consumer_key";
         internal const string OAuthToken    = "oauth_token";
         internal const string Search        = "q";
+        internal const string Tags          = "tags";
     }
 }

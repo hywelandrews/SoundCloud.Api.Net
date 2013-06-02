@@ -2,7 +2,8 @@
 
 namespace SoundCloud.Api.Net.Resources.Interfaces
 {
-    public interface IGroups : ISearchFilter<IGroups>, IGet<List<Models.Group>>
+    public interface ITagsFilter<out T>
     {
+        T Tags(IEnumerable<string> tags);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SoundCloud.Api.Net.Resources.Interfaces
 {
-    public interface ISearch<out T>
+    public interface ISearchFilter<out T>
     {
         T Search(string term);
     }
