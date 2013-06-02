@@ -67,7 +67,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
                     SoundCloudApi.Users(),
                     SoundCloudApi.Users(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApi.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
