@@ -97,5 +97,11 @@ namespace SoundCloud.Api.Net.Resources
             Request.AddParameter(QueryParameter.CreatedTo, date.ToString("u"), ParameterType.GetOrPost);
             return this as TR;
         }
+
+        public TR Ids(IEnumerable<int> list)
+        {
+            Request.AddParameter(QueryParameter.Ids, string.Join(",", list), ParameterType.GetOrPost);
+            return this as TR;
+        }
     }
 }

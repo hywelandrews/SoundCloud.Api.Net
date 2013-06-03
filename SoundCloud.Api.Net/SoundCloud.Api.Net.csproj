@@ -80,6 +80,7 @@
     <Compile Include="Resources\Filters\IBpmFilter.cs" />
     <Compile Include="Resources\Filters\ICreatedFilter.cs" />
     <Compile Include="Resources\Filters\IDurationFilter.cs" />
+    <Compile Include="Resources\Filters\IIdFilter.cs" />
     <Compile Include="Resources\Follower\Follower.cs" />
     <Compile Include="Resources\Followers\Followers.cs" />
     <Compile Include="Resources\Following\Following.cs" />

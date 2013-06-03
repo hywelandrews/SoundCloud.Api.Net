@@ -93,6 +93,15 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithIdsRequest()
+        {
+            var ids = new List<int> { 1379060, 1640576 };
+
+            var tracks = SoundCloudApi.Tracks().Ids(ids).Get();
+            Assert.AreEqual(tracks.Count, 2);
+        }
+
+        [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
