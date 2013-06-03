@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using SoundCloud.Api.Net.Resources.Interfaces;
+using SoundCloud.Api.Net.Resources;
+using SoundCloud.Api.Net.Resources.Group;
+using SoundCloud.Api.Net.Resources.Playlist;
+using SoundCloud.Api.Net.Resources.Track;
+using SoundCloud.Api.Net.Resources.Tracks;
+using SoundCloud.Api.Net.Resources.User;
+using SoundCloud.Api.Net.Resources.Users;
 
 namespace SoundCloud.Api.Net
 {

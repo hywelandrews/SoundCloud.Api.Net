@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using RestSharp;
 using SoundCloud.Api.Net.Parameters;
-using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Resources
 {
@@ -51,7 +50,7 @@ namespace SoundCloud.Api.Net.Resources
             return this as TR;
         }
 
-        public TR Filter(Filters filter)
+        public TR Filter(Filters.Filters filter)
         {
             Request.AddParameter(QueryParameter.Filter, filter.ToString(), ParameterType.GetOrPost);
             return this as TR;

@@ -7,7 +7,6 @@ using SoundCloud.Api.Net.Configuration;
 using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources;
-using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using SoundCloud.Api.Net.Resources.Interfaces;
+using SoundCloud.Api.Net.Resources;
 
 namespace SoundCloud.Api.Net
 {

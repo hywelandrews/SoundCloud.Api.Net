@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
-using SoundCloud.Api.Net.Resources.Interfaces;
+using SoundCloud.Api.Net.Resources.Users;
 
 namespace SoundCloud.Api.Net.Tests.Resources
 {

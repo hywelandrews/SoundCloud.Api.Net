@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
-using SoundCloud.Api.Net.Resources.Interfaces;
+using SoundCloud.Api.Net.Resources.User;
 using SoundCloud.Api.Net.Tests.Configuration;
 using User = SoundCloud.Api.Net.Models.User;
 
