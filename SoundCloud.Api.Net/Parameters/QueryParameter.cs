@@ -11,5 +11,7 @@
         internal const string License       = "license";
         internal const string BpmFrom       = "bpm[from]";
         internal const string BpmTo         = "bpm[to]";
+        internal const string DurationFrom  = "duration[from]";
+        internal const string DurationTo    = "duration[to]";
     }
 }

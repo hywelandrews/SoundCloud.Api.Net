@@ -65,6 +65,20 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithDurationFromRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().DurationFrom(60000).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithDurationToRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().BpmTo(60000).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };

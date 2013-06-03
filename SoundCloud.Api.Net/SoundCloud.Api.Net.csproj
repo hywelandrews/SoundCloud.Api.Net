@@ -78,6 +78,7 @@
     <Compile Include="Resources\Favorites\Favorites.cs" />
     <Compile Include="Resources\Filters\Filters.cs" />
     <Compile Include="Resources\Filters\IBpmFilter.cs" />
+    <Compile Include="Resources\Filters\IDurationFilter.cs" />
     <Compile Include="Resources\Follower\Follower.cs" />
     <Compile Include="Resources\Followers\Followers.cs" />
     <Compile Include="Resources\Following\Following.cs" />
