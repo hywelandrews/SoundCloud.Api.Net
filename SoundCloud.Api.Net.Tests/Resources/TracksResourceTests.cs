@@ -27,6 +27,24 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithTagsRequest()
+        {
+            var tags = new List<string> {"dubstep", "garage"};
+
+            var tracks = SoundCloudApi.Tracks().Tags(tags).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithTagsandSearchRequest()
+        {
+            var tags = new List<string> { "dubstep", "garage" };
+
+            var tracks = SoundCloudApi.Tracks().Tags(tags).Search("Owl").Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
         public void TestGetTracksAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
