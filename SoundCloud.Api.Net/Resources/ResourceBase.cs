@@ -50,5 +50,17 @@ namespace SoundCloud.Api.Net.Resources
             Request.AddParameter(QueryParameter.Tags, string.Join(",", tags), ParameterType.GetOrPost);
             return this as TR;
         }
+
+        public TR Filter(Filters filter)
+        {
+            Request.AddParameter(QueryParameter.Filter, filter.ToString(), ParameterType.GetOrPost);
+            return this as TR;
+        }
+
+        public TR License(string license)
+        {
+            Request.AddParameter(QueryParameter.License, license, ParameterType.GetOrPost);
+            return this as TR;
+        }
     }
 }

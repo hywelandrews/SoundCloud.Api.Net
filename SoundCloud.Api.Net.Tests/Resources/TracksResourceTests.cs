@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
+using SoundCloud.Api.Net.Resources;
 using SoundCloud.Api.Net.Resources.Interfaces;
 
 namespace SoundCloud.Api.Net.Tests.Resources
@@ -36,11 +37,18 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetTracksWithTagsandSearchRequest()
+        public void TestGetTracksWithFilterRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().Filter(Filters.downloadable).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithTagsSearchAndFilterRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
 
-            var tracks = SoundCloudApi.Tracks().Tags(tags).Search("Owl").Get();
+            var tracks = SoundCloudApi.Tracks().Tags(tags).Search("Owl").Filter(Filters.streamable).Get();
             Assert.Greater(tracks.Count, 0);
         }
 

@@ -7,5 +7,7 @@
         internal const string OAuthToken    = "oauth_token";
         internal const string Search        = "q";
         internal const string Tags          = "tags";
+        internal const string Filter        = "filter";
+        internal const string License       = "license";
     }
 }

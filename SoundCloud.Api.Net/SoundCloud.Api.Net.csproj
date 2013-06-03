@@ -76,6 +76,7 @@
     <Compile Include="Resources\Contributors.cs" />
     <Compile Include="Resources\Favorite.cs" />
     <Compile Include="Resources\Favorites.cs" />
+    <Compile Include="Resources\Filters.cs" />
     <Compile Include="Resources\Follower.cs" />
     <Compile Include="Resources\Followers.cs" />
     <Compile Include="Resources\Following.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Resources\Interfaces\IContributors.cs" />
     <Compile Include="Resources\Interfaces\IFavorite.cs" />
     <Compile Include="Resources\Interfaces\IFavorites.cs" />
+    <Compile Include="Resources\Interfaces\IFilterFilter.cs" />
     <Compile Include="Resources\Interfaces\IFollower.cs" />
     <Compile Include="Resources\Interfaces\IFollowers.cs" />
     <Compile Include="Resources\Interfaces\IFollowing.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Resources\Interfaces\IGet.cs" />
     <Compile Include="Resources\Interfaces\IGroup.cs" />
     <Compile Include="Resources\Interfaces\IGroups.cs" />
+    <Compile Include="Resources\Interfaces\ILicenseFilter.cs" />
     <Compile Include="Resources\Interfaces\IMe.cs" />
     <Compile Include="Resources\Interfaces\IMembers.cs" />
     <Compile Include="Resources\Interfaces\IModerators.cs" />
