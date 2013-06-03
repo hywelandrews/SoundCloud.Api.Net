@@ -13,6 +13,7 @@ namespace SoundCloud.Api.Net.Resources.Tracks
         IDurationFilter<ITracks>,
         ICreatedFilter<ITracks>,
         IIdFilter<ITracks>,
+        IGenresFilter<ITracks>,
         IGet<List<Models.Track>>
     {
     }

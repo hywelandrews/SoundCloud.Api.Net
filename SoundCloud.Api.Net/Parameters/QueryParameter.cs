@@ -16,5 +16,6 @@
         internal const string CreatedFrom   = "created_at[from]";
         internal const string CreatedTo     = "created_at[to]";
         internal const string Ids           = "ids";
+        internal const string Genres        = "genres";
     }
 }

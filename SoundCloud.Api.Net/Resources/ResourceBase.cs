@@ -103,5 +103,11 @@ namespace SoundCloud.Api.Net.Resources
             Request.AddParameter(QueryParameter.Ids, string.Join(",", list), ParameterType.GetOrPost);
             return this as TR;
         }
+
+        public TR Genres(IEnumerable<string> list)
+        {
+            Request.AddParameter(QueryParameter.Genres, string.Join(",", list), ParameterType.GetOrPost);
+            return this as TR;
+        }
     }
 }

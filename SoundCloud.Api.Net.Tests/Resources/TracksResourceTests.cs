@@ -102,6 +102,15 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithGenresRequest()
+        {
+            var genres = new List<string> { "dubstep", "garage" };
+
+            var tracks = SoundCloudApi.Tracks().Genres(genres).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
