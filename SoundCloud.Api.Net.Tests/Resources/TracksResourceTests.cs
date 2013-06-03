@@ -51,6 +51,20 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithBpmFromRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().BpmFrom(120).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithBpmToRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().BpmTo(120).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
@@ -60,6 +74,8 @@ namespace SoundCloud.Api.Net.Tests.Resources
                                       .Search("Owl")
                                       .Filter(Filters.streamable)
                                       .License("all-rights-reserved")
+                                      .BpmFrom(100)
+                                      .BpmTo(160)
                                       .Get();
             Assert.Greater(tracks.Count, 0);
         }

@@ -9,5 +9,7 @@
         internal const string Tags          = "tags";
         internal const string Filter        = "filter";
         internal const string License       = "license";
+        internal const string BpmFrom       = "bpm[from]";
+        internal const string BpmTo         = "bpm[to]";
     }
 }
