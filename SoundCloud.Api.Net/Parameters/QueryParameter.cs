@@ -13,5 +13,7 @@
         internal const string BpmTo         = "bpm[to]";
         internal const string DurationFrom  = "duration[from]";
         internal const string DurationTo    = "duration[to]";
+        internal const string CreatedFrom   = "created_at[from]";
+        internal const string CreatedTo     = "created_at[to]";
     }
 }

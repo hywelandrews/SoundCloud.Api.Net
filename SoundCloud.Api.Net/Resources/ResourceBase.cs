@@ -85,5 +85,17 @@ namespace SoundCloud.Api.Net.Resources
             Request.AddParameter(QueryParameter.DurationTo, milliseconds, ParameterType.GetOrPost);
             return this as TR;
         }
+
+        public TR CreatedFrom(DateTime date)
+        {
+            Request.AddParameter(QueryParameter.CreatedFrom, date.ToString("u"), ParameterType.GetOrPost);
+            return this as TR;
+        }
+
+        public TR CreatedTo(DateTime date)
+        {
+            Request.AddParameter(QueryParameter.CreatedTo, date.ToString("u"), ParameterType.GetOrPost);
+            return this as TR;
+        }
     }
 }

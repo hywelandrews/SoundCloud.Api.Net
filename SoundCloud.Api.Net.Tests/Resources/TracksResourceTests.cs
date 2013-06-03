@@ -79,6 +79,20 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
+        public void TestGetTracksWithCreatedFromRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().CreatedFrom(new DateTime(2010, 1, 1)).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithCreatedToRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().CreatedTo(new DateTime(2013, 5, 1)).Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
@@ -90,6 +104,10 @@ namespace SoundCloud.Api.Net.Tests.Resources
                                       .License("all-rights-reserved")
                                       .BpmFrom(100)
                                       .BpmTo(160)
+                                      .DurationFrom(10000)
+                                      .DurationTo(120000)
+                                      .CreatedFrom(new DateTime(2010, 1, 1))
+                                      .CreatedTo(new DateTime(2013, 5, 1))
                                       .Get();
             Assert.Greater(tracks.Count, 0);
         }
