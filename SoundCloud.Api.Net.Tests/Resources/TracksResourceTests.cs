@@ -44,11 +44,23 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetTracksWithTagsSearchAndFilterRequest()
+        public void TestGetTracksWithLicenseRequest()
+        {
+            var tracks = SoundCloudApi.Tracks().License("all-rights-reserved").Get();
+            Assert.Greater(tracks.Count, 0);
+        }
+
+        [Test]
+        public void TestGetTracksWithAllFiltersRequest()
         {
             var tags = new List<string> { "dubstep", "garage" };
 
-            var tracks = SoundCloudApi.Tracks().Tags(tags).Search("Owl").Filter(Filters.streamable).Get();
+            var tracks = SoundCloudApi.Tracks()
+                                      .Tags(tags)
+                                      .Search("Owl")
+                                      .Filter(Filters.streamable)
+                                      .License("all-rights-reserved")
+                                      .Get();
             Assert.Greater(tracks.Count, 0);
         }
 

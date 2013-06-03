@@ -7,6 +7,7 @@ namespace SoundCloud.Api.Net.Resources.Interfaces
         ISearchFilter<ITracks>, 
         ITagsFilter<ITracks>, 
         IFilterFilter<ITracks>, 
+        ILicenseFilter<ITracks>,
         IGet<List<Models.Track>>
     {
     }
