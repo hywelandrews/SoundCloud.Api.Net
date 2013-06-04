@@ -108,7 +108,15 @@ namespace SoundCloud.Api.Net.Tests.Resources
 
             var tracks = SoundCloudApi.Tracks().Genres(genres).Get();
             Assert.Greater(tracks.Count, 0);
-            string i = LicenseFilter.NoRightsReserved;
+        }
+
+        [Test]
+        public void TestGetTracksWithTrackTypesRequest()
+        {
+            var trackTypes = new List<TypeFilter> { TypeFilter.Demo, TypeFilter.InProgress };
+
+            var tracks = SoundCloudApi.Tracks().Types(trackTypes).Get();
+            Assert.Greater(tracks.Count, 0);
         }
 
         [Test]

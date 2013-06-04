@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RestSharp;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources.Filters;
@@ -111,9 +112,9 @@ namespace SoundCloud.Api.Net.Resources
             return this as TR;
         }
 
-        public TR Types(IEnumerable<string> list)
+        public TR Types(IEnumerable<TypeFilter> list)
         {
-            Request.AddParameter(QueryParameter.Types, string.Join(",", list), ParameterType.GetOrPost);
+            Request.AddParameter(QueryParameter.Types, string.Join(",", list.Select(typeFilter => (string)typeFilter).ToList()), ParameterType.GetOrPost);
             return this as TR;
         }
     }

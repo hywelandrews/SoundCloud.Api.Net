@@ -2,6 +2,6 @@
 {
     public interface IFilterFilter<out T>
     {
-        T Filter(Resources.Filters.Filters type);
+        T Filter(Resources.Filters.Filter type);
     }
 }

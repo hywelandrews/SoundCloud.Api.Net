@@ -76,12 +76,15 @@
     <Compile Include="Resources\Contributors\Contributors.cs" />
     <Compile Include="Resources\Favorite\Favorite.cs" />
     <Compile Include="Resources\Favorites\Favorites.cs" />
-    <Compile Include="Resources\Filters\Filters.cs" />
+    <Compile Include="Resources\Filters\Filter.cs" />
     <Compile Include="Resources\Filters\IBpmFilter.cs" />
     <Compile Include="Resources\Filters\ICreatedFilter.cs" />
     <Compile Include="Resources\Filters\IDurationFilter.cs" />
     <Compile Include="Resources\Filters\IGenresFilter.cs" />
     <Compile Include="Resources\Filters\IIdFilter.cs" />
+    <Compile Include="Resources\Filters\ITypesFilter.cs" />
+    <Compile Include="Resources\Filters\LicenseFilter.cs" />
+    <Compile Include="Resources\Filters\TypeFilter.cs" />
     <Compile Include="Resources\Follower\Follower.cs" />
     <Compile Include="Resources\Followers\Followers.cs" />
     <Compile Include="Resources\Following\Following.cs" />
