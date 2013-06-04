@@ -1,6 +1,6 @@
 ﻿using SoundCloud.Api.Net.Authentication;
 
-namespace SoundCloud.Api.Net.Tests.Resources
+namespace SoundCloud.Api.Net.Tests.Configuration
 {
     public class PasswordCredentialsState : IPasswordCredentialsState
     {
