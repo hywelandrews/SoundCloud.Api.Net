@@ -40,6 +40,18 @@ namespace SoundCloud.Api.Net.Resources
            _soundCloudApi.ExecuteAsync(this, callback);
         }
 
+        public void Delete()
+        {
+            Request.Method = Method.DELETE;
+            _soundCloudApi.Execute(this);
+        }
+
+        public void DeleteAsync(Action<T> callback)
+        {
+            Request.Method = Method.DELETE;
+            _soundCloudApi.ExecuteAsync(this, callback);
+        }
+
         public TR Search(string term)
         {
             Request.AddParameter(QueryParameter.Search, term, ParameterType.GetOrPost);

@@ -1,5 +1,7 @@
 ﻿using RestSharp;
 using SoundCloud.Api.Net.Parameters;
+using SoundCloud.Api.Net.Resources.Contribution;
+using SoundCloud.Api.Net.Resources.Contributions;
 using SoundCloud.Api.Net.Resources.Contributors;
 using SoundCloud.Api.Net.Resources.Members;
 using SoundCloud.Api.Net.Resources.Moderators;
@@ -55,6 +57,16 @@ namespace SoundCloud.Api.Net.Resources.Group
         public IPendingTrack PendingTrack(int trackId)
         {
             return new PendingTrack.PendingTrack(Request, trackId, _soundCloudApi);
+        }
+
+        public IContributions Contributions()
+        {
+            return new Contributions.Contributions(Request, _soundCloudApi);
+        }
+
+        public IContribution Contribution(int contributionId)
+        {
+            return new Contribution.Contribution(Request, contributionId, _soundCloudApi);
         }
     }
 }

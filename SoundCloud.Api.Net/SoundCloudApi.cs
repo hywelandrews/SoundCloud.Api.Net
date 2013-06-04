@@ -134,7 +134,7 @@ namespace SoundCloud.Api.Net
             {
                 throw response.ErrorException;
             }
-
+            
             return response.Data;
         }
 
@@ -145,14 +145,14 @@ namespace SoundCloud.Api.Net
 
         public virtual List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new()
         {
-            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
+            var compositeBuilderResult = ExecuteMultipleResources(resources);
 
             return compositeBuilderResult.Result;
         }
 
         public virtual void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
         {
-            var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
+            var compositeBuilderResult = ExecuteMultipleResources(resources);
             callback(compositeBuilderResult.Result);
         }
 

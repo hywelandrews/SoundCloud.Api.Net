@@ -25,6 +25,7 @@
         internal const string Moderators        = "/moderators/";
         internal const string Members           = "/members/";
         internal const string Contributors      = "/contributors/";
-        internal const string PendingTracks     = "/pending_tracks/";  
+        internal const string PendingTracks     = "/pending_tracks/";
+        internal const string Contributions     = "/contributions/";
     }
 }
