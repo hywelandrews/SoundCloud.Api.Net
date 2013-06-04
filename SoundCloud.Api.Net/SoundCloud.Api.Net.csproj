@@ -108,6 +108,7 @@
     <Compile Include="Resources\Followers\IFollowers.cs" />
     <Compile Include="Resources\Following\IFollowing.cs" />
     <Compile Include="Resources\Followings\IFollowings.cs" />
+    <Compile Include="Resources\IDelete.cs" />
     <Compile Include="Resources\IGet.cs" />
     <Compile Include="Resources\Group\IGroup.cs" />
     <Compile Include="Resources\Groups\IGroups.cs" />
