@@ -24,8 +24,10 @@ namespace SoundCloud.Api.Net
         private PasswordCredentials _currentOAuthToken;
 
         internal SoundCloudApiAuthenticated(
-            string clientId, string secretKey,
-            string userName, string password,
+            string clientId, 
+            string secretKey,
+            string userName, 
+            string password,
             IPasswordCredentialsState passwordCredentialsState) 
             : this(clientId, secretKey, passwordCredentialsState)
         {
@@ -35,7 +37,8 @@ namespace SoundCloud.Api.Net
         }
 
         internal SoundCloudApiAuthenticated(
-            string clientId, string secretKey,
+            string clientId, 
+            string secretKey,
             string authorizationCode,
             IPasswordCredentialsState passwordCredentialsState)
             : this(clientId, secretKey, passwordCredentialsState)
@@ -45,7 +48,8 @@ namespace SoundCloud.Api.Net
         }
 
         internal SoundCloudApiAuthenticated(
-            string clientId, string secretKey,
+            string clientId, 
+            string secretKey,
             IPasswordCredentialsState passwordCredentialsState)
             : base(clientId, secretKey, Client)
         {
@@ -54,38 +58,42 @@ namespace SoundCloud.Api.Net
             _passwordCredentialsState = passwordCredentialsState;
         }
 
-        public new void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
+        public override void ExecuteAsync<T>(IResource<T> resource, Action<T> callback)
         {
             GetOAuth2Token();
             resource.SetRequest(AddRestClientToken(resource));
             base.ExecuteAsync(resource, callback);
         }
 
-        public new List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T :  new()
+        public override List<T> Execute<T>(IEnumerable<IResource<T>> resources)
         {
             GetOAuth2Token();
 
             var resourceBases = resources as IList<IResource<T>> ?? resources.ToList();
 
             foreach (var resource in resourceBases)
+            {
                 resource.SetRequest(AddRestClientToken(resource));
+            }
 
             return base.Execute(resourceBases);
         }
 
-        public new void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
+        public override void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback)
         {
             GetOAuth2Token();
 
             var resourceBases = resources as IList<IResource<T>> ?? resources.ToList();
 
             foreach (var resource in resourceBases)
+            {
                 resource.SetRequest(AddRestClientToken(resource));
+            }
 
             base.ExecuteAsync(resourceBases, callback);
         }
 
-        public new T Execute<T>(IResource<T> resource) where T : new()
+        public override T Execute<T>(IResource<T> resource)
         {
             GetOAuth2Token();
             resource.SetRequest(AddRestClientToken(resource));
@@ -94,7 +102,10 @@ namespace SoundCloud.Api.Net
 
         private void GetOAuth2Token()
         {
-            if (!IsTokenRequired()) return;
+            if (!IsTokenRequired())
+            {
+                return;
+            }
 
             var oauth2Token = GetOauth2Model();
 
@@ -124,7 +135,7 @@ namespace SoundCloud.Api.Net
 
         private OAuth2 GetOauth2Model()
         {
-            var oauth2Token = new OAuth2 {ClientId = _clientId, ClientSecret = _secretKey};
+            var oauth2Token = new OAuth2 { ClientId = _clientId, ClientSecret = _secretKey };
 
             if (_usePassword)
             {
@@ -142,7 +153,7 @@ namespace SoundCloud.Api.Net
             else
             {
                 oauth2Token.GrantType = GrantType.refresh_token;
-                oauth2Token.RefreshToken = _currentOAuthToken.refresh_token;
+                oauth2Token.RefreshToken = _currentOAuthToken.RefreshToken;
             }
 
             return oauth2Token;
@@ -152,7 +163,7 @@ namespace SoundCloud.Api.Net
         {
             var request = resource.GetRequest();
             var passwordCredentials = _passwordCredentialsState.Load();
-            request.AddParameter(QueryParameter.OAuthToken, passwordCredentials.access_token, ParameterType.GetOrPost);
+            request.AddParameter(QueryParameter.OAuthToken, passwordCredentials.AccessToken, ParameterType.GetOrPost);
             return request;
         }
     }

@@ -1,5 +1,14 @@
 ﻿namespace SoundCloud.Api.Net.Models
 {
+    public enum GrantType
+    {
+        authorization_code,
+        refresh_token,
+        password,
+        client_credentials,
+        oauth1_token
+    }
+
     public class OAuth2
     {
         public string ClientId { get; set; }
@@ -10,14 +19,5 @@
         public string UserName { get; set; }
         public string Password { get; set; }
         public string RefreshToken { get; set; }
-    }
-
-    public enum GrantType
-    {
-        authorization_code,
-        refresh_token,
-        password,
-        client_credentials,
-        oauth1_token
     }
 }

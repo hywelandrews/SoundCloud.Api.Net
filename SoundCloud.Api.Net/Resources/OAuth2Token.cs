@@ -35,12 +35,13 @@ namespace SoundCloud.Api.Net.Resources
             {
                 throw new Exception("GranType of Refresh token requires a refresh token");
             }
+
             Request.AddParameter(FormParameter.Code, oAuth2.RefreshToken);
         }
 
         private void AddAuthorizationCodeParameters(OAuth2 oAuth2)
         {
-            if ((string.IsNullOrEmpty(oAuth2.Code) || string.IsNullOrEmpty(oAuth2.RedirectUri)))
+            if (string.IsNullOrEmpty(oAuth2.Code) || string.IsNullOrEmpty(oAuth2.RedirectUri))
             {
                 throw new Exception("GranType of Authorization code requires code and redirect uri");
             }
@@ -51,7 +52,7 @@ namespace SoundCloud.Api.Net.Resources
 
         private void AddPasswordParameters(OAuth2 oAuth2)
         {
-            if ((string.IsNullOrEmpty(oAuth2.UserName) || string.IsNullOrEmpty(oAuth2.Password)))
+            if (string.IsNullOrEmpty(oAuth2.UserName) || string.IsNullOrEmpty(oAuth2.Password))
             {
                 throw new Exception("GranType of Password requires username and password");
             }

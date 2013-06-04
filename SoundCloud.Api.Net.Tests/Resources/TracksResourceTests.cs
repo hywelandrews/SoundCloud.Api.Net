@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetTracksWithTagsRequest()
         {
-            var tags = new List<string> {"dubstep", "garage"};
+            var tags = new List<string> { "dubstep", "garage" };
 
             var tracks = SoundCloudApi.Tracks().Tags(tags).Get();
             Assert.Greater(tracks.Count, 0);

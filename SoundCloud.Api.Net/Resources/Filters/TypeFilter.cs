@@ -23,7 +23,9 @@
 
         private string Value { get; set; }
 
-        public static implicit operator string(TypeFilter op) { return op.Value; }
+        public static implicit operator string(TypeFilter op)
+        {
+            return op.Value;
+        }
     }
-
 }

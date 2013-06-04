@@ -35,7 +35,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
                        (x.StreamUrl == y.StreamUrl) && (x.Streamable == y.Streamable) &&
                        (x.TagList == y.TagList) && (x.Title == y.Title) &&
                        (x.TrackType == y.TrackType) && (x.Uri == y.Uri) &&
-                       (new MiniUserComparer().Equals(x.User,y.User)) && (x.UserFavorite == y.UserFavorite) &&
+                       (new MiniUserComparer().Equals(x.User, y.User)) && (x.UserFavorite == y.UserFavorite) &&
                        (x.UserId == y.UserId) && (x.VideoUrl == y.VideoUrl) &&
                        (x.WaveformUrl == y.WaveformUrl);
             }

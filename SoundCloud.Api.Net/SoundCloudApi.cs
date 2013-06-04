@@ -119,11 +119,14 @@ namespace SoundCloud.Api.Net
 
         private static IAuthenticator GetAuthenticator(string clientId, string secretKey)
         {
-            return new SimpleAuthenticator(QueryParameter.ClientId, clientId, QueryParameter.Consumerkey,
-                                                            secretKey);
+            return new SimpleAuthenticator(
+                QueryParameter.ClientId, 
+                clientId, 
+                QueryParameter.Consumerkey,
+                secretKey);
         }
 
-        public T Execute<T>(IResource<T> resource) where T : new()
+        public virtual T Execute<T>(IResource<T> resource) where T : new()
         {
             var response = _client.Execute<T>(resource.GetRequest());
 
@@ -131,22 +134,23 @@ namespace SoundCloud.Api.Net
             {
                 throw response.ErrorException;
             }
+
             return response.Data;
         }
 
-        public void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
+        public virtual void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
         {
             _client.ExecuteAsync<T>(resource.GetRequest(), (response) => callback(response.Data));
         }
 
-        public List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new()
+        public virtual List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new()
         {
             var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
 
             return compositeBuilderResult.Result;
         }
 
-        public void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
+        public virtual void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
         {
             var compositeBuilderResult = ExecuteMultipleResources<T>(resources);
             callback(compositeBuilderResult.Result);
@@ -164,11 +168,11 @@ namespace SoundCloud.Api.Net
                 tasks.Add(Task.Factory.StartNew(() => _client.Execute<T>(currentRequest).Data, TaskCreationOptions.LongRunning));
             }
 
-            var compositeBuilderResult = Task.Factory.ContinueWhenAll<T, List<T>>(tasks.ToArray(), compositeBuilder);
+            var compositeBuilderResult = Task.Factory.ContinueWhenAll<T, List<T>>(tasks.ToArray(), CompositeBuilder);
             return compositeBuilderResult;
         }
 
-        private List<T> compositeBuilder<T>(IEnumerable<Task<T>> taskResults)
+        private List<T> CompositeBuilder<T>(IEnumerable<Task<T>> taskResults)
         {
             return taskResults.Select(t => t.Result).ToList();
         }

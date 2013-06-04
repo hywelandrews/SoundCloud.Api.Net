@@ -17,7 +17,9 @@
 
         private string Value { get; set; }
 
-        public static implicit operator string(LicenseFilter op) { return op.Value; }
+        public static implicit operator string(LicenseFilter op)
+        {
+            return op.Value;
+        }
     }
-
 }

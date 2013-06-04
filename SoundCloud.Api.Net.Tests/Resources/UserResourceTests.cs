@@ -86,7 +86,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
             SoundCloudApiAuthenticate.User().Get();
 
             var token = PasswordCredentialsState.Load();
-            token.expires_in = 1;
+            token.ExpiresIn = 1;
             // Override the usual hour long session soundcloud sends back
 
             while (!token.HasExpired())

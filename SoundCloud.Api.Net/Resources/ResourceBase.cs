@@ -7,7 +7,7 @@ using SoundCloud.Api.Net.Resources.Filters;
 
 namespace SoundCloud.Api.Net.Resources
 {
-    internal abstract class ResourceBase<T, TR> : IResource<T> where T:new() where TR:class
+    internal abstract class ResourceBase<T, TR> : IResource<T> where T : new() where TR : class
     {
         protected RestRequest Request = new RestRequest();
         private readonly ISoundCloudApiInternal _soundCloudApi;
