@@ -11,5 +11,11 @@ namespace SoundCloud.Api.Net.Resources.Groups
             Request = request;
             Request.Resource = Request.Resource + Uri.Groups;
         }
+
+        internal Groups(ISoundCloudApiInternal soundCloudApi)
+            : base(soundCloudApi)
+        {
+            Request.Resource = Uri.Groups;
+        } 
     }
 }

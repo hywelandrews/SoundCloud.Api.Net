@@ -11,5 +11,11 @@ namespace SoundCloud.Api.Net.Resources.Comments
             Request = request;
             Request.Resource = Request.Resource + Uri.Comments;
         }
+
+        internal Comments(ISoundCloudApiInternal soundCloudApi)
+            : base(soundCloudApi)
+        {
+            Request.Resource = Uri.Comments;
+        }
     }
 }

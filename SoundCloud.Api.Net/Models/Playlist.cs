@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SoundCloud.Api.Net.Models
 {
@@ -24,7 +25,7 @@ namespace SoundCloud.Api.Net.Models
         public string TagList { get; set; }
         public int LabelId { get; set; }
         public string LabelName { get; set; }
-        public int Release { get; set; }
+        public string Release { get; set; }
         public int ReleaseDay { get; set; }
         public int ReleaseMonth { get; set; }
         public int ReleaseYear { get; set; }
@@ -32,5 +33,7 @@ namespace SoundCloud.Api.Net.Models
         public bool Downloadable { get; set; }
         public string Ean { get; set; }
         public string PlaylistType { get; set; }
+        public int TrackCount { get; set; }
+        public List<Track> Tracks { get; set; }
     }
 }

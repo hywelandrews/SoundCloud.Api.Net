@@ -11,5 +11,12 @@ namespace SoundCloud.Api.Net.Resources.Comment
             Request.Resource = Request.Resource + string.Format(Uri.Comments + "{{{0}}}", UrlParameter.Id);
             Request.AddParameter(UrlParameter.Id, commentId, ParameterType.UrlSegment);
         }
+
+        internal Comment(int commentId, ISoundCloudApiInternal soundCloudApi)
+            : base(soundCloudApi)
+        {
+            Request.Resource = Request.Resource + string.Format(Uri.Comments + "{{{0}}}", UrlParameter.Id);
+            Request.AddParameter(UrlParameter.Id, commentId, ParameterType.UrlSegment);
+        }
     }
 }

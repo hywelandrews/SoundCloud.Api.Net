@@ -6,8 +6,15 @@ using RestSharp;
 using SoundCloud.Api.Net.Configuration;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources;
+using SoundCloud.Api.Net.Resources.App;
+using SoundCloud.Api.Net.Resources.Apps;
+using SoundCloud.Api.Net.Resources.Comment;
+using SoundCloud.Api.Net.Resources.Comments;
 using SoundCloud.Api.Net.Resources.Group;
+using SoundCloud.Api.Net.Resources.Groups;
+using SoundCloud.Api.Net.Resources.Me;
 using SoundCloud.Api.Net.Resources.Playlist;
+using SoundCloud.Api.Net.Resources.Playlists;
 using SoundCloud.Api.Net.Resources.Track;
 using SoundCloud.Api.Net.Resources.Tracks;
 using SoundCloud.Api.Net.Resources.User;
@@ -70,9 +77,44 @@ namespace SoundCloud.Api.Net
             return new Playlist(playlistId, this);
         }
 
+        public IPlaylists Playlists()
+        {
+            return new Playlists(this);
+        }
+
+        public IGroups Groups()
+        {
+            return new Groups(this);
+        }
+
         public IGroup Group(int groupId)
         {
             return new Group(groupId, this);
+        }
+
+        public IComments Comments()
+        {
+            return new Comments(this);
+        }
+
+        public IComment Comment(int commentId)
+        {
+            return new Comment(commentId, this);
+        }
+
+        public IMe Me()
+        {
+            return new Me(this);
+        }
+
+        public IApps Apps()
+        {
+            return new Apps(this);
+        }
+
+        public IApp App(int appId)
+        {
+            return new App(appId, this);
         }
 
         private static IAuthenticator GetAuthenticator(string clientId, string secretKey)

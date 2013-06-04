@@ -69,6 +69,8 @@
     <Compile Include="Resources\Activities\Activities.cs" />
     <Compile Include="Resources\AllOwn\AllOwn.cs" />
     <Compile Include="Resources\Apps\Apps.cs" />
+    <Compile Include="Resources\App\App.cs" />
+    <Compile Include="Resources\App\IApp.cs" />
     <Compile Include="Resources\Comment\Comment.cs" />
     <Compile Include="Resources\Comments\Comments.cs" />
     <Compile Include="Resources\Connection\Connection.cs" />
