@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RestSharp;
 using SoundCloud.Api.Net.Parameters;
+using SoundCloud.Api.Net.Resources.Filters;
 
 namespace SoundCloud.Api.Net.Resources
 {
@@ -50,13 +51,13 @@ namespace SoundCloud.Api.Net.Resources
             return this as TR;
         }
 
-        public TR Filter(Filters.Filters filter)
+        public TR Filter(Filter filter)
         {
             Request.AddParameter(QueryParameter.Filter, filter.ToString(), ParameterType.GetOrPost);
             return this as TR;
         }
 
-        public TR License(string license)
+        public TR License(LicenseFilter license)
         {
             Request.AddParameter(QueryParameter.License, license, ParameterType.GetOrPost);
             return this as TR;
@@ -107,6 +108,12 @@ namespace SoundCloud.Api.Net.Resources
         public TR Genres(IEnumerable<string> list)
         {
             Request.AddParameter(QueryParameter.Genres, string.Join(",", list), ParameterType.GetOrPost);
+            return this as TR;
+        }
+
+        public TR Types(IEnumerable<string> list)
+        {
+            Request.AddParameter(QueryParameter.Types, string.Join(",", list), ParameterType.GetOrPost);
             return this as TR;
         }
     }

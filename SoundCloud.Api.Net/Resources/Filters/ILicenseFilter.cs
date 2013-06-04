@@ -2,6 +2,6 @@
 {
     public interface ILicenseFilter<out T>
     {
-        T License(string type);
+        T License(LicenseFilter type);
     }
 }

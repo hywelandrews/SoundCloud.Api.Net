@@ -39,14 +39,14 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetTracksWithFilterRequest()
         {
-            var tracks = SoundCloudApi.Tracks().Filter(Filters.downloadable).Get();
+            var tracks = SoundCloudApi.Tracks().Filter(Filter.downloadable).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithLicenseRequest()
         {
-            var tracks = SoundCloudApi.Tracks().License("all-rights-reserved").Get();
+            var tracks = SoundCloudApi.Tracks().License(LicenseFilter.AllRightsReserved).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
@@ -108,6 +108,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
 
             var tracks = SoundCloudApi.Tracks().Genres(genres).Get();
             Assert.Greater(tracks.Count, 0);
+            string i = LicenseFilter.NoRightsReserved;
         }
 
         [Test]
@@ -118,8 +119,8 @@ namespace SoundCloud.Api.Net.Tests.Resources
             var tracks = SoundCloudApi.Tracks()
                                       .Tags(tags)
                                       .Search("Owl")
-                                      .Filter(Filters.streamable)
-                                      .License("all-rights-reserved")
+                                      .Filter(Filter.streamable)
+                                      .License(LicenseFilter.AllRightsReserved)
                                       .BpmFrom(100)
                                       .BpmTo(160)
                                       .DurationFrom(10000)
