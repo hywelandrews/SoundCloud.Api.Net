@@ -1,6 +1,6 @@
 ﻿namespace SoundCloud.Api.Net.Configuration
 {
-    internal class Settings
+    internal static class Settings
     {
         private const string BaseUri = "api.soundcloud.com";
         internal const string BaseUrl = "http://" + BaseUri;

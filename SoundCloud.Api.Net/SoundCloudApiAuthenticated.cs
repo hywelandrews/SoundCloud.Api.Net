@@ -10,7 +10,7 @@ using SoundCloud.Api.Net.Resources;
 
 namespace SoundCloud.Api.Net
 {
-    public class SoundCloudApiAuthenticated : SoundCloudApi, ISoundCloudApi, ISoundCloudApiInternal
+    public sealed class SoundCloudApiAuthenticated : SoundCloudApi, ISoundCloudApi, ISoundCloudApiInternal
     {
         private readonly string _clientId;
         private readonly string _secretKey;
@@ -70,7 +70,7 @@ namespace SoundCloud.Api.Net
             foreach (var resource in resourceBases)
                 resource.SetRequest(AddRestClientToken(resource));
 
-            return base.Execute<T>(resourceBases);
+            return base.Execute(resourceBases);
         }
 
         public new void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new()
@@ -89,7 +89,7 @@ namespace SoundCloud.Api.Net
         {
             GetOAuth2Token();
             resource.SetRequest(AddRestClientToken(resource));
-            return base.Execute<T>(resource);
+            return base.Execute(resource);
         }
 
         private void GetOAuth2Token()
