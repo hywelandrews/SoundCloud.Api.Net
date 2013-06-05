@@ -2,7 +2,7 @@
 
 namespace SoundCloud.Api.Net.Resources.Comments
 {
-    public interface IComments : IGet<List<Models.Comment>>
+    public interface IComments : IResource<List<Models.Comment>>, IGet<List<Models.Comment>>
     {
     }
 }
