@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
-using SoundCloud.Api.Net.Resources.Playlists;
+using SoundCloud.Api.Net.Resources.Groups;
 
 namespace SoundCloud.Api.Net.Tests.Resources
 {
     [TestFixture]
-    public class PlaylistsResourceTests : ResourceTestsBase
+    public class GroupsResourceTests : ResourceTestsBase
     {
-        private List<Playlist> _asyncPlaylistsResult;
+        private List<Group> _asyncGroupsResult;
 
         [Test]
         public void TestGetPlaylistsRequest()
         {
-            var playlists = SoundCloudApi.Playlists().Get();
+            var playlists = SoundCloudApi.Groups().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
         public void TestGetPlaylistsWithSearchRequest()
         {
-            var playlists = SoundCloudApi.Playlists().Search("Owl").Get();
+            var playlists = SoundCloudApi.Groups().Search("Owl").Get();
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -30,28 +30,28 @@ namespace SoundCloud.Api.Net.Tests.Resources
         public void TestGetPlaylistsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Playlists().GetAsync(PlaylistsListBuilder);
+            SoundCloudApi.Groups().GetAsync(GroupsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
-            Assert.Greater(_asyncPlaylistsResult.Count, 0);
+            Assert.Greater(_asyncGroupsResult.Count, 0);
         }
 
         [Test]
         public void TestGetPlaylistsWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Playlists().Search("Owl").GetAsync(PlaylistsListBuilder);
+            SoundCloudApi.Groups().Search("Owl").GetAsync(GroupsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
-            Assert.Greater(_asyncPlaylistsResult.Count, 0);
+            Assert.Greater(_asyncGroupsResult.Count, 0);
         }
 
         [Test]
         public void TestGetPlaylistsMultipleRequest()
         {
-            var requests = new List<IPlaylists>
+            var requests = new List<IGroups>
                 {
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
+                    SoundCloudApi.Groups(),
+                    SoundCloudApi.Groups(),
+                    SoundCloudApi.Groups(),
                 };
             var users = SoundCloudApi.Execute(requests);
             Assert.Greater(users.Count, 0);
@@ -60,11 +60,11 @@ namespace SoundCloud.Api.Net.Tests.Resources
         [Test]
         public void TestGetPlaylistsWithOAuthMultipleRequest()
         {
-            var requests = new List<IPlaylists>
+            var requests = new List<IGroups>
                 {
-                    SoundCloudApiAuthenticate.Playlists(),
-                    SoundCloudApiAuthenticate.Playlists(),
-                    SoundCloudApiAuthenticate.Playlists(),
+                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticate.Groups(),
                 };
             var users = SoundCloudApiAuthenticate.Execute(requests);
             Assert.Greater(users.Count, 0);
@@ -74,28 +74,28 @@ namespace SoundCloud.Api.Net.Tests.Resources
         public void TestGetPlaylistsAsyncMultipleRequest()
         {
             Completion = new ManualResetEvent(false);
-            var requests = new List<IPlaylists>
+            var requests = new List<IGroups>
                 {
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
+                    SoundCloudApi.Groups(),
+                    SoundCloudApi.Groups(),
+                    SoundCloudApi.Groups(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, PlaylistsListBuilder);
-            Assert.Greater(_asyncPlaylistsResult.Count, 0);
+            SoundCloudApiAuthenticate.ExecuteAsync(requests, GroupsListBuilder);
+            Assert.Greater(_asyncGroupsResult.Count, 0);
         }
 
-        private void PlaylistsListBuilder(List<Playlist> result)
+        private void GroupsListBuilder(List<Group> result)
         {
-            _asyncPlaylistsResult = result;
+            _asyncGroupsResult = result;
             Completion.Set();
         }
 
-        private void PlaylistsListBuilder(List<List<Playlist>> result)
+        private void GroupsListBuilder(List<List<Group>> result)
         {
-            _asyncPlaylistsResult = new List<Playlist>();
+            _asyncGroupsResult = new List<Group>();
             foreach (var userResult in result)
             {
-                _asyncPlaylistsResult.InsertRange(0, userResult);
+                _asyncGroupsResult.InsertRange(0, userResult);
             }
             Completion.Set();
         }
