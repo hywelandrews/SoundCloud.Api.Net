@@ -7,7 +7,7 @@ using SoundCloud.Api.Net.Resources.Users;
 
 namespace SoundCloud.Api.Net.Resources.Group
 {
-    public interface IGroup : IGet<Models.Group>
+    public interface IGroup : IResource<Models.Group>, IGet<Models.Group>
     {
         IModerators Moderators();
         IMembers Members();

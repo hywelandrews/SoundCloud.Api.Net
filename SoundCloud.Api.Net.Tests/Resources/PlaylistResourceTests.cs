@@ -34,7 +34,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetUserAsyncWithOAuth()
+        public void TestGetPlaylistAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
             SoundCloudApiAuthenticate.Playlist(1).GetAsync(PlaylistBuilder);
