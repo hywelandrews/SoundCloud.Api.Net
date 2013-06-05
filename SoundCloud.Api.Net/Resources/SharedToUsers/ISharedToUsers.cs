@@ -2,7 +2,7 @@
 
 namespace SoundCloud.Api.Net.Resources.SharedToUsers
 {
-    public interface ISharedToUsers : IGet<List<Models.User>>, IDelete<List<Models.User>>
+    public interface ISharedToUsers : IGet<List<Models.User>>, IPut<List<Models.User>>, IDelete<List<Models.User>>
     {
     }
 }

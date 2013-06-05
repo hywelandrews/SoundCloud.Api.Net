@@ -1,6 +1,6 @@
 ﻿namespace SoundCloud.Api.Net.Resources.Favorite
 {
-    public interface IFavorite : IGet<Models.Track>, IDelete<Models.Track>
+    public interface IFavorite : IGet<Models.Track>, IPut<Models.Track>, IDelete<Models.Track>
     {
     }
 }

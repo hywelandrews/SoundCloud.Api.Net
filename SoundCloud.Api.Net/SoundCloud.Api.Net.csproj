@@ -75,6 +75,10 @@
     <Compile Include="Resources\Comments\Comments.cs" />
     <Compile Include="Resources\Connection\Connection.cs" />
     <Compile Include="Resources\Connections\Connections.cs" />
+    <Compile Include="Resources\Contributions\Contributions.cs" />
+    <Compile Include="Resources\Contributions\IContributions.cs" />
+    <Compile Include="Resources\Contribution\Contribution.cs" />
+    <Compile Include="Resources\Contribution\IContribution.cs" />
     <Compile Include="Resources\Contributors\Contributors.cs" />
     <Compile Include="Resources\Favorite\Favorite.cs" />
     <Compile Include="Resources\Favorites\Favorites.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Resources\Group\IGroup.cs" />
     <Compile Include="Resources\Groups\IGroups.cs" />
     <Compile Include="Resources\Filters\ILicenseFilter.cs" />
+    <Compile Include="Resources\IPut.cs" />
     <Compile Include="Resources\Me\IMe.cs" />
     <Compile Include="Resources\Members\IMembers.cs" />
     <Compile Include="Resources\Moderators\IModerators.cs" />

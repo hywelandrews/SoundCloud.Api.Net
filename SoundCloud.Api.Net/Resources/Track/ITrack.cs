@@ -7,7 +7,7 @@ using SoundCloud.Api.Net.Resources.SharedToUsers;
 
 namespace SoundCloud.Api.Net.Resources.Track
 {
-    public interface ITrack : IGet<Models.Track>, IDelete<Models.Track>
+    public interface ITrack : IGet<Models.Track>, IPut<Models.Track>, IDelete<Models.Track>
     {
         IComments Comments();
         IComment Comment(int id);
