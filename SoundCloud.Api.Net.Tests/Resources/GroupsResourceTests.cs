@@ -13,21 +13,21 @@ namespace SoundCloud.Api.Net.Tests.Resources
         private List<Group> _asyncGroupsResult;
 
         [Test]
-        public void TestGetPlaylistsRequest()
+        public void TestGetGroupsRequest()
         {
             var playlists = SoundCloudApi.Groups().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
-        public void TestGetPlaylistsWithSearchRequest()
+        public void TestGetGroupsWithSearchRequest()
         {
             var playlists = SoundCloudApi.Groups().Search("Owl").Get();
             Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
-        public void TestGetPlaylistsAsyncRequest()
+        public void TestGetGroupsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
             SoundCloudApi.Groups().GetAsync(GroupsListBuilder);
@@ -36,7 +36,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetPlaylistsWithSearchAsyncRequest()
+        public void TestGetGroupsWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
             SoundCloudApi.Groups().Search("Owl").GetAsync(GroupsListBuilder);
@@ -45,7 +45,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetPlaylistsMultipleRequest()
+        public void TestGetGroupsMultipleRequest()
         {
             var requests = new List<IGroups>
                 {
@@ -58,7 +58,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetPlaylistsWithOAuthMultipleRequest()
+        public void TestGetGroupsWithOAuthMultipleRequest()
         {
             var requests = new List<IGroups>
                 {
@@ -71,7 +71,7 @@ namespace SoundCloud.Api.Net.Tests.Resources
         }
 
         [Test]
-        public void TestGetPlaylistsAsyncMultipleRequest()
+        public void TestGetGroupsAsyncMultipleRequest()
         {
             Completion = new ManualResetEvent(false);
             var requests = new List<IGroups>
