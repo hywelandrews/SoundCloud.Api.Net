@@ -55,22 +55,22 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\TestSettings.cs" />
+    <Compile Include="Intergration\Configuration\TestSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\PasswordCredentialsState.cs" />
-    <Compile Include="Resources\AppResourceTests.cs" />
-    <Compile Include="Resources\AppsResourceTests.cs" />
-    <Compile Include="Resources\CommentResourceTests.cs" />
-    <Compile Include="Resources\CommentsResourceTests.cs" />
-    <Compile Include="Resources\GroupResourceTests.cs" />
-    <Compile Include="Resources\GroupsResourceTests.cs" />
-    <Compile Include="Resources\PlaylistResourceTests.cs" />
-    <Compile Include="Resources\PlaylistsResourceTests.cs" />
-    <Compile Include="Resources\ResourceTestsBase.cs" />
-    <Compile Include="Resources\TrackResourceTests.cs" />
-    <Compile Include="Resources\TracksResourceTests.cs" />
-    <Compile Include="Resources\UserResourceTests.cs" />
-    <Compile Include="Resources\UsersResourceTests.cs" />
+    <Compile Include="Intergration\Configuration\PasswordCredentialsState.cs" />
+    <Compile Include="Intergration\Resources\AppResourceTests.cs" />
+    <Compile Include="Intergration\Resources\AppsResourceTests.cs" />
+    <Compile Include="Intergration\Resources\CommentResourceTests.cs" />
+    <Compile Include="Intergration\Resources\CommentsResourceTests.cs" />
+    <Compile Include="Intergration\Resources\GroupResourceTests.cs" />
+    <Compile Include="Intergration\Resources\GroupsResourceTests.cs" />
+    <Compile Include="Intergration\Resources\PlaylistResourceTests.cs" />
+    <Compile Include="Intergration\Resources\PlaylistsResourceTests.cs" />
+    <Compile Include="Intergration\Resources\ResourceTestsBase.cs" />
+    <Compile Include="Intergration\Resources\TrackResourceTests.cs" />
+    <Compile Include="Intergration\Resources\TracksResourceTests.cs" />
+    <Compile Include="Intergration\Resources\UserResourceTests.cs" />
+    <Compile Include="Intergration\Resources\UsersResourceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SoundCloud.Api.Net\SoundCloud.Api.Net.csproj">
