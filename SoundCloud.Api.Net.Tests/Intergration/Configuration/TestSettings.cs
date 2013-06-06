@@ -1,4 +1,4 @@
-﻿namespace SoundCloud.Api.Net.Tests.Configuration
+﻿namespace SoundCloud.Api.Net.Tests.Intergration.Configuration
 {
     public static class TestSettings
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
-using SoundCloud.Api.Net.Tests.Configuration;
+using SoundCloud.Api.Net.Tests.Intergration.Configuration;
 
-namespace SoundCloud.Api.Net.Tests.Resources
+namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 {
     public class ResourceTestsBase
     {

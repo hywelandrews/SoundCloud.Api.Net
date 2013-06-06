@@ -6,7 +6,7 @@ using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Resources.Filters;
 using SoundCloud.Api.Net.Resources.Tracks;
 
-namespace SoundCloud.Api.Net.Tests.Resources
+namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 {
     [TestFixture]
     public class TracksResourceTests : ResourceTestsBase

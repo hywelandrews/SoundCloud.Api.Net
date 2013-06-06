@@ -5,7 +5,7 @@ using NUnit.Framework;
 using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Resources.Groups;
 
-namespace SoundCloud.Api.Net.Tests.Resources
+namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 {
     [TestFixture]
     public class GroupsResourceTests : ResourceTestsBase

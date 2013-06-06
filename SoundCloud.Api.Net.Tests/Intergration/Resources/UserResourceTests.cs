@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
+using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Resources.User;
-using SoundCloud.Api.Net.Tests.Configuration;
-using User = SoundCloud.Api.Net.Models.User;
+using SoundCloud.Api.Net.Tests.Intergration.Configuration;
 
-namespace SoundCloud.Api.Net.Tests.Resources
+namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 {
     [TestFixture]
     public class UserResourceTests : ResourceTestsBase
