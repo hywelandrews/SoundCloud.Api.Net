@@ -2,7 +2,7 @@
 
 namespace SoundCloud.Api.Net.Resources.Apps
 {
-    public interface IApps : IGet<List<Models.App>>
+    public interface IApps : IResource<List<Models.App>>, IGet<List<Models.App>>
     {
     }
 }

@@ -58,6 +58,8 @@
     <Compile Include="Configuration\TestSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\PasswordCredentialsState.cs" />
+    <Compile Include="Resources\AppResourceTests.cs" />
+    <Compile Include="Resources\AppsResourceTests.cs" />
     <Compile Include="Resources\CommentResourceTests.cs" />
     <Compile Include="Resources\CommentsResourceTests.cs" />
     <Compile Include="Resources\GroupResourceTests.cs" />

@@ -9,7 +9,7 @@ namespace SoundCloud.Api.Net.Resources.App
         public App(int appId, ISoundCloudApiInternal soundCloudApi) : base(soundCloudApi)
         {
             _soundCloudApi = soundCloudApi;
-            Request.Resource = string.Format(Uri.Apps + "{{{0}}}", UrlParameter.Id);
+            Request.Resource = Request.Resource + string.Format(Uri.Apps + "{{{0}}}", UrlParameter.Id);
             Request.AddParameter(UrlParameter.Id, appId, ParameterType.UrlSegment);
         }
 

@@ -21,7 +21,7 @@
         internal const string TracksAfiliated   = Tracks + "afiliated/";
         internal const string TracksExclusive   = Tracks + "exclusive/";
         internal const string AllOwn            = "all/own";
-        internal const string Apps              = "apps";
+        internal const string Apps              = "/apps/";
         internal const string Moderators        = "/moderators/";
         internal const string Members           = "/members/";
         internal const string Contributors      = "/contributors/";
