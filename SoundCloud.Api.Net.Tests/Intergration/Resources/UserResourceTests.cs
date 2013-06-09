@@ -54,7 +54,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                                           Username = "Owlmusic",
                                           Uri = "http://api.soundcloud.com/users/509497",
                                           PermalinkUrl = "http://soundcloud.com/owlmusic",
-                                          AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg?9d68d37",
+                                          AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg?a5f823a",
                                           Country = "Britain (UK)",
                                           FullName = "Owl",
                                           Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. Contact djsparko@gmail.com for bookings.",
@@ -70,6 +70,26 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                                           FollowingsCount = 106,
                                           WebsiteTitle = String.Empty
             };
+            Assert.AreEqual(expectedUser.AvatarUrl, user.AvatarUrl);
+            Assert.AreEqual(expectedUser.City, user.City);
+            Assert.AreEqual(expectedUser.Country, user.Country);
+            Assert.AreEqual(expectedUser.Description, user.Description);
+            Assert.AreEqual(expectedUser.DiscogsName, user.DiscogsName);
+            Assert.AreEqual(expectedUser.FollowersCount, user.FollowersCount);
+            Assert.AreEqual(expectedUser.FollowingsCount, user.FollowingsCount);
+            Assert.AreEqual(expectedUser.FullName, user.FullName);
+            Assert.AreEqual(expectedUser.Id, user.Id);
+            Assert.AreEqual(expectedUser.MyspaceName, user.MyspaceName);
+            Assert.AreEqual(expectedUser.Online, user.Online);
+            Assert.AreEqual(expectedUser.Permalink, user.Permalink);
+            Assert.AreEqual(expectedUser.Plan, user.Plan);
+            Assert.AreEqual(expectedUser.PlaylistCount, user.PlaylistCount);
+            Assert.AreEqual(expectedUser.PublicFavoritesCount, user.PublicFavoritesCount);
+            Assert.AreEqual(expectedUser.TrackCount, user.TrackCount);
+            Assert.AreEqual(expectedUser.Uri, user.Uri);
+            Assert.AreEqual(expectedUser.Username, user.Username);
+            Assert.AreEqual(expectedUser.Website, user.Website);
+            Assert.AreEqual(expectedUser.WebsiteTitle, user.WebsiteTitle);
             Assert.True(new UserComparer().Equals(expectedUser, user));
         }
 
