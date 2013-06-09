@@ -40,17 +40,15 @@ namespace SoundCloud.Api.Net.Resources
            _soundCloudApi.ExecuteAsync(this, callback);
         }
 
-        public T Put(T model)
+        public T Put()
         {
             Request.Method = Method.PUT;
-            Request.AddObject(model);
             return _soundCloudApi.Execute(this);
         }
 
-        public void PutAsync(T model, Action<T> callback)
+        public void PutAsync(Action<T> callback)
         {
             Request.Method = Method.PUT;
-            Request.AddObject(model);
             _soundCloudApi.ExecuteAsync(this, callback);
         }
 

@@ -2,9 +2,9 @@
 
 namespace SoundCloud.Api.Net.Resources
 {
-    public interface IPut<T>
+    public interface IPut<out T>
     {
-        T Put(T model);
-        void PutAsync(T model, Action<T> callback);
+        T Put();
+        void PutAsync(Action<T> callback);
     }
 }
