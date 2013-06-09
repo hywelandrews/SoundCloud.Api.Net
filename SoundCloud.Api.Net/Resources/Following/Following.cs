@@ -9,8 +9,8 @@ namespace SoundCloud.Api.Net.Resources.Following
             : base(soundCloudApi)
         {
             Request = request;
-            Request.Resource = Request.Resource + string.Format(Uri.Followings + "{{{0}}}", UrlParameter.Id);
-            Request.AddParameter(UrlParameter.Id, followingId, ParameterType.UrlSegment);
+            Request.Resource = Request.Resource + string.Format(Uri.Followings + "{{{0}}}", UrlParameter.followingId);
+            Request.AddParameter(UrlParameter.followingId, followingId, ParameterType.UrlSegment);
         }
     }
 }

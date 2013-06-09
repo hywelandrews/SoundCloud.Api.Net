@@ -4,6 +4,8 @@ using SoundCloud.Api.Net.Resources.Comment;
 using SoundCloud.Api.Net.Resources.Comments;
 using SoundCloud.Api.Net.Resources.Connection;
 using SoundCloud.Api.Net.Resources.Connections;
+using SoundCloud.Api.Net.Resources.Favorite;
+using SoundCloud.Api.Net.Resources.Favorites;
 using SoundCloud.Api.Net.Resources.Follower;
 using SoundCloud.Api.Net.Resources.Followers;
 using SoundCloud.Api.Net.Resources.Following;
@@ -23,6 +25,16 @@ namespace SoundCloud.Api.Net.Resources.Me
         {
             _soundCloudApi = soundCloudApi;
             Request.Resource = Uri.Me;
+        }
+
+        public IFavorite Favorite(int favoriteId)
+        {
+            return new Favorite.Favorite(Request, favoriteId, _soundCloudApi);
+        }
+
+        public IFavorites Favorites()
+        {
+            return new Favorites.Favorites(Request, _soundCloudApi);
         }
 
         public IFollowings Followings()
