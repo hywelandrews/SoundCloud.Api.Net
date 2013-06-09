@@ -93,7 +93,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                             Username = "Owlmusic",
                             Uri = "http://api.soundcloud.com/users/509497",
                             PermalinkUrl = "http://soundcloud.com/owlmusic",
-                            AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg?9d68d37"
+                            AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg?a5f823a"
                         },
                     Label = new User
                         {
@@ -102,10 +102,10 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                             Username = "Car Crash Set",
                             Uri = "http://api.soundcloud.com/users/4804",
                             PermalinkUrl = "http://soundcloud.com/carcrashset",
-                            AvatarUrl = "http://i1.sndcdn.com/avatars-000000176052-e69d19-large.jpg?9d68d37"
+                            AvatarUrl = "http://i1.sndcdn.com/avatars-000000176052-e69d19-large.jpg?a5f823a"
                         },
                     PermalinkUrl = "http://soundcloud.com/owlmusic/lost-in-kakariko",
-                    ArtworkUrl = "http://i1.sndcdn.com/artworks-000001070867-60u1mw-large.jpg?9d68d37",
+                    ArtworkUrl = "http://i1.sndcdn.com/artworks-000001070867-60u1mw-large.jpg?a5f823a",
                     WaveformUrl = "http://w1.sndcdn.com/0PhxMYJBKnps_m.png",
                     StreamUrl = "http://api.soundcloud.com/tracks/1379060/stream",
                     PlaybackCount = 240,
@@ -114,6 +114,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     CommentCount = 2,
                     AttachmentsUri = "http://api.soundcloud.com/tracks/1379060/attachments"
                 };
+            Assert.AreEqual(expectedTrack.ArtworkUrl, track.ArtworkUrl);
             Assert.True(new TrackComparer().Equals(expectedTrack, track));
         }
 
