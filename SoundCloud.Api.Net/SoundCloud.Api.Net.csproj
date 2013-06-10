@@ -47,6 +47,12 @@
     <Compile Include="Authentication\IPasswordCredentialsState.cs" />
     <Compile Include="Authentication\PasswordCredentials.cs" />
     <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Exceptions\InternalServerError.cs" />
+    <Compile Include="Exceptions\ResourceBadRequest.cs" />
+    <Compile Include="Exceptions\ResourceForbidden.cs" />
+    <Compile Include="Exceptions\ResourceNotFound.cs" />
+    <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\Unauthorized.cs" />
     <Compile Include="ISoundCloudApi.cs" />
     <Compile Include="ISoundCloudApiInternal.cs" />
     <Compile Include="Models\Activity.cs" />

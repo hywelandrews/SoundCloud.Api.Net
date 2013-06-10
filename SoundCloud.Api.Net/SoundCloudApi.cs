@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using RestSharp;
 using SoundCloud.Api.Net.Configuration;
@@ -134,19 +135,40 @@ namespace SoundCloud.Api.Net
             {
                 throw response.ErrorException;
             }
+
+            CheckResponseStatusCode(response);
             
             return response.Data;
         }
 
+        private static void CheckResponseStatusCode<T>(IRestResponse<T> response) where T : new()
+        {
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.NotFound:
+                    throw new Exceptions.ResourceNotFound(response.Request, response.ErrorMessage);
+                case HttpStatusCode.InternalServerError:
+                    throw new Exceptions.InternalServerError(response.Request, response.ErrorMessage);
+                case HttpStatusCode.Forbidden:
+                    throw new Exceptions.ResourceForbidden(response.Request, response.ErrorMessage);
+                case HttpStatusCode.Unauthorized:
+                    throw new Exceptions.Unauthorized(response.Request, response.ErrorMessage);
+                case HttpStatusCode.BadRequest:
+                    throw new Exceptions.ResourceBadRequest(response.Request, response.ErrorMessage);
+            }
+        }
+
         public virtual void ExecuteAsync<T>(IResource<T> resource, Action<T> callback) where T : new()
         {
-            _client.ExecuteAsync<T>(resource.GetRequest(), (response) => callback(response.Data));
+            _client.ExecuteAsync<T>(resource.GetRequest(), (response) => {   CheckResponseStatusCode(response);
+                                                                             callback(response.Data);
+            });
         }
 
         public virtual List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new()
         {
             var compositeBuilderResult = ExecuteMultipleResources(resources);
-
+            
             return compositeBuilderResult.Result;
         }
 
@@ -164,8 +186,13 @@ namespace SoundCloud.Api.Net
 
             foreach (var request in requests)
             {
-                IRestRequest currentRequest = request;
-                tasks.Add(Task.Factory.StartNew(() => _client.Execute<T>(currentRequest).Data, TaskCreationOptions.LongRunning));
+                var currentRequest = request;
+                tasks.Add(Task.Factory.StartNew(() =>
+                    {
+                        var response = _client.Execute<T>(currentRequest);
+                        CheckResponseStatusCode(response);
+                        return response.Data;
+                    } , TaskCreationOptions.LongRunning));
             }
 
             var compositeBuilderResult = Task.Factory.ContinueWhenAll<T, List<T>>(tasks.ToArray(), CompositeBuilder);

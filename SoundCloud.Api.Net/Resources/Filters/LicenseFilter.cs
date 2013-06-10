@@ -3,7 +3,7 @@
     public sealed class LicenseFilter
     {
         public static readonly LicenseFilter NoRightsReserved = new LicenseFilter("no-rights-reserved");
-        public static readonly LicenseFilter AllRightsReserved = new LicenseFilter("all-rights-reserved");
+        public static readonly LicenseFilter ToShare = new LicenseFilter("to_share");
         public static readonly LicenseFilter CcBy = new LicenseFilter("cc-by");
         public static readonly LicenseFilter CcByNc = new LicenseFilter("cc-by-nc");
         public static readonly LicenseFilter CcByNd = new LicenseFilter("cc-by-nd");

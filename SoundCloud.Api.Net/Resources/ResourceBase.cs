@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RestSharp;
+using RestSharp.Serializers;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources.Filters;
 
@@ -15,6 +16,7 @@ namespace SoundCloud.Api.Net.Resources
         protected ResourceBase(ISoundCloudApiInternal soundCloudApi)
         {
             Request.RequestFormat = DataFormat.Json;
+            //Request.JsonSerializer = new SoundCloudSerializer();
             _soundCloudApi = soundCloudApi;
         }
     
@@ -92,7 +94,7 @@ namespace SoundCloud.Api.Net.Resources
 
         public TR License(LicenseFilter license)
         {
-            Request.AddParameter(QueryParameter.License, license, ParameterType.GetOrPost);
+            Request.AddParameter(QueryParameter.License, (string)license, ParameterType.GetOrPost);
             return this as TR;
         }
 
