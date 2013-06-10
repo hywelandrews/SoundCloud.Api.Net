@@ -60,11 +60,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IApps>
                 {
-                    SoundCloudApi.Apps(),
-                    SoundCloudApi.Apps(),
-                    SoundCloudApi.Apps(),
+                    SoundCloudApiAuthenticate.Apps(),
+                    SoundCloudApiAuthenticate.Apps(),
+                    SoundCloudApiAuthenticate.Apps(),
                 };
             SoundCloudApiAuthenticate.ExecuteAsync(requests, AppsListBuilder);
+            Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncAppsResult.Count, 0);
         }
 

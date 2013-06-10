@@ -147,9 +147,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IUser>
                 {
-                    SoundCloudApi.User(),
-                    SoundCloudApi.User(),
-                    SoundCloudApi.User(),
+                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticate.User(),
                 };
             var users = SoundCloudApiAuthenticate.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
@@ -162,9 +162,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 
             var resourceList = new List<IUser>
                 {
-                    SoundCloudApi.User(),
-                    SoundCloudApi.User(),
-                    SoundCloudApi.User(),
+                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticate.User(),
                 };
             
             SoundCloudApiAuthenticate.ExecuteAsync(resourceList, UserListBuilder);

@@ -46,7 +46,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTracksWithLicenseRequest()
         {
-            var tracks = SoundCloudApi.Tracks().License(LicenseFilter.AllRightsReserved).Get();
+            var tracks = SoundCloudApi.Tracks().License(LicenseFilter.ToShare).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
@@ -128,7 +128,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                                       .Tags(tags)
                                       .Search("Owl")
                                       .Filter(Filter.streamable)
-                                      .License(LicenseFilter.AllRightsReserved)
+                                      .License(LicenseFilter.ToShare)
                                       .BpmFrom(100)
                                       .BpmTo(160)
                                       .DurationFrom(10000)
@@ -203,9 +203,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<ITracks>
                 {
-                    SoundCloudApi.Tracks(),
-                    SoundCloudApi.Tracks(),
-                    SoundCloudApi.Tracks(),
+                    SoundCloudApiAuthenticate.Tracks(),
+                    SoundCloudApiAuthenticate.Tracks(),
+                    SoundCloudApiAuthenticate.Tracks(),
                 };
             SoundCloudApiAuthenticate.ExecuteAsync(requests, TrackListBuilder);
             Assert.Greater(_asyncTracksResult.Count, 0);

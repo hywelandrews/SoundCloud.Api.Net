@@ -60,9 +60,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IComments>
                 {
-                    SoundCloudApi.Comments(),
-                    SoundCloudApi.Comments(),
-                    SoundCloudApi.Comments(),
+                    SoundCloudApiAuthenticate.Comments(),
+                    SoundCloudApiAuthenticate.Comments(),
+                    SoundCloudApiAuthenticate.Comments(),
                 };
             SoundCloudApiAuthenticate.ExecuteAsync(requests, CommentsListBuilder);
             Assert.Greater(_asyncCommentsResult.Count, 0);

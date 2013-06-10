@@ -53,8 +53,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     SoundCloudApi.Playlists(),
                     SoundCloudApi.Playlists(),
                 };
-            var users = SoundCloudApi.Execute(requests);
-            Assert.Greater(users.Count, 0);
+            var playlists = SoundCloudApi.Execute(requests);
+            Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
@@ -66,8 +66,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     SoundCloudApiAuthenticate.Playlists(),
                     SoundCloudApiAuthenticate.Playlists(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
-            Assert.Greater(users.Count, 0);
+            var playlists = SoundCloudApiAuthenticate.Execute(requests);
+            Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     SoundCloudApi.Playlists(),
                     SoundCloudApi.Playlists(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, PlaylistsListBuilder);
+            SoundCloudApi.ExecuteAsync(requests, PlaylistsListBuilder);
             Assert.Greater(_asyncPlaylistsResult.Count, 0);
         }
 

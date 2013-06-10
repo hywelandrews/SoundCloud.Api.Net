@@ -76,9 +76,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IGroups>
                 {
-                    SoundCloudApi.Groups(),
-                    SoundCloudApi.Groups(),
-                    SoundCloudApi.Groups(),
+                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticate.Groups(),
                 };
             SoundCloudApiAuthenticate.ExecuteAsync(requests, GroupsListBuilder);
             Assert.Greater(_asyncGroupsResult.Count, 0);

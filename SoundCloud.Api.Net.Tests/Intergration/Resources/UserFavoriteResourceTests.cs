@@ -13,7 +13,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         }
 
         [Test]
-        public void TestDeleteUserFollowingRequest()
+        public void TestDeleteUserFavoriteRequest()
+        {
+            SoundCloudApiAuthenticate.User().Favorite(11195729).Put();
+            SoundCloudApiAuthenticate.User().Favorite(11195729).Delete();
+        }
+
+        [TestFixtureTearDown]
+        public void UserFavoriteResourceTestsTearDown()
         {
             SoundCloudApiAuthenticate.User().Favorite(11195729).Delete();
         }

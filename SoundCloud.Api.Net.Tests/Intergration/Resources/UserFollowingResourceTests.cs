@@ -18,5 +18,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             SoundCloudApiAuthenticate.User().Following(17567594).Delete();
         }
+
+        [TestFixtureTearDown]
+        public void UserFollowingResourceTestsTearDown()
+        {
+            SoundCloudApiAuthenticate.User().Following(17567594).Delete();
+        }
     }
 }

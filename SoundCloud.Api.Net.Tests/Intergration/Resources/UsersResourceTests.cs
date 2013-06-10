@@ -90,9 +90,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IUsers>
                 {
-                    SoundCloudApi.Users(),
-                    SoundCloudApi.Users(),
-                    SoundCloudApi.Users(),
+                    SoundCloudApiAuthenticate.Users(),
+                    SoundCloudApiAuthenticate.Users(),
+                    SoundCloudApiAuthenticate.Users(),
                 };
             SoundCloudApiAuthenticate.ExecuteAsync(requests, UserListBuilder);
             Assert.Greater(_asyncUsersResult.Count, 0);
