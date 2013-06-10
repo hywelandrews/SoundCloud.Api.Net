@@ -11,6 +11,7 @@ using SoundCloud.Api.Net.Resources.Followings;
 using SoundCloud.Api.Net.Resources.Groups;
 using SoundCloud.Api.Net.Resources.Playlists;
 using SoundCloud.Api.Net.Resources.Tracks;
+using SoundCloud.Api.Net.Resources.WebProfile;
 using SoundCloud.Api.Net.Resources.WebProfiles;
 
 namespace SoundCloud.Api.Net.Resources.User
@@ -87,6 +88,11 @@ namespace SoundCloud.Api.Net.Resources.User
         public IFavorites Favorites()
         {
             return new Favorites.Favorites(Request, _soundCloudApi);
+        }
+
+        public IWebProfile WebProfile()
+        {
+            return new WebProfile.WebProfile(Request, _soundCloudApi);
         }
 
         public IWebProfiles WebProfiles()

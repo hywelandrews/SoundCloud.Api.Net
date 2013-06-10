@@ -13,6 +13,7 @@ using SoundCloud.Api.Net.Resources.Followings;
 using SoundCloud.Api.Net.Resources.Groups;
 using SoundCloud.Api.Net.Resources.Playlists;
 using SoundCloud.Api.Net.Resources.Tracks;
+using SoundCloud.Api.Net.Resources.WebProfile;
 using SoundCloud.Api.Net.Resources.WebProfiles;
 
 namespace SoundCloud.Api.Net.Resources.Me
@@ -95,6 +96,11 @@ namespace SoundCloud.Api.Net.Resources.Me
         public IActivities Activities()
         {
             return new Activities.Activities(Request, _soundCloudApi);
+        }
+
+        public IWebProfile WebProfile()
+        {
+            return new WebProfile.WebProfile(Request, _soundCloudApi);
         }
 
         public IWebProfiles WebProfiles()
