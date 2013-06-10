@@ -118,6 +118,7 @@
     <Compile Include="Resources\Groups\IGroups.cs" />
     <Compile Include="Resources\Filters\ILicenseFilter.cs" />
     <Compile Include="Resources\IPut.cs" />
+    <Compile Include="Resources\IPutWithModel.cs" />
     <Compile Include="Resources\Me\IMe.cs" />
     <Compile Include="Resources\Members\IMembers.cs" />
     <Compile Include="Resources\Moderators\IModerators.cs" />
@@ -155,6 +156,8 @@
     <Compile Include="Resources\User\User.cs" />
     <Compile Include="Resources\Users\Users.cs" />
     <Compile Include="Resources\WebProfiles\WebProfiles.cs" />
+    <Compile Include="Resources\WebProfile\IWebProfile.cs" />
+    <Compile Include="Resources\WebProfile\WebProfile.cs" />
     <Compile Include="SoundCloudApi.cs" />
     <Compile Include="SoundCloudApiAuthenticated.cs" />
     <Compile Include="SoundCloudApiFactory.cs" />

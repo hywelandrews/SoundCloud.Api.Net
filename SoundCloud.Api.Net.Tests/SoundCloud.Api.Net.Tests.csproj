@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Intergration\Configuration\TestSettings.cs" />
     <Compile Include="Intergration\Resources\MeResourceTests.cs" />
+    <Compile Include="Intergration\Resources\UserFavoriteResourceTests.cs" />
     <Compile Include="Intergration\Resources\UserFollowingResourceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Intergration\Configuration\PasswordCredentialsState.cs" />
