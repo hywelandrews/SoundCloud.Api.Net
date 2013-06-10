@@ -98,9 +98,9 @@ namespace SoundCloud.Api.Net.Resources.Me
             return new Activities.Activities(Request, _soundCloudApi);
         }
 
-        public IWebProfile WebProfile()
+        public IWebProfile WebProfile(int webProfileId)
         {
-            return new WebProfile.WebProfile(Request, _soundCloudApi);
+            return new WebProfile.WebProfile(Request, webProfileId, _soundCloudApi);
         }
 
         public IWebProfiles WebProfiles()
