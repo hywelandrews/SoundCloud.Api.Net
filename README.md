@@ -13,7 +13,7 @@ A wrapper for the SoundCloud API written in .Net with support for authentication
 
 The wrapper includes convenient methods used to perform requests on behalf of an authenticated user, or an unauthenticated client. Below you'll find a few quick examples.
 
-Ofcourse you need to handle the authentication first before being able to request and modify protect resources as demonstrated below. Therefor I refer to the [demo application](https://github.com/mptre/ci-soundcloud) which got some example code on how to handle authentication.
+Ofcourse you need to handle the authentication first before being able to request and modify protect resources as demonstrated below.
 
 ### GET
 
@@ -36,31 +36,22 @@ Currently unsupported
 
 ``` C#
 
-Currently unsupported
+protected ISoundCloudApiAuthenticated SoundCloudApiAuthenticated;
+protected PasswordCredentialsState PasswordCredentialsState;
 
+SoundCloudApiAuthenticated = SoundCloudApi.CreateClient(ClientId, ClientSecret, UserName, Password, PasswordCredentialsState);
+SoundCloudApiAuthenticated.User().Following(followingId).Put()
 ```
 
 ### DELETE
 
 ``` 
-```
 
-### Upload track
+protected ISoundCloudApiAuthenticated SoundCloudApiAuthenticated;
+protected PasswordCredentialsState PasswordCredentialsState;
 
-``` 
-```
-
-### Download track
-
-``` 
-
-```
-
-### Update playlist
-
-Many found it difficult to update a existing playlist. Therefor a custom method is available to simplify this matter.
-
-``` 
+SoundCloudApiAuthenticated = SoundCloudApi.CreateClient(ClientId, ClientSecret, UserName, Password, PasswordCredentialsState);
+SoundCloudApiAuthenticated.User().Following(followingId).Delete()
 ```
 
 ## Feedback and questions
@@ -71,7 +62,7 @@ Also make sure to check out the official [documentation](https://github.com/Soun
 
 ## License
 
-Copyright (c) 2011 Hywel Andrews
+Copyright (c) 2013 Hywel Andrews
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
