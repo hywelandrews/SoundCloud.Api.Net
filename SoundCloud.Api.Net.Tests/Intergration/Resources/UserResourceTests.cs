@@ -40,14 +40,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetUserRequest()
         {
-            var user = SoundCloudApi.User(509497).Get();
+            var user = SoundCloudApiUnAuthenticated.User(509497).Get();
             Assert.AreEqual(509497, user.Id);
         }
 
         [Test]
         public void TestAllPropertiesGetUserRequest()
         {
-            var user = SoundCloudApi.User(509497).Get();
+            var user = SoundCloudApiUnAuthenticated.User(509497).Get();
             var expectedUser = new User { Id = 509497,
                                           Permalink = "owlmusic",
                                           Username = "Owlmusic",
@@ -64,7 +64,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                                           PlaylistCount = 0,
                                           Plan = "Free",
                                           PublicFavoritesCount = 6,
-                                          FollowersCount = 137,
+                                          FollowersCount = 138,
                                           FollowingsCount = 106,
             };
             Assert.AreEqual(expectedUser.AvatarUrl, user.AvatarUrl.Substring(0, user.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4));
@@ -93,14 +93,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetUserWithOAuthRequest()
         {
-            var user = SoundCloudApiAuthenticate.User().Get();
+            var user = SoundCloudApiAuthenticated.User().Get();
             Assert.AreEqual(509497, user.Id);
         }
 
         [Test]
         public void TestGetUserWithOAuthRequestForceRefresh()
         {
-            SoundCloudApiAuthenticate.User().Get();
+            SoundCloudApiAuthenticated.User().Get();
 
             var token = PasswordCredentialsState.Load();
             token.ExpiresIn = 1;
@@ -112,8 +112,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             }
             PasswordCredentialsState.Save(token);
 
-            SoundCloudApiAuthenticate = SoundCloudApiFactory.GetSoundCloudApi(TestSettings.ClientId, TestSettings.ClientSecret, PasswordCredentialsState);
-            var user = SoundCloudApiAuthenticate.User().Get();
+            SoundCloudApiAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId, TestSettings.ClientSecret, PasswordCredentialsState);
+            var user = SoundCloudApiAuthenticated.User().Get();
             Assert.IsNotEmpty(user.Username);
         }
 
@@ -121,7 +121,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetUserAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.User().GetAsync(UserBuilder);
+            SoundCloudApiAuthenticated.User().GetAsync(UserBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncUserResult.Username);
         }
@@ -131,11 +131,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IUser>
                 {
-                    SoundCloudApi.User(509497),
-                    SoundCloudApi.User(509497),
-                    SoundCloudApi.User(509497),
+                    SoundCloudApiUnAuthenticated.User(509497),
+                    SoundCloudApiUnAuthenticated.User(509497),
+                    SoundCloudApiUnAuthenticated.User(509497),
                 };
-            var users = SoundCloudApi.Execute(resourceList);
+            var users = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
         }
 
@@ -144,11 +144,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IUser>
                 {
-                    SoundCloudApiAuthenticate.User(),
-                    SoundCloudApiAuthenticate.User(),
-                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticated.User(),
+                    SoundCloudApiAuthenticated.User(),
+                    SoundCloudApiAuthenticated.User(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(resourceList);
+            var users = SoundCloudApiAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
         }
 
@@ -159,12 +159,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 
             var resourceList = new List<IUser>
                 {
-                    SoundCloudApiAuthenticate.User(),
-                    SoundCloudApiAuthenticate.User(),
-                    SoundCloudApiAuthenticate.User(),
+                    SoundCloudApiAuthenticated.User(),
+                    SoundCloudApiAuthenticated.User(),
+                    SoundCloudApiAuthenticated.User(),
                 };
             
-            SoundCloudApiAuthenticate.ExecuteAsync(resourceList, UserListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(resourceList, UserListBuilder);
             Assert.AreEqual(3, _asyncUsersResult.Count);
         }
 

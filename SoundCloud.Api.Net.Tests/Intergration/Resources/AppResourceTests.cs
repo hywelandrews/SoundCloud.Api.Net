@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetAppRequest()
         {
-            var app = SoundCloudApi.App(69118).Get();
+            var app = SoundCloudApiUnAuthenticated.App(69118).Get();
             Assert.AreEqual(69118, app.Id);
         }
 
         [Test]
         public void TestGetAppWithOAuthRequest()
         {
-            var app = SoundCloudApiAuthenticate.App(69118).Get();
+            var app = SoundCloudApiAuthenticated.App(69118).Get();
             Assert.AreEqual(69118, app.Id);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetAppAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.App(69118).GetAsync(CommentBuilder);
+            SoundCloudApiAuthenticated.App(69118).GetAsync(CommentBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncAppResult.Name);
         }
@@ -40,12 +40,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IApp>
                 {
-                    SoundCloudApi.App(69118),
-                    SoundCloudApi.App(69118),
-                    SoundCloudApi.App(69118),
+                    SoundCloudApiUnAuthenticated.App(69118),
+                    SoundCloudApiUnAuthenticated.App(69118),
+                    SoundCloudApiUnAuthenticated.App(69118),
                 };
 
-            var app = SoundCloudApi.Execute(resourceList);
+            var app = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, app.Count);
         }
 

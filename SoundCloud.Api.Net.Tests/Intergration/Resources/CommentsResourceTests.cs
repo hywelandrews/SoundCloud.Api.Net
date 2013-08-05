@@ -15,7 +15,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetCommentsRequest()
         {
-            var playlists = SoundCloudApi.Comments().Get();
+            var playlists = SoundCloudApiUnAuthenticated.Comments().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -23,7 +23,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetCommentsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Comments().GetAsync(CommentsListBuilder);
+            SoundCloudApiUnAuthenticated.Comments().GetAsync(CommentsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncCommentsResult.Count, 0);
         }
@@ -33,11 +33,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IComments>
                 {
-                    SoundCloudApi.Comments(),
-                    SoundCloudApi.Comments(),
-                    SoundCloudApi.Comments(),
+                    SoundCloudApiUnAuthenticated.Comments(),
+                    SoundCloudApiUnAuthenticated.Comments(),
+                    SoundCloudApiUnAuthenticated.Comments(),
                 };
-            var users = SoundCloudApi.Execute(requests);
+            var users = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -46,11 +46,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IComments>
                 {
-                    SoundCloudApiAuthenticate.Comments(),
-                    SoundCloudApiAuthenticate.Comments(),
-                    SoundCloudApiAuthenticate.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -60,11 +60,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IComments>
                 {
-                    SoundCloudApiAuthenticate.Comments(),
-                    SoundCloudApiAuthenticate.Comments(),
-                    SoundCloudApiAuthenticate.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
+                    SoundCloudApiAuthenticated.Comments(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, CommentsListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, CommentsListBuilder);
             Assert.Greater(_asyncCommentsResult.Count, 0);
         }
 

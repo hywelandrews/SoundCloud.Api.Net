@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetGroupRequest()
         {
-            var group = SoundCloudApi.Group(1).Get();
+            var group = SoundCloudApiUnAuthenticated.Group(1).Get();
             Assert.AreEqual(1, group.Id);
         }
 
         [Test]
         public void TestGetGroupWithOAuthRequest()
         {
-            var group = SoundCloudApiAuthenticate.Group(1).Get();
+            var group = SoundCloudApiAuthenticated.Group(1).Get();
             Assert.AreEqual(1, group.Id);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetGroupAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.Group(1).GetAsync(GroupBuilder);
+            SoundCloudApiAuthenticated.Group(1).GetAsync(GroupBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncGroupResult.Name);
         }
@@ -40,12 +40,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IGroup>
                 {
-                    SoundCloudApi.Group(1),
-                    SoundCloudApi.Group(1),
-                    SoundCloudApi.Group(1),
+                    SoundCloudApiUnAuthenticated.Group(1),
+                    SoundCloudApiUnAuthenticated.Group(1),
+                    SoundCloudApiUnAuthenticated.Group(1),
                 };
 
-            var groups = SoundCloudApi.Execute(resourceList);
+            var groups = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, groups.Count);
         }
 

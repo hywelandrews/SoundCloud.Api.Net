@@ -7,10 +7,13 @@ using SoundCloud.Api.Net.Configuration;
 using SoundCloud.Api.Net.Models;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources;
+using SoundCloud.Api.Net.Resources.Me;
+using SoundCloud.Api.Net.Resources.User;
+using User = SoundCloud.Api.Net.Models.User;
 
 namespace SoundCloud.Api.Net
 {
-    public sealed class SoundCloudApiAuthenticated : SoundCloudApi, ISoundCloudApi, ISoundCloudApiInternal
+    public sealed class SoundCloudApiAuthenticated : SoundCloudApiUnAuthenticated, ISoundCloudApiAuthenticated
     {
         private readonly string _clientId;
         private readonly string _secretKey;
@@ -165,6 +168,16 @@ namespace SoundCloud.Api.Net
             var passwordCredentials = _passwordCredentialsState.Load();
             request.AddParameter(QueryParameter.OAuthToken, passwordCredentials.AccessToken, ParameterType.GetOrPost);
             return request;
+        }
+
+        public IUser User()
+        {
+            return new Resources.User.User(this);
+        }
+
+        public IMe Me()
+        {
+            return new Me(this);
         }
     }
 }

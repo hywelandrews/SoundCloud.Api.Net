@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetGroupsRequest()
         {
-            var playlists = SoundCloudApi.Groups().Get();
+            var playlists = SoundCloudApiUnAuthenticated.Groups().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
         public void TestGetGroupsWithSearchRequest()
         {
-            var playlists = SoundCloudApi.Groups().Search("Owl").Get();
+            var playlists = SoundCloudApiUnAuthenticated.Groups().Search("Owl").Get();
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetGroupsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Groups().GetAsync(GroupsListBuilder);
+            SoundCloudApiUnAuthenticated.Groups().GetAsync(GroupsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncGroupsResult.Count, 0);
         }
@@ -39,7 +39,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetGroupsWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Groups().Search("Owl").GetAsync(GroupsListBuilder);
+            SoundCloudApiUnAuthenticated.Groups().Search("Owl").GetAsync(GroupsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncGroupsResult.Count, 0);
         }
@@ -49,11 +49,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IGroups>
                 {
-                    SoundCloudApi.Groups(),
-                    SoundCloudApi.Groups(),
-                    SoundCloudApi.Groups(),
+                    SoundCloudApiUnAuthenticated.Groups(),
+                    SoundCloudApiUnAuthenticated.Groups(),
+                    SoundCloudApiUnAuthenticated.Groups(),
                 };
-            var users = SoundCloudApi.Execute(requests);
+            var users = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -62,11 +62,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IGroups>
                 {
-                    SoundCloudApiAuthenticate.Groups(),
-                    SoundCloudApiAuthenticate.Groups(),
-                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -76,11 +76,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IGroups>
                 {
-                    SoundCloudApiAuthenticate.Groups(),
-                    SoundCloudApiAuthenticate.Groups(),
-                    SoundCloudApiAuthenticate.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
+                    SoundCloudApiAuthenticated.Groups(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, GroupsListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, GroupsListBuilder);
             Assert.Greater(_asyncGroupsResult.Count, 0);
         }
 

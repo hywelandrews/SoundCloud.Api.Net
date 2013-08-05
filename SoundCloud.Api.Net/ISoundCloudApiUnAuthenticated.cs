@@ -7,7 +7,6 @@ using SoundCloud.Api.Net.Resources.Comment;
 using SoundCloud.Api.Net.Resources.Comments;
 using SoundCloud.Api.Net.Resources.Group;
 using SoundCloud.Api.Net.Resources.Groups;
-using SoundCloud.Api.Net.Resources.Me;
 using SoundCloud.Api.Net.Resources.Playlist;
 using SoundCloud.Api.Net.Resources.Playlists;
 using SoundCloud.Api.Net.Resources.Track;
@@ -17,11 +16,10 @@ using SoundCloud.Api.Net.Resources.Users;
 
 namespace SoundCloud.Api.Net
 {
-    public interface ISoundCloudApi
+    public interface ISoundCloudApiUnAuthenticated
     {
         List<T> Execute<T>(IEnumerable<IResource<T>> resources) where T : new();
         void ExecuteAsync<T>(IEnumerable<IResource<T>> resources, Action<List<T>> callback) where T : new();
-        IUser User();
         IUser User(int userId);
         IUsers Users();
         ITrack Track(int trackId);
@@ -32,7 +30,6 @@ namespace SoundCloud.Api.Net
         IGroup Group(int groupId);
         IComments Comments();
         IComment Comment(int commentId);
-        IMe Me();
         IApps Apps();
         IApp App(int appId);
     }

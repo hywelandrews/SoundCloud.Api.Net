@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetCommentRequest()
         {
-            var comment = SoundCloudApi.Comment(13685794).Get();
+            var comment = SoundCloudApiUnAuthenticated.Comment(13685794).Get();
             Assert.AreEqual(13685794, comment.Id);
         }
 
         [Test]
         public void TestGetCommentWithOAuthRequest()
         {
-            var comment = SoundCloudApiAuthenticate.Comment(13685794).Get();
+            var comment = SoundCloudApiAuthenticated.Comment(13685794).Get();
             Assert.AreEqual(13685794, comment.Id);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetCommentAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.Comment(13685794).GetAsync(CommentBuilder);
+            SoundCloudApiAuthenticated.Comment(13685794).GetAsync(CommentBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncCommentResult.Body);
         }
@@ -40,12 +40,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IComment>
                 {
-                    SoundCloudApi.Comment(13685794),
-                    SoundCloudApi.Comment(13685794),
-                    SoundCloudApi.Comment(13685794),
+                    SoundCloudApiUnAuthenticated.Comment(13685794),
+                    SoundCloudApiUnAuthenticated.Comment(13685794),
+                    SoundCloudApiUnAuthenticated.Comment(13685794),
                 };
 
-            var comments = SoundCloudApi.Execute(resourceList);
+            var comments = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, comments.Count);
         }
 

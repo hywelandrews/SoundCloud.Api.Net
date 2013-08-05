@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetUsersRequest()
         {
-            var user = SoundCloudApi.Users().Get();
+            var user = SoundCloudApiUnAuthenticated.Users().Get();
             Assert.Greater(user.Count, 0);
         }
 
         [Test]
         public void TestGetUsersWithSearchRequest()
         {
-            var user = SoundCloudApi.Users().Search("Owl").Get();
+            var user = SoundCloudApiUnAuthenticated.Users().Search("Owl").Get();
             Assert.Greater(user.Count, 0);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetUsersAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Users().GetAsync(UserListBuilder);
+            SoundCloudApiUnAuthenticated.Users().GetAsync(UserListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
@@ -39,7 +39,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetUsersWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Users().Search("Owl").GetAsync(UserListBuilder);
+            SoundCloudApiUnAuthenticated.Users().Search("Owl").GetAsync(UserListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
@@ -47,14 +47,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetUsersUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticate.Users().Get();
+            SoundCloudApiAuthenticated.Users().Get();
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
 
         [Test]
         public void TestGetUsersWithSearchUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticate.Users().Search("Owl").Get();
+            SoundCloudApiAuthenticated.Users().Search("Owl").Get();
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
 
@@ -63,11 +63,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IUsers>
                 {
-                    SoundCloudApi.Users(),
-                    SoundCloudApi.Users(),
-                    SoundCloudApi.Users(),
+                    SoundCloudApiUnAuthenticated.Users(),
+                    SoundCloudApiUnAuthenticated.Users(),
+                    SoundCloudApiUnAuthenticated.Users(),
                 };
-            var users = SoundCloudApi.Execute(requests);
+            var users = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -76,11 +76,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IUsers>
                 {
-                    SoundCloudApiAuthenticate.Users(),
-                    SoundCloudApiAuthenticate.Users(),
-                    SoundCloudApiAuthenticate.Users(),
+                    SoundCloudApiAuthenticated.Users(),
+                    SoundCloudApiAuthenticated.Users(),
+                    SoundCloudApiAuthenticated.Users(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -90,11 +90,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IUsers>
                 {
-                    SoundCloudApiAuthenticate.Users(),
-                    SoundCloudApiAuthenticate.Users(),
-                    SoundCloudApiAuthenticate.Users(),
+                    SoundCloudApiAuthenticated.Users(),
+                    SoundCloudApiAuthenticated.Users(),
+                    SoundCloudApiAuthenticated.Users(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, UserListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, UserListBuilder);
             Assert.Greater(_asyncUsersResult.Count, 0);
         }
 

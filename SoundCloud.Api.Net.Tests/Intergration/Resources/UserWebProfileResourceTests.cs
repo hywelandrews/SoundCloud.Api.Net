@@ -16,13 +16,13 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     Title = "A website",
                     Url = "http://grasshopperliesheavy.co.uk"
                 };
-            SoundCloudApiAuthenticate.User().WebProfile(4783141).Put(webProfile);
+            SoundCloudApiAuthenticated.User().WebProfile(4783141).Put(webProfile);
         }
 
         [Test]
         public void TestDeleteUserWebProfileRequest()
         {
-            SoundCloudApiAuthenticate.User().WebProfile(4783141).Delete();
+            SoundCloudApiAuthenticated.User().WebProfile(4783141).Delete();
         }
     }
 }

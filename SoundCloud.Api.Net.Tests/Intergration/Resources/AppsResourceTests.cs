@@ -15,7 +15,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetAppsRequest()
         {
-            var playlists = SoundCloudApi.Apps().Get();
+            var playlists = SoundCloudApiUnAuthenticated.Apps().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -23,7 +23,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetAppsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Apps().GetAsync(AppsListBuilder);
+            SoundCloudApiUnAuthenticated.Apps().GetAsync(AppsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncAppsResult.Count, 0);
         }
@@ -33,11 +33,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IApps>
                 {
-                    SoundCloudApi.Apps(),
-                    SoundCloudApi.Apps(),
-                    SoundCloudApi.Apps(),
+                    SoundCloudApiUnAuthenticated.Apps(),
+                    SoundCloudApiUnAuthenticated.Apps(),
+                    SoundCloudApiUnAuthenticated.Apps(),
                 };
-            var users = SoundCloudApi.Execute(requests);
+            var users = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -46,11 +46,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IApps>
                 {
-                    SoundCloudApiAuthenticate.Apps(),
-                    SoundCloudApiAuthenticate.Apps(),
-                    SoundCloudApiAuthenticate.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -60,11 +60,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IApps>
                 {
-                    SoundCloudApiAuthenticate.Apps(),
-                    SoundCloudApiAuthenticate.Apps(),
-                    SoundCloudApiAuthenticate.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
+                    SoundCloudApiAuthenticated.Apps(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, AppsListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, AppsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncAppsResult.Count, 0);
         }

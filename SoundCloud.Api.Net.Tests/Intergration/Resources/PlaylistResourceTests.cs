@@ -15,21 +15,21 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetPlaylistRequest()
         {
-            var playlist = SoundCloudApi.Playlist(1).Get();
+            var playlist = SoundCloudApiUnAuthenticated.Playlist(1).Get();
             Assert.AreEqual(1, playlist.Id);
         }
 
         [Test]
         public void TestGetPlaylistHasCorrectNumberOfTracksRequest()
         {
-            var playlist = SoundCloudApi.Playlist(1).Get();
+            var playlist = SoundCloudApiUnAuthenticated.Playlist(1).Get();
             Assert.AreEqual(playlist.TrackCount, playlist.Tracks.Count);
         }
 
         [Test]
         public void TestGetPlaylistWithOAuthRequest()
         {
-            var playlist = SoundCloudApiAuthenticate.Playlist(1).Get();
+            var playlist = SoundCloudApiAuthenticated.Playlist(1).Get();
             Assert.AreEqual(1, playlist.Id);
         }
 
@@ -37,7 +37,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetPlaylistAsyncWithOAuth()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.Playlist(1).GetAsync(PlaylistBuilder);
+            SoundCloudApiAuthenticated.Playlist(1).GetAsync(PlaylistBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.IsNotEmpty(_asyncPlaylistResult.Title);
         }
@@ -47,12 +47,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var resourceList = new List<IPlaylist>
                 {
-                    SoundCloudApi.Playlist(1),
-                    SoundCloudApi.Playlist(1),
-                    SoundCloudApi.Playlist(1),
+                    SoundCloudApiUnAuthenticated.Playlist(1),
+                    SoundCloudApiUnAuthenticated.Playlist(1),
+                    SoundCloudApiUnAuthenticated.Playlist(1),
                 };
 
-            var users = SoundCloudApi.Execute(resourceList);
+            var users = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
         }
 

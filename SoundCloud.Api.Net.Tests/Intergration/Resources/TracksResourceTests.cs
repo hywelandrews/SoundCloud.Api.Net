@@ -16,14 +16,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTracksRequest()
         {
-            var tracks = SoundCloudApi.Tracks().Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithSearchRequest()
         {
-            var tracks = SoundCloudApi.Tracks().Search("Owl").Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Search("Owl").Get();
             Assert.Greater(tracks.Count, 0);
         }
 
@@ -32,63 +32,63 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var tags = new List<string> { "dubstep", "garage" };
 
-            var tracks = SoundCloudApi.Tracks().Tags(tags).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Tags(tags).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithFilterRequest()
         {
-            var tracks = SoundCloudApi.Tracks().Filter(Filter.downloadable).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Filter(Filter.downloadable).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithLicenseRequest()
         {
-            var tracks = SoundCloudApi.Tracks().License(LicenseFilter.ToShare).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().License(LicenseFilter.ToShare).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithBpmFromRequest()
         {
-            var tracks = SoundCloudApi.Tracks().BpmFrom(120).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().BpmFrom(120).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithBpmToRequest()
         {
-            var tracks = SoundCloudApi.Tracks().BpmTo(120).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().BpmTo(120).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithDurationFromRequest()
         {
-            var tracks = SoundCloudApi.Tracks().DurationFrom(60000).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().DurationFrom(60000).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithDurationToRequest()
         {
-            var tracks = SoundCloudApi.Tracks().BpmTo(60000).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().BpmTo(60000).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithCreatedFromRequest()
         {
-            var tracks = SoundCloudApi.Tracks().CreatedFrom(new DateTime(2010, 1, 1)).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().CreatedFrom(new DateTime(2010, 1, 1)).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithCreatedToRequest()
         {
-            var tracks = SoundCloudApi.Tracks().CreatedTo(new DateTime(2013, 5, 1)).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().CreatedTo(new DateTime(2013, 5, 1)).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
@@ -97,7 +97,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var ids = new List<int> { 1379060, 1640576 };
 
-            var tracks = SoundCloudApi.Tracks().Ids(ids).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Ids(ids).Get();
             Assert.AreEqual(tracks.Count, 2);
         }
 
@@ -106,7 +106,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var genres = new List<string> { "dubstep", "garage" };
 
-            var tracks = SoundCloudApi.Tracks().Genres(genres).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Genres(genres).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
@@ -115,23 +115,23 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var trackTypes = new List<TypeFilter> { TypeFilter.Demo, TypeFilter.InProgress };
 
-            var tracks = SoundCloudApi.Tracks().Types(trackTypes).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Types(trackTypes).Get();
             Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithAllFiltersRequest()
         {
-            var tags = new List<string> { "dubstep", "garage" };
+            var tags = new List<string> { "dubstep", "garage", "house" };
 
-            var tracks = SoundCloudApi.Tracks()
+            var tracks = SoundCloudApiUnAuthenticated.Tracks()
                                       .Tags(tags)
                                       .Search("Owl")
                                       .Filter(Filter.streamable)
                                       .License(LicenseFilter.ToShare)
-                                      .BpmFrom(100)
+                                      .BpmFrom(60)
                                       .BpmTo(160)
-                                      .DurationFrom(10000)
+                                      .DurationFrom(1000)
                                       .DurationTo(120000)
                                       .CreatedFrom(new DateTime(2010, 1, 1))
                                       .CreatedTo(new DateTime(2013, 5, 1))
@@ -143,7 +143,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetTracksAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Tracks().GetAsync(TrackListBuilder);
+            SoundCloudApiUnAuthenticated.Tracks().GetAsync(TrackListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncTracksResult.Count, 0);
         }
@@ -152,7 +152,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetTracksWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Tracks().Search("Owl").GetAsync(TrackListBuilder);
+            SoundCloudApiUnAuthenticated.Tracks().Search("Owl").GetAsync(TrackListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncTracksResult.Count, 0);
         }
@@ -160,14 +160,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTracksUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticate.Tracks().Get();
+            SoundCloudApiAuthenticated.Tracks().Get();
             Assert.Greater(_asyncTracksResult.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithSearchUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticate.Tracks().Search("Owl").Get();
+            SoundCloudApiAuthenticated.Tracks().Search("Owl").Get();
             Assert.Greater(_asyncTracksResult.Count, 0);
         }
 
@@ -176,11 +176,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<ITracks>
                 {
-                    SoundCloudApi.Tracks(),
-                    SoundCloudApi.Tracks(),
-                    SoundCloudApi.Tracks(),
+                    SoundCloudApiUnAuthenticated.Tracks(),
+                    SoundCloudApiUnAuthenticated.Tracks(),
+                    SoundCloudApiUnAuthenticated.Tracks(),
                 };
-            var users = SoundCloudApi.Execute(requests);
+            var users = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -189,11 +189,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<ITracks>
                 {
-                    SoundCloudApiAuthenticate.Tracks(),
-                    SoundCloudApiAuthenticate.Tracks(),
-                    SoundCloudApiAuthenticate.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
                 };
-            var users = SoundCloudApiAuthenticate.Execute(requests);
+            var users = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(users.Count, 0);
         }
 
@@ -203,11 +203,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<ITracks>
                 {
-                    SoundCloudApiAuthenticate.Tracks(),
-                    SoundCloudApiAuthenticate.Tracks(),
-                    SoundCloudApiAuthenticate.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
+                    SoundCloudApiAuthenticated.Tracks(),
                 };
-            SoundCloudApiAuthenticate.ExecuteAsync(requests, TrackListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, TrackListBuilder);
             Assert.Greater(_asyncTracksResult.Count, 0);
         }
 

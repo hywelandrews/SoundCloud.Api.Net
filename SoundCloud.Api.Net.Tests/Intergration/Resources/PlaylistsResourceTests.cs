@@ -15,14 +15,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetPlaylistsRequest()
         {
-            var playlists = SoundCloudApi.Playlists().Get();
+            var playlists = SoundCloudApiUnAuthenticated.Playlists().Get();
             Assert.Greater(playlists.Count, 0);
         }
 
         [Test]
         public void TestGetPlaylistsWithSearchRequest()
         {
-            var playlists = SoundCloudApi.Playlists().Search("Owl").Get();
+            var playlists = SoundCloudApiUnAuthenticated.Playlists().Search("Owl").Get();
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -30,7 +30,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetPlaylistsAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Playlists().GetAsync(PlaylistsListBuilder);
+            SoundCloudApiUnAuthenticated.Playlists().GetAsync(PlaylistsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncPlaylistsResult.Count, 0);
         }
@@ -39,7 +39,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetPlaylistsWithSearchAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Playlists().Search("Owl").GetAsync(PlaylistsListBuilder);
+            SoundCloudApiUnAuthenticated.Playlists().Search("Owl").GetAsync(PlaylistsListBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.Greater(_asyncPlaylistsResult.Count, 0);
         }
@@ -49,11 +49,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IPlaylists>
                 {
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
                 };
-            var playlists = SoundCloudApi.Execute(requests);
+            var playlists = SoundCloudApiUnAuthenticated.Execute(requests);
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -62,11 +62,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var requests = new List<IPlaylists>
                 {
-                    SoundCloudApiAuthenticate.Playlists(),
-                    SoundCloudApiAuthenticate.Playlists(),
-                    SoundCloudApiAuthenticate.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
                 };
-            var playlists = SoundCloudApiAuthenticate.Execute(requests);
+            var playlists = SoundCloudApiAuthenticated.Execute(requests);
             Assert.Greater(playlists.Count, 0);
         }
 
@@ -76,11 +76,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IPlaylists>
                 {
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
-                    SoundCloudApi.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
+                    SoundCloudApiUnAuthenticated.Playlists(),
                 };
-            SoundCloudApi.ExecuteAsync(requests, PlaylistsListBuilder);
+            SoundCloudApiUnAuthenticated.ExecuteAsync(requests, PlaylistsListBuilder);
             Assert.Greater(_asyncPlaylistsResult.Count, 0);
         }
 

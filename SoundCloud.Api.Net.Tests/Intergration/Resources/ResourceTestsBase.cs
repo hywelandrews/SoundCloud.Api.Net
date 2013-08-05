@@ -9,8 +9,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 {
     public class ResourceTestsBase
     {
-        protected ISoundCloudApi SoundCloudApi;
-        protected ISoundCloudApi SoundCloudApiAuthenticate;
+        protected ISoundCloudApiUnAuthenticated SoundCloudApiUnAuthenticated;
+        protected ISoundCloudApiAuthenticated SoundCloudApiAuthenticated;
         protected PasswordCredentialsState PasswordCredentialsState;
         protected ManualResetEvent Completion;
 
@@ -18,9 +18,9 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void Initialize()
         {
             ValidateConfiguration();
-            SoundCloudApi = SoundCloudApiFactory.GetSoundCloudApi(TestSettings.ClientId, TestSettings.ClientSecret);
+            SoundCloudApiUnAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId, TestSettings.ClientSecret);
             PasswordCredentialsState = new PasswordCredentialsState();
-            SoundCloudApiAuthenticate = SoundCloudApiFactory.GetSoundCloudApi(TestSettings.ClientId, TestSettings.ClientSecret, TestSettings.UserName, TestSettings.Password, PasswordCredentialsState);
+            SoundCloudApiAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId, TestSettings.ClientSecret, TestSettings.UserName, TestSettings.Password, PasswordCredentialsState);
         }
 
         private void ValidateConfiguration()

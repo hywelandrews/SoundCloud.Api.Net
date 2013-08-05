@@ -9,20 +9,20 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestPutUserFollowingRequest()
         {
-            var user = SoundCloudApiAuthenticate.User().Following(17567594).Put();
+            var user = SoundCloudApiAuthenticated.User().Following(17567595).Put();
             Assert.IsNotNullOrEmpty(user.Username);
         }
 
         [Test]
         public void TestDeleteUserFollowingRequest()
         {
-            SoundCloudApiAuthenticate.User().Following(17567594).Delete();
+            SoundCloudApiAuthenticated.User().Following(17567595).Delete();
         }
 
         [TestFixtureTearDown]
         public void UserFollowingResourceTestsTearDown()
         {
-            SoundCloudApiAuthenticate.User().Following(17567594).Delete();
+            SoundCloudApiAuthenticated.User().Following(17567595).Delete();
         }
     }
 }

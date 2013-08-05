@@ -49,14 +49,14 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTrackRequest()
         {
-            var track = SoundCloudApi.Track(1379060).Get();
+            var track = SoundCloudApiUnAuthenticated.Track(1379060).Get();
             Assert.AreEqual(1379060, track.Id);
         }
 
         [Test]
         public void TestGetTrackAllPropertiesRequest()
         {
-            var track = SoundCloudApi.Track(1379060).Get();
+            var track = SoundCloudApiUnAuthenticated.Track(1379060).Get();
             var expectedTrack = new Track
                 {
                     Id = 1379060,
@@ -123,7 +123,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTrackUsingOAuthRequest()
         {
-            var track = SoundCloudApiAuthenticate.Track(1379060).Get();
+            var track = SoundCloudApiAuthenticated.Track(1379060).Get();
             Assert.AreEqual(1379060, track.Id);
         }
 
@@ -131,7 +131,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetTrackAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApi.Track(1379060).GetAsync(TrackBuilder);
+            SoundCloudApiUnAuthenticated.Track(1379060).GetAsync(TrackBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.AreEqual(1379060, _asyncTrackResult.Id);
         }
@@ -140,7 +140,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetTrackAsyncUsingOAuthRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticate.Track(1379060).GetAsync(TrackBuilder);
+            SoundCloudApiAuthenticated.Track(1379060).GetAsync(TrackBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
             Assert.AreEqual(1379060, _asyncTrackResult.Id);
         }
@@ -148,7 +148,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestPutTrackUpdateDescription()
         {
-            var t = SoundCloudApiAuthenticate.Track(1379060).Put(new Track { Description = "Here is a new description" });
+            var t = SoundCloudApiAuthenticated.Track(1379060).Put(new Track { Description = "Here is a new description" });
             Assert.AreEqual("Here is a new description", t.Description);
         }
 

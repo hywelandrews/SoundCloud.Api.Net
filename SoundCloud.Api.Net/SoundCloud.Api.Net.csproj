@@ -56,7 +56,8 @@
     <Compile Include="Exceptions\ResourceNotFound.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\Unauthorized.cs" />
-    <Compile Include="ISoundCloudApi.cs" />
+    <Compile Include="ISoundCloudApiAuthenticated.cs" />
+    <Compile Include="ISoundCloudApiUnAuthenticated.cs" />
     <Compile Include="ISoundCloudApiInternal.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\App.cs" />
@@ -168,9 +169,9 @@
     <Compile Include="Resources\WebProfile\IWebProfile.cs" />
     <Compile Include="Resources\WebProfile\WebProfile.cs" />
     <Compile Include="Serialization\SoundCloudJsonSerializer.cs" />
-    <Compile Include="SoundCloudApi.cs" />
+    <Compile Include="SoundCloudApiUnAuthenticated.cs" />
     <Compile Include="SoundCloudApiAuthenticated.cs" />
-    <Compile Include="SoundCloudApiFactory.cs" />
+    <Compile Include="SoundCloudApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

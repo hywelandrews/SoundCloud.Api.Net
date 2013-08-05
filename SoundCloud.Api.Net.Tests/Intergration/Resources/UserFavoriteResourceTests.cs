@@ -8,21 +8,20 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestPutUserFavoriteRequest()
         {
-            var track = SoundCloudApiAuthenticate.User().Favorite(11195729).Put();
-            Assert.IsNotNullOrEmpty(track.Title);
+            SoundCloudApiAuthenticated.User().Favorite(11195729).Put();
         }
 
         [Test]
         public void TestDeleteUserFavoriteRequest()
         {
-            SoundCloudApiAuthenticate.User().Favorite(11195729).Put();
-            SoundCloudApiAuthenticate.User().Favorite(11195729).Delete();
+            SoundCloudApiAuthenticated.User().Favorite(11195729).Put();
+            SoundCloudApiAuthenticated.User().Favorite(11195729).Delete();
         }
 
         [TestFixtureTearDown]
         public void UserFavoriteResourceTestsTearDown()
         {
-            SoundCloudApiAuthenticate.User().Favorite(11195729).Delete();
+            SoundCloudApiAuthenticated.User().Favorite(11195729).Delete();
         }
     }
 }
