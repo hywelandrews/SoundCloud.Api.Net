@@ -50,8 +50,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             public bool Equals(User x, User y)
             {
-                return (x.AvatarUrl == y.AvatarUrl) && (x.Id == y.Id) &&
-                       (x.PermalinkUrl == y.PermalinkUrl) && (x.Permalink == y.Permalink) &&
+                return (x.AvatarUrl == y.AvatarUrl.Substring(0, y.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4)) && 
+                       (x.Id == y.Id) && (x.PermalinkUrl == y.PermalinkUrl) && (x.Permalink == y.Permalink) &&
                        (x.Uri == y.Uri) && (x.Username == y.Username);
             }
 
