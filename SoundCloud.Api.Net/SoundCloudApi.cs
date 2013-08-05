@@ -36,7 +36,7 @@ namespace SoundCloud.Api.Net
             _client = new RestClient
                 {
                     BaseUrl = Settings.BaseUrl,
-                    Authenticator = GetAuthenticator(_clientId, _secretKey)
+                    Authenticator = GetAuthenticator(_clientId, _secretKey),
                 };
         }
 
