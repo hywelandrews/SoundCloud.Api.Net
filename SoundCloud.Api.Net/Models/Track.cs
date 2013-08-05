@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace SoundCloud.Api.Net.Models
 {
+    [JsonObject(MemberSerialization.OptIn, Title = "track")]
     public class Track
     {
         public int Id { get; set; }
@@ -19,6 +21,7 @@ namespace SoundCloud.Api.Net.Models
         public string EmbeddableBy { get; set; }
         public string PurchaseUrl { get; set; }
         public string ArtworkUrl { get; set; }
+        [JsonProperty(PropertyName="description")]
         public string Description { get; set; }
         public User Label { get; set; }
         public int Duration { get; set; }

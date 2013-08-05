@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using RestSharp;
-using RestSharp.Serializers;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources.Filters;
+using SoundCloud.Api.Net.Serialization;
 
 namespace SoundCloud.Api.Net.Resources
 {
@@ -16,7 +17,7 @@ namespace SoundCloud.Api.Net.Resources
         protected ResourceBase(ISoundCloudApiInternal soundCloudApi)
         {
             Request.RequestFormat = DataFormat.Json;
-            //Request.JsonSerializer = new SoundCloudSerializer();
+            Request.JsonSerializer = new SoundCloudJsonSerializer();
             _soundCloudApi = soundCloudApi;
         }
     
@@ -57,14 +58,16 @@ namespace SoundCloud.Api.Net.Resources
         public T Put(T model)
         {
             Request.Method = Method.PUT;
-            Request.AddObject(model);
+            Request.AddHeader("Content-Type", "application/json; charset=utf-8");
+            Request.AddBody(model);
             return _soundCloudApi.Execute(this);
         }
 
         public void PutAsync(T model, Action<T> callback)
         {
             Request.Method = Method.PUT;
-            Request.AddObject(model);
+            Request.AddHeader("Content-Type", "application/json");
+            Request.AddBody(model);
             _soundCloudApi.ExecuteAsync(this, callback);
         }
 

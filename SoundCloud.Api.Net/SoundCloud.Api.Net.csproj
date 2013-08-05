@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -164,6 +167,7 @@
     <Compile Include="Resources\WebProfiles\WebProfiles.cs" />
     <Compile Include="Resources\WebProfile\IWebProfile.cs" />
     <Compile Include="Resources\WebProfile\WebProfile.cs" />
+    <Compile Include="Serialization\SoundCloudJsonSerializer.cs" />
     <Compile Include="SoundCloudApi.cs" />
     <Compile Include="SoundCloudApiAuthenticated.cs" />
     <Compile Include="SoundCloudApiFactory.cs" />
