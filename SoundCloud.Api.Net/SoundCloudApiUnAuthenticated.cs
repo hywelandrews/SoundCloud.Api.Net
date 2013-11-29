@@ -26,26 +26,23 @@ namespace SoundCloud.Api.Net
     public class SoundCloudApiUnAuthenticated : ISoundCloudApiUnAuthenticated, ISoundCloudApiInternal
     {
         private readonly string _clientId;
-        private readonly string _secretKey;
         private readonly RestClient _client;
 
-        internal SoundCloudApiUnAuthenticated(string clientId, string secretKey)
+        internal SoundCloudApiUnAuthenticated(string clientId)
         {
             _clientId = clientId;
-            _secretKey = secretKey;
             _client = new RestClient
                 {
                     BaseUrl = Settings.BaseUrl,
-                    Authenticator = GetAuthenticator(_clientId, _secretKey),
+                    Authenticator = GetAuthenticator(_clientId),
                 };
         }
 
-        internal SoundCloudApiUnAuthenticated(string clientId, string secretKey, RestClient client)
+        internal SoundCloudApiUnAuthenticated(string clientId, RestClient client)
         {
             _clientId = clientId;
-            _secretKey = secretKey;
             _client = client;
-            _client.Authenticator = GetAuthenticator(_clientId, _secretKey);
+            _client.Authenticator = GetAuthenticator(_clientId);
         }
 
         public IUser User(int userId)
@@ -108,13 +105,13 @@ namespace SoundCloud.Api.Net
             return new App(appId, this);
         }
 
-        private static IAuthenticator GetAuthenticator(string clientId, string secretKey)
+        private static IAuthenticator GetAuthenticator(string clientId)
         {
             return new SimpleAuthenticator(
                 QueryParameter.ClientId, 
                 clientId, 
-                QueryParameter.Consumerkey,
-                secretKey);
+                String.Empty,
+                String.Empty);
         }
 
         public virtual T Execute<T>(IResource<T> resource) where T : new()

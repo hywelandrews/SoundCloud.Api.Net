@@ -89,10 +89,10 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     User = new User
                         {
                             Id = 509497,
-                            Permalink = "owlmusic",
-                            Username = "Owlmusic",
+                            Permalink = "owlandrews",
+                            Username = "Owlandrews",
                             Uri = "http://api.soundcloud.com/users/509497",
-                            PermalinkUrl = "http://soundcloud.com/owlmusic",
+                            PermalinkUrl = "http://soundcloud.com/owlandrews",
                             AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg"
                         },
                     Label = new User
@@ -108,7 +108,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     ArtworkUrl = "http://i1.sndcdn.com/artworks-000001070867-60u1mw-large.jpg",
                     WaveformUrl = "http://w1.sndcdn.com/0PhxMYJBKnps_m.png",
                     StreamUrl = "http://api.soundcloud.com/tracks/1379060/stream",
-                    PlaybackCount = 240,
+                    PlaybackCount = 253,
                     DownloadCount = 0,
                     FavoritingsCount = 4,
                     CommentCount = 2,
@@ -148,8 +148,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestPutTrackUpdateDescription()
         {
-            var t = SoundCloudApiAuthenticated.Track(1379060).Put(new Track { Description = "Here is a new description" });
-            Assert.AreEqual("Here is a new description", t.Description);
+            var t = SoundCloudApiAuthenticated.Track(1379060).Get();
+            t.Description = "Here is a new description";
+            SoundCloudApiAuthenticated.Track(1379060).Put(t);
+            var x = SoundCloudApiAuthenticated.Track(1379060).Get();
+            Assert.AreEqual("Here is a new description", x.Description);
+            SoundCloudApiAuthenticated.Track(1379060).Put(new Track { Description = "Car Crash Set (C/C/S2009)" });
         }
 
         private void TrackBuilder(Track result)

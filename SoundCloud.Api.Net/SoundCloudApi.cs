@@ -4,9 +4,9 @@ namespace SoundCloud.Api.Net
 {
     public static class SoundCloudApi
     {
-        public static ISoundCloudApiUnAuthenticated CreateClient(string clientId, string secretKey)
+        public static ISoundCloudApiUnAuthenticated CreateClient(string clientId)
         {
-            return new SoundCloudApiUnAuthenticated(clientId, secretKey);
+            return new SoundCloudApiUnAuthenticated(clientId);
         }
 
         public static ISoundCloudApiAuthenticated CreateClient(string clientId, 

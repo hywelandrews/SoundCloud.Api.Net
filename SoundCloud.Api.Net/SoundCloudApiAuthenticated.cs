@@ -54,7 +54,7 @@ namespace SoundCloud.Api.Net
             string clientId, 
             string secretKey,
             IPasswordCredentialsState passwordCredentialsState)
-            : base(clientId, secretKey, Client)
+            : base(clientId, Client)
         {
             _clientId = clientId;
             _secretKey = secretKey;
@@ -133,7 +133,7 @@ namespace SoundCloud.Api.Net
 
             _currentOAuthToken = _passwordCredentialsState.Load();
 
-            return !_currentOAuthToken.HasExpired();
+            return _currentOAuthToken.HasExpired();
         }
 
         private OAuth2 GetOauth2Model()

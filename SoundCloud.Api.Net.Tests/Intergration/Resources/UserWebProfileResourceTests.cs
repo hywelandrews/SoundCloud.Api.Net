@@ -7,18 +7,26 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
     public class UserWebProfileResourceTests : ResourceTestsBase
     {
         [Test]
+        public void TestGetUserWebProfileRequest()
+        {
+            var i = SoundCloudApiAuthenticated.User().WebProfiles().Get();
+
+        }
+
+        [Test]
         public void TestPutUserWebProfileRequest()
         {
             var webProfile = new WebProfile
                 {
-                    Id = 4783141,
-                    Service = "personal",
+                    Id = 26382185,
+                    Service = "other",
                     Title = "A website",
-                    Url = "http://grasshopperliesheavy.co.uk"
+                    Url = "http://owlmusic.bandcamp.com/"
                 };
-            SoundCloudApiAuthenticated.User().WebProfile(4783141).Put(webProfile);
+            SoundCloudApiAuthenticated.User().WebProfile(26382185).Put(webProfile);
         }
 
+        [Ignore]
         [Test]
         public void TestDeleteUserWebProfileRequest()
         {

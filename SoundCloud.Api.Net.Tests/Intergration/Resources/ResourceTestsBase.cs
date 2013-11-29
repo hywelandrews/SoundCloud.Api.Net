@@ -18,7 +18,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void Initialize()
         {
             ValidateConfiguration();
-            SoundCloudApiUnAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId, TestSettings.ClientSecret);
+            SoundCloudApiUnAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId);
             PasswordCredentialsState = new PasswordCredentialsState();
             SoundCloudApiAuthenticated = SoundCloudApi.CreateClient(TestSettings.ClientId, TestSettings.ClientSecret, TestSettings.UserName, TestSettings.Password, PasswordCredentialsState);
         }

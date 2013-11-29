@@ -36,7 +36,7 @@ namespace SoundCloud.Api.Net.Resources
                 throw new Exception("GranType of Refresh token requires a refresh token");
             }
 
-            Request.AddParameter(FormParameter.Code, oAuth2.RefreshToken);
+            Request.AddParameter(FormParameter.RefreshToken, oAuth2.RefreshToken);
         }
 
         private void AddAuthorizationCodeParameters(OAuth2 oAuth2)

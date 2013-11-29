@@ -76,11 +76,11 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Completion = new ManualResetEvent(false);
             var requests = new List<IPlaylists>
                 {
-                    SoundCloudApiUnAuthenticated.Playlists(),
-                    SoundCloudApiUnAuthenticated.Playlists(),
-                    SoundCloudApiUnAuthenticated.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
+                    SoundCloudApiAuthenticated.Playlists(),
                 };
-            SoundCloudApiUnAuthenticated.ExecuteAsync(requests, PlaylistsListBuilder);
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, PlaylistsListBuilder);
             Assert.Greater(_asyncPlaylistsResult.Count, 0);
         }
 

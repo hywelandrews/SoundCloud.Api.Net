@@ -49,23 +49,23 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             var user = SoundCloudApiUnAuthenticated.User(509497).Get();
             var expectedUser = new User { Id = 509497,
-                                          Permalink = "owlmusic",
-                                          Username = "Owlmusic",
+                                          Permalink = "owlandrews",
+                                          Username = "Owlandrews",
                                           Uri = "http://api.soundcloud.com/users/509497",
-                                          PermalinkUrl = "http://soundcloud.com/owlmusic",
+                                          PermalinkUrl = "http://soundcloud.com/owlandrews",
                                           AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg",
                                           Country = "Britain (UK)",
                                           FullName = "Owl",
-                                          Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. Contact djsparko@gmail.com for bookings.",
+                                          Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. \r\n\r\nContact owl@wehideinplainsight.net for bookings.",
                                           City = "Bristol",
-                                          DiscogsName = "sparkooo",
+                                          DiscogsName = null,
                                           Online = true,
                                           TrackCount = 12,
                                           PlaylistCount = 0,
                                           Plan = "Free",
-                                          PublicFavoritesCount = 6,
-                                          FollowersCount = 138,
-                                          FollowingsCount = 106,
+                                          PublicFavoritesCount = 11,
+                                          FollowersCount = 139,
+                                          FollowingsCount = 102,
             };
             Assert.AreEqual(expectedUser.AvatarUrl, user.AvatarUrl.Substring(0, user.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4));
             Assert.AreEqual(expectedUser.City, user.City);
