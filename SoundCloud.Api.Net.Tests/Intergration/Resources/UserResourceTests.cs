@@ -16,19 +16,19 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 
         private class UserComparer : IEqualityComparer<User>
         {
-            public bool Equals(User x, User y)
+            public bool Equals(User expected, User actual)
             {
-                return (x.AvatarData == y.AvatarData) && (x.AvatarUrl == y.AvatarUrl.Substring(0, y.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4)) &&
-                       (x.City == y.City) && (x.Country == y.Country) &&
-                       (x.Description == y.Description) && (x.DiscogsName == y.DiscogsName) &&
-                       (x.FollowersCount == y.FollowersCount) && (x.FollowingsCount == y.FollowingsCount) &&
-                       (x.FullName == y.FullName) && (x.Id == y.Id) &&
-                       (x.MyspaceName == y.MyspaceName) && (x.Permalink == y.Permalink) && (x.PermalinkUrl == y.PermalinkUrl) &&
-                       (x.Plan == y.Plan) && (x.PlaylistCount == y.PlaylistCount) &&                        
-                       (x.PublicFavoritesCount == y.PublicFavoritesCount) &&
-                       (x.TrackCount == y.TrackCount) && (x.Uri == y.Uri) &&
-                       (x.Username == y.Username) && (x.Website == y.Website) &&
-                       (x.WebsiteTitle == y.WebsiteTitle);
+                return (expected.AvatarData == actual.AvatarData) && (expected.AvatarUrl == actual.AvatarUrl.Substring(0, actual.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4)) &&
+                       (expected.City == actual.City) && (expected.Country == actual.Country) &&
+                       (expected.Description == actual.Description) && (expected.DiscogsName == actual.DiscogsName) &&
+                       (actual.FollowersCount > expected.FollowersCount) && (actual.FollowingsCount > expected.FollowingsCount) &&
+                       (expected.FullName == actual.FullName) && (expected.Id == actual.Id) &&
+                       (expected.MyspaceName == actual.MyspaceName) && (expected.Permalink == actual.Permalink) && (expected.PermalinkUrl == actual.PermalinkUrl) &&
+                       (expected.Plan == actual.Plan) && (expected.PlaylistCount == actual.PlaylistCount) &&
+                       (actual.PublicFavoritesCount > expected.PublicFavoritesCount) &&
+                       (actual.TrackCount > expected.TrackCount) && (expected.Uri == actual.Uri) &&
+                       (expected.Username == actual.Username) && (expected.Website == actual.Website) &&
+                       (expected.WebsiteTitle == actual.WebsiteTitle);
             }
 
             public int GetHashCode(User obj)
@@ -50,41 +50,41 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             var user = SoundCloudApiUnAuthenticated.User(509497).Get();
             var expectedUser = new User { Id = 509497,
                                           Permalink = "owlandrews",
-                                          Username = "Owlandrews",
-                                          Uri = "http://api.soundcloud.com/users/509497",
-                                          PermalinkUrl = "http://soundcloud.com/owlandrews",
+                                          Username = "Owl Andrews",
+                                          Uri = "https://api.soundcloud.com/users/509497",
+                                          PermalinkUrl = "https://soundcloud.com/owlandrews",
                                           AvatarUrl = "https://i1.sndcdn.com/avatars-000071198254-gx9y0q-large.jpg",
-                                          Country = "Britain (UK)",
-                                          FullName = "Owl",
+                                          Country = null,
+                                          FullName = "Owl Andrews",
                                           Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. \r\n\r\nContact owl@wehideinplainsight.net for bookings.",
                                           City = "Bristol",
                                           DiscogsName = null,
                                           Online = true,
-                                          TrackCount = 12,
+                                          TrackCount = 1,
                                           PlaylistCount = 0,
                                           Plan = "Free",
-                                          PublicFavoritesCount = 11,
-                                          FollowersCount = 139,
-                                          FollowingsCount = 102,
+                                          PublicFavoritesCount = 1,
+                                          FollowersCount = 1,
+                                          FollowingsCount = 1,
             };
             Assert.AreEqual(expectedUser.AvatarUrl, user.AvatarUrl.Substring(0, user.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4));
             Assert.AreEqual(expectedUser.City, user.City);
             Assert.AreEqual(expectedUser.Country, user.Country);
             Assert.AreEqual(expectedUser.Description, user.Description);
             Assert.AreEqual(expectedUser.DiscogsName, user.DiscogsName);
-            Assert.AreEqual(expectedUser.FollowersCount, user.FollowersCount);
-            Assert.AreEqual(expectedUser.FollowingsCount, user.FollowingsCount);
-            Assert.AreEqual(expectedUser.FullName, user.FullName);
+            Assert.GreaterOrEqual(user.FollowersCount, expectedUser.FollowersCount);
+            Assert.GreaterOrEqual(user.FollowingsCount, expectedUser.FollowingsCount);
+            Assert.AreEqual(user.FullName, expectedUser.FullName);
             Assert.AreEqual(expectedUser.Id, user.Id);
             Assert.AreEqual(expectedUser.MyspaceName, user.MyspaceName);
             //Assert.AreEqual(expectedUser.Online, user.Online);
             Assert.AreEqual(expectedUser.Permalink, user.Permalink);
             Assert.AreEqual(expectedUser.Plan, user.Plan);
             Assert.AreEqual(expectedUser.PlaylistCount, user.PlaylistCount);
-            Assert.AreEqual(expectedUser.PublicFavoritesCount, user.PublicFavoritesCount);
-            Assert.AreEqual(expectedUser.TrackCount, user.TrackCount);
+            Assert.GreaterOrEqual(user.PublicFavoritesCount, expectedUser.PublicFavoritesCount);
+            Assert.GreaterOrEqual(user.TrackCount, expectedUser.TrackCount);
             Assert.AreEqual(expectedUser.Uri, user.Uri);
-            Assert.AreEqual(expectedUser.Username, user.Username);
+            Assert.AreEqual(user.Username, expectedUser.Username);
             Assert.AreEqual(expectedUser.Website, user.Website);
             Assert.AreEqual(expectedUser.WebsiteTitle, user.WebsiteTitle);
             Assert.True(new UserComparer().Equals(expectedUser, user));

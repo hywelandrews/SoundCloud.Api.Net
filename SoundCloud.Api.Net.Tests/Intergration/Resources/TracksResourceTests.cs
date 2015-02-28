@@ -98,15 +98,13 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             var ids = new List<int> { 1379060, 1640576 };
 
             var tracks = SoundCloudApiUnAuthenticated.Tracks().Ids(ids).Get();
-            Assert.AreEqual(tracks.Count, 2);
+            Assert.AreEqual(2, tracks.Count);
         }
 
         [Test]
         public void TestGetTracksWithGenresRequest()
         {
-            var genres = new List<string> { "dubstep", "garage" };
-
-            var tracks = SoundCloudApiUnAuthenticated.Tracks().Genres(genres).Get();
+            var tracks = SoundCloudApiUnAuthenticated.Tracks().Genres("dubstep").Get();
             Assert.Greater(tracks.Count, 0);
         }
 

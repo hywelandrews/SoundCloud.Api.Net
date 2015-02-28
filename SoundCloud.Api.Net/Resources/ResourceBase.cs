@@ -143,9 +143,9 @@ namespace SoundCloud.Api.Net.Resources
             return this as TR;
         }
 
-        public TR Genres(IEnumerable<string> list)
+        public TR Genres(string genre)
         {
-            Request.AddParameter(QueryParameter.Genres, string.Join(",", list), ParameterType.GetOrPost);
+            Request.AddParameter(QueryParameter.Genres, string.Join(",", genre), ParameterType.GetOrPost);
             return this as TR;
         }
 
