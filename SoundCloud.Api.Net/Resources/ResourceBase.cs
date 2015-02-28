@@ -127,13 +127,13 @@ namespace SoundCloud.Api.Net.Resources
 
         public TR CreatedFrom(DateTime date)
         {
-            Request.AddParameter(QueryParameter.CreatedFrom, date.ToString("u"), ParameterType.GetOrPost);
+            Request.AddParameter(QueryParameter.CreatedFrom, date.ToString("yyyy-MM-dd HH:mm:ss"), ParameterType.GetOrPost);
             return this as TR;
         }
 
         public TR CreatedTo(DateTime date)
         {
-            Request.AddParameter(QueryParameter.CreatedTo, date.ToString("u"), ParameterType.GetOrPost);
+            Request.AddParameter(QueryParameter.CreatedTo, date.ToString("yyyy-MM-dd HH:mm:ss"), ParameterType.GetOrPost);
             return this as TR;
         }
 

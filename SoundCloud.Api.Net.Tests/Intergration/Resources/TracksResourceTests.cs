@@ -95,7 +95,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTracksWithIdsRequest()
         {
-            var ids = new List<int> { 1379060, 1640576 };
+            var ids = new List<int> { 112385582, 8919569 };
 
             var tracks = SoundCloudApiUnAuthenticated.Tracks().Ids(ids).Get();
             Assert.AreEqual(2, tracks.Count);

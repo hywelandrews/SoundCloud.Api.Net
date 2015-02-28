@@ -11,6 +11,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
     public class PlaylistResourceTests : ResourceTestsBase
     {
         private Playlist _asyncPlaylistResult;
+        private List<Playlist> _asyncPlaylistResults;
 
         [Test]
         public void TestGetPlaylistRequest()
@@ -54,6 +55,30 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
 
             var users = SoundCloudApiUnAuthenticated.Execute(resourceList);
             Assert.AreEqual(3, users.Count);
+        }
+
+        [Test]
+        public void TestGetPlaylistsAsyncMultipleRequest()
+        {
+            Completion = new ManualResetEvent(false);
+            var requests = new List<IPlaylist>
+                {
+                    SoundCloudApiAuthenticated.Playlist(405726),
+                    SoundCloudApiAuthenticated.Playlist(405726),
+                    SoundCloudApiAuthenticated.Playlist(405726),
+                };
+            SoundCloudApiAuthenticated.ExecuteAsync(requests, PlaylistsListBuilder);
+            Assert.AreEqual(_asyncPlaylistResults.Count, 3);
+        }
+
+        private void PlaylistsListBuilder(List<Playlist> result)
+        {
+            _asyncPlaylistResults = new List<Playlist>();
+            foreach (var placeResult in result)
+            {
+                _asyncPlaylistResults.Add(placeResult);
+            }
+            Completion.Set();
         }
 
         private void PlaylistBuilder(Playlist result)

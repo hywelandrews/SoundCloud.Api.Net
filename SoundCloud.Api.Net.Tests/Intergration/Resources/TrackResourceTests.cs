@@ -10,6 +10,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
     public class TrackResourceTests : ResourceTestsBase
     {
         private Track _asyncTrackResult;
+        private const int TrackId = 112385582;
 
         private class TrackComparer : IEqualityComparer<Track>
         {
@@ -49,17 +50,17 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTrackRequest()
         {
-            var track = SoundCloudApiUnAuthenticated.Track(1379060).Get();
-            Assert.AreEqual(1379060, track.Id);
+            var track = SoundCloudApiUnAuthenticated.Track(TrackId).Get();
+            Assert.AreEqual(TrackId, track.Id);
         }
 
         [Test]
         public void TestGetTrackAllPropertiesRequest()
         {
-            var track = SoundCloudApiUnAuthenticated.Track(1379060).Get();
+            var track = SoundCloudApiUnAuthenticated.Track(TrackId).Get();
             var expectedTrack = new Track
                 {
-                    Id = 1379060,
+                    Id = TrackId,
                     CreatedAt = new DateTime(2010, 01, 17, 15, 21, 17),
                     UserId = 509497,
                     Duration = 284158,
@@ -108,52 +109,52 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                     ArtworkUrl = "http://i1.sndcdn.com/artworks-000001070867-60u1mw-large.jpg",
                     WaveformUrl = "http://w1.sndcdn.com/0PhxMYJBKnps_m.png",
                     StreamUrl = "http://api.soundcloud.com/tracks/1379060/stream",
-                    PlaybackCount = 253,
+                    PlaybackCount = 1,
                     DownloadCount = 0,
-                    FavoritingsCount = 4,
-                    CommentCount = 2,
+                    FavoritingsCount = 1,
+                    CommentCount = 1,
                     AttachmentsUri = "http://api.soundcloud.com/tracks/1379060/attachments"
                 };
-            Assert.AreEqual(expectedTrack.PlaybackCount, track.PlaybackCount);
-            Assert.AreEqual(expectedTrack.FavoritingsCount, track.FavoritingsCount);
-            Assert.AreEqual(expectedTrack.CommentCount, track.CommentCount);
+            Assert.Greater(expectedTrack.PlaybackCount, track.PlaybackCount);
+            Assert.Greater(expectedTrack.FavoritingsCount, track.FavoritingsCount);
+            Assert.Greater(expectedTrack.CommentCount, track.CommentCount);
             Assert.True(new TrackComparer().Equals(expectedTrack, track));
         }
 
         [Test]
         public void TestGetTrackUsingOAuthRequest()
         {
-            var track = SoundCloudApiAuthenticated.Track(1379060).Get();
-            Assert.AreEqual(1379060, track.Id);
+            var track = SoundCloudApiAuthenticated.Track(TrackId).Get();
+            Assert.AreEqual(TrackId, track.Id);
         }
 
         [Test]
         public void TestGetTrackAsyncRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiUnAuthenticated.Track(1379060).GetAsync(TrackBuilder);
+            SoundCloudApiUnAuthenticated.Track(TrackId).GetAsync(TrackBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
-            Assert.AreEqual(1379060, _asyncTrackResult.Id);
+            Assert.AreEqual(TrackId, _asyncTrackResult.Id);
         }
 
         [Test]
         public void TestGetTrackAsyncUsingOAuthRequest()
         {
             Completion = new ManualResetEvent(false);
-            SoundCloudApiAuthenticated.Track(1379060).GetAsync(TrackBuilder);
+            SoundCloudApiAuthenticated.Track(TrackId).GetAsync(TrackBuilder);
             Completion.WaitOne(TimeSpan.FromSeconds(100));
-            Assert.AreEqual(1379060, _asyncTrackResult.Id);
+            Assert.AreEqual(TrackId, _asyncTrackResult.Id);
         }
 
         [Test]
         public void TestPutTrackUpdateDescription()
         {
-            var t = SoundCloudApiAuthenticated.Track(1379060).Get();
+            var t = SoundCloudApiAuthenticated.Track(TrackId).Get();
             t.Description = "Here is a new description";
-            SoundCloudApiAuthenticated.Track(1379060).Put(t);
-            var x = SoundCloudApiAuthenticated.Track(1379060).Get();
+            SoundCloudApiAuthenticated.Track(TrackId).Put(t);
+            var x = SoundCloudApiAuthenticated.Track(TrackId).Get();
             Assert.AreEqual("Here is a new description", x.Description);
-            SoundCloudApiAuthenticated.Track(1379060).Put(new Track { Description = "Car Crash Set (C/C/S2009)" });
+            SoundCloudApiAuthenticated.Track(TrackId).Put(new Track { Description = String.Empty });
         }
 
         private void TrackBuilder(Track result)

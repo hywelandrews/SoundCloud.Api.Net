@@ -25,7 +25,6 @@ namespace SoundCloud.Api.Net
         ITrack Track(int trackId);
         ITracks Tracks();
         IPlaylist Playlist(int playlistId);
-        IPlaylists Playlists();
         IGroups Groups();     
         IGroup Group(int groupId);
         IComments Comments();

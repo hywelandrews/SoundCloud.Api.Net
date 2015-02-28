@@ -69,7 +69,6 @@
     <Compile Include="Intergration\Resources\GroupResourceTests.cs" />
     <Compile Include="Intergration\Resources\GroupsResourceTests.cs" />
     <Compile Include="Intergration\Resources\PlaylistResourceTests.cs" />
-    <Compile Include="Intergration\Resources\PlaylistsResourceTests.cs" />
     <Compile Include="Intergration\Resources\ResourceTestsBase.cs" />
     <Compile Include="Intergration\Resources\TrackResourceTests.cs" />
     <Compile Include="Intergration\Resources\TracksResourceTests.cs" />
