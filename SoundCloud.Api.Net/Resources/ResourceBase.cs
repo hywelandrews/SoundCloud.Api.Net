@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RestSharp;
 using SoundCloud.Api.Net.Parameters;
 using SoundCloud.Api.Net.Resources.Filters;
@@ -52,21 +51,28 @@ namespace SoundCloud.Api.Net.Resources
         public void PutAsync(Action<T> callback)
         {
             Request.Method = Method.PUT;
+            AddHeaders();
             _soundCloudApi.ExecuteAsync(this, callback);
         }
 
         public T Put(T model)
         {
             Request.Method = Method.PUT;
-            Request.AddHeader("Content-Type", "application/json; charset=utf-8");
+            AddHeaders();
             Request.AddBody(model);
             return _soundCloudApi.Execute(this);
+        }
+
+        private void AddHeaders()
+        {
+            Request.AddHeader("Content-Type", "application/json; charset=utf-8");
+            Request.AddHeader("Content-Type", "text/json; charset=utf-8");
         }
 
         public void PutAsync(T model, Action<T> callback)
         {
             Request.Method = Method.PUT;
-            Request.AddHeader("Content-Type", "application/json");
+            AddHeaders();
             Request.AddBody(model);
             _soundCloudApi.ExecuteAsync(this, callback);
         }
@@ -77,6 +83,21 @@ namespace SoundCloud.Api.Net.Resources
             _soundCloudApi.Execute(this);
         }
 
+        public T Post(T model)
+        {
+            Request.Method = Method.POST;
+            AddHeaders();
+            Request.AddBody(model);
+            return _soundCloudApi.Execute(this);
+        }
+
+        public void PostAsync(T model, Action<T> callback)
+        {
+            Request.Method = Method.PUT;
+            AddHeaders();
+            Request.AddBody(model);
+            _soundCloudApi.ExecuteAsync(this, callback);
+        }
         public TR Search(string term)
         {
             Request.AddParameter(QueryParameter.Search, term, ParameterType.GetOrPost);

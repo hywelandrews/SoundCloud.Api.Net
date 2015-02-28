@@ -15,15 +15,15 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetGroupsRequest()
         {
-            var playlists = SoundCloudApiUnAuthenticated.Groups().Get();
-            Assert.Greater(playlists.Count, 0);
+            var groups = SoundCloudApiUnAuthenticated.Groups().Get();
+            Assert.Greater(groups.Count, 0);
         }
 
         [Test]
         public void TestGetGroupsWithSearchRequest()
         {
-            var playlists = SoundCloudApiUnAuthenticated.Groups().Search("Owl").Get();
-            Assert.Greater(playlists.Count, 0);
+            var groups = SoundCloudApiUnAuthenticated.Groups().Search("Owl").Get();
+            Assert.Greater(groups.Count, 0);
         }
 
         [Test]

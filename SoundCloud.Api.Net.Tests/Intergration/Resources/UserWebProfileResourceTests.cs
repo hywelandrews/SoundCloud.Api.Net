@@ -6,31 +6,50 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
     [TestFixture]
     public class UserWebProfileResourceTests : ResourceTestsBase
     {
+        private WebProfile _webProfile;
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            _webProfile = new WebProfile
+            {
+                Service = "twitter",
+                Title = "Owl",
+                Url = "http://twitter.com/owlandrews"
+            };
+        }
         [Test]
         public void TestGetUserWebProfileRequest()
         {
-            var i = SoundCloudApiAuthenticated.User().WebProfiles().Get();
+            var webprofile = SoundCloudApiAuthenticated.User().WebProfiles().Get();
+            Assert.IsNotNull(webprofile);
+        }
 
+        [Test]
+        public void TestCreateUserWebProfileRequest()
+        {
+            var webProfileWithId = SoundCloudApiAuthenticated.User(509497).WebProfile().Post(_webProfile);
+            var newWebProfile = SoundCloudApiAuthenticated.User(509497).WebProfile(webProfileWithId.Id).Get();
+            Assert.AreEqual(webProfileWithId.Id, newWebProfile.Id);
+            SoundCloudApiAuthenticated.User().WebProfile(webProfileWithId.Id).Delete();
+        }
+
+        [Test]
+        public void TestDeleteUserWebProfileRequest()
+        {
+            var webProfileWithId = SoundCloudApiAuthenticated.User(509497).WebProfile().Post(_webProfile);
+            SoundCloudApiAuthenticated.User().WebProfile(webProfileWithId.Id).Delete();
         }
 
         [Test]
         public void TestPutUserWebProfileRequest()
         {
-            var webProfile = new WebProfile
-                {
-                    Id = 26382185,
-                    Service = "other",
-                    Title = "A website",
-                    Url = "http://owlmusic.bandcamp.com/"
-                };
-            SoundCloudApiAuthenticated.User().WebProfile(26382185).Put(webProfile);
-        }
-
-        [Ignore]
-        [Test]
-        public void TestDeleteUserWebProfileRequest()
-        {
-            SoundCloudApiAuthenticated.User().WebProfile(4783141).Delete();
+            var webProfileWithId = SoundCloudApiAuthenticated.User(509497).WebProfile().Post(_webProfile);
+            webProfileWithId.Title = "Owl 2";
+            SoundCloudApiAuthenticated.User().WebProfile(webProfileWithId.Id).Put(webProfileWithId);
+            var scVersion = SoundCloudApiAuthenticated.User().WebProfile(webProfileWithId.Id).Get();
+            Assert.AreEqual(webProfileWithId.Title, scVersion.Title);
+            SoundCloudApiAuthenticated.User().WebProfile(webProfileWithId.Id).Delete();
         }
     }
 }

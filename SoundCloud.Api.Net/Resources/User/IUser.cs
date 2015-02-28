@@ -28,6 +28,7 @@ namespace SoundCloud.Api.Net.Resources.User
         IFavorites Favorites();
         IGroups Groups();
         IWebProfile WebProfile(int webProfileId);
+        IWebProfile WebProfile();
         IWebProfiles WebProfiles();
     }
 }

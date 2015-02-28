@@ -129,6 +129,7 @@
     <Compile Include="Resources\Group\IGroup.cs" />
     <Compile Include="Resources\Groups\IGroups.cs" />
     <Compile Include="Resources\Filters\ILicenseFilter.cs" />
+    <Compile Include="Resources\IPost.cs" />
     <Compile Include="Resources\IPut.cs" />
     <Compile Include="Resources\IPutWithModel.cs" />
     <Compile Include="Resources\Me\IMe.cs" />

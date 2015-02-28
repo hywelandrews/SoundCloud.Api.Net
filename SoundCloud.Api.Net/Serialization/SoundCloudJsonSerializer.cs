@@ -9,7 +9,7 @@ namespace SoundCloud.Api.Net.Serialization
     {
         public string Serialize(object obj)
         {
-            ContentType = "application/json";
+            ContentType = "text/json";
 
             if (obj.GetType() == typeof(Activity))
             {
@@ -63,7 +63,7 @@ namespace SoundCloud.Api.Net.Serialization
 
             if (obj.GetType() == typeof(WebProfile))
             {
-                return JsonConvert.SerializeObject(new { webprofile = obj });
+                return JsonConvert.SerializeObject(new { web_profile = obj });
             }
 
             throw new Exception("Unable to serialize object type to SoundCloud API");
