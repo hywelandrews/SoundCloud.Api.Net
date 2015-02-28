@@ -58,8 +58,6 @@ SoundCloudApiAuthenticated.User().Following(followingId).Delete()
 
 Found a bug or missing a feature? Please create a new issue here on GitHub.
 
-Also make sure to check out the official [documentation](https://github.com/SoundCloud.Api.Net/wiki).
-
 ## License
 
 Copyright (c) 2013 Hywel Andrews
