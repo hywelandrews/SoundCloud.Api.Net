@@ -53,7 +53,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
                                           Username = "Owlandrews",
                                           Uri = "http://api.soundcloud.com/users/509497",
                                           PermalinkUrl = "http://soundcloud.com/owlandrews",
-                                          AvatarUrl = "http://i1.sndcdn.com/avatars-000016346611-rvk5pn-large.jpg",
+                                          AvatarUrl = "https://i1.sndcdn.com/avatars-000071198254-gx9y0q-large.jpg",
                                           Country = "Britain (UK)",
                                           FullName = "Owl",
                                           Description = "Bristol based producer; releases on Car Crash Set and a resident for Bristol Bass. \r\n\r\nContact owl@wehideinplainsight.net for bookings.",
