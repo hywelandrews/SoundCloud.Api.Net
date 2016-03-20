@@ -9,7 +9,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestGetMeRequest()
         {
             var user = SoundCloudApiAuthenticated.Me().Get();
-            Assert.IsNotNullOrEmpty(user.Username);
+            Assert.IsNotNull(user.Username);
         }
     }
 }

@@ -20,6 +20,7 @@ using SoundCloud.Api.Net.Resources.Track;
 using SoundCloud.Api.Net.Resources.Tracks;
 using SoundCloud.Api.Net.Resources.User;
 using SoundCloud.Api.Net.Resources.Users;
+using RestSharp.Authenticators;
 
 namespace SoundCloud.Api.Net
 {

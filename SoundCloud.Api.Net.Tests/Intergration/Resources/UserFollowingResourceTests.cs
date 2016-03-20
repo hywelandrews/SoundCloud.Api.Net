@@ -10,7 +10,7 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestPutUserFollowingRequest()
         {
             var user = SoundCloudApiAuthenticated.User().Following(17567595).Put();
-            Assert.IsNotNullOrEmpty(user.Username);
+            Assert.IsNotNull(user.Username);
         }
 
         [Test]
