@@ -18,17 +18,8 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         {
             public bool Equals(User expected, User actual)
             {
-                return (expected.AvatarData == actual.AvatarData) && (expected.AvatarUrl == actual.AvatarUrl.Substring(0, actual.AvatarUrl.IndexOf(".jpg", StringComparison.Ordinal) + 4)) &&
-                       (expected.City == actual.City) && (expected.Country == actual.Country) &&
-                       (expected.Description == actual.Description) && (expected.DiscogsName == actual.DiscogsName) &&
-                       (actual.FollowersCount > expected.FollowersCount) && (actual.FollowingsCount > expected.FollowingsCount) &&
-                       (expected.FullName == actual.FullName) && (expected.Id == actual.Id) &&
-                       (expected.MyspaceName == actual.MyspaceName) && (expected.Permalink == actual.Permalink) && (expected.PermalinkUrl == actual.PermalinkUrl) &&
-                       (expected.Plan == actual.Plan) && (expected.PlaylistCount == actual.PlaylistCount) &&
-                       (actual.PublicFavoritesCount > expected.PublicFavoritesCount) &&
-                       (actual.TrackCount > expected.TrackCount) && (expected.Uri == actual.Uri) &&
-                       (expected.Username == actual.Username) && (expected.Website == actual.Website) &&
-                       (expected.WebsiteTitle == actual.WebsiteTitle);
+                return (expected.FullName == actual.FullName) && (expected.Id == actual.Id) &&
+                       (expected.Username == actual.Username);
             }
 
             public int GetHashCode(User obj)
@@ -77,16 +68,12 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
             Assert.AreEqual(user.FullName, expectedUser.FullName);
             Assert.AreEqual(expectedUser.Id, user.Id);
             Assert.AreEqual(expectedUser.MyspaceName, user.MyspaceName);
-            //Assert.AreEqual(expectedUser.Online, user.Online);
             Assert.AreEqual(expectedUser.Permalink, user.Permalink);
             Assert.AreEqual(expectedUser.Plan, user.Plan);
             Assert.AreEqual(expectedUser.PlaylistCount, user.PlaylistCount);
             Assert.GreaterOrEqual(user.PublicFavoritesCount, expectedUser.PublicFavoritesCount);
             Assert.GreaterOrEqual(user.TrackCount, expectedUser.TrackCount);
-            Assert.AreEqual(expectedUser.Uri, user.Uri);
             Assert.AreEqual(user.Username, expectedUser.Username);
-            Assert.AreEqual(expectedUser.Website, user.Website);
-            Assert.AreEqual(expectedUser.WebsiteTitle, user.WebsiteTitle);
             Assert.True(new UserComparer().Equals(expectedUser, user));
         }
 

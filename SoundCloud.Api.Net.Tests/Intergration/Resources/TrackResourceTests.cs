@@ -114,10 +114,10 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         public void TestPutTrackUpdateDescription()
         {
             var t = SoundCloudApiAuthenticated.Track(TrackId).Get();
-            t.Description = "Here is a new description";
+            t.Description = "Here is a new description 3";
             SoundCloudApiAuthenticated.Track(TrackId).Put(t);
             var x = SoundCloudApiAuthenticated.Track(TrackId).Get();
-            Assert.AreEqual("Here is a new description", x.Description);
+            Assert.AreEqual("Here is a new description 3", x.Description);
             SoundCloudApiAuthenticated.Track(TrackId).Put(new Track { Description = String.Empty });
         }
 

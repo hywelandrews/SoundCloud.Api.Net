@@ -158,15 +158,15 @@ namespace SoundCloud.Api.Net.Tests.Intergration.Resources
         [Test]
         public void TestGetTracksUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticated.Tracks().Get();
-            Assert.Greater(_asyncTracksResult.Count, 0);
+            var tracks = SoundCloudApiAuthenticated.Tracks().Get();
+            Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
         public void TestGetTracksWithSearchUsingOAuthRequest()
         {
-            SoundCloudApiAuthenticated.Tracks().Search("Owl").Get();
-            Assert.Greater(_asyncTracksResult.Count, 0);
+            var tracks = SoundCloudApiAuthenticated.Tracks().Search("Owl").Get();
+            Assert.Greater(tracks.Count, 0);
         }
 
         [Test]
